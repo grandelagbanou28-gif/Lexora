@@ -1,0 +1,9 @@
+{
+  "buildCommand": "sh tool/vercel_build.sh",
+  "installCommand": "echo 'no-deps'",
+  "outputDirectory": "build/web",
+  "framework": null,
+  "rewrites": [
+    { "source": "/((?!.*\\..*).*)", "destination": "/index.html" }
+  ]
+}
