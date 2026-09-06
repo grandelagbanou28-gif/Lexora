@@ -33,7 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "about": MessageLookupByLibrary.simpleMessage("About"),
     "appDictionary": MessageLookupByLibrary.simpleMessage("App dictionary"),
     "appLanguage": MessageLookupByLibrary.simpleMessage("App language"),
-    "appTitle": MessageLookupByLibrary.simpleMessage("Wordly Plus"),
+    "appTitle": MessageLookupByLibrary.simpleMessage("Lexora"),
     "casual": MessageLookupByLibrary.simpleMessage("Default"),
     "checkResult": MessageLookupByLibrary.simpleMessage(
       "You can check your result here:",
@@ -78,7 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "ru": MessageLookupByLibrary.simpleMessage("Russian"),
     "secretWord": MessageLookupByLibrary.simpleMessage("Secret word"),
     "sendMessage": MessageLookupByLibrary.simpleMessage(
-      "subject=WordlyPlus%20-%20New%20word&body=Word%20-%0AMeaning%20-",
+      "subject=Lexora%20-%20New%20word&body=Word%20-%0AMeaning%20-",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "share": MessageLookupByLibrary.simpleMessage("Share"),

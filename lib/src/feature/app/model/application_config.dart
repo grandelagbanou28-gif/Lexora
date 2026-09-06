@@ -24,11 +24,11 @@ class const ApplicationConfig() {
   /// Whether Sentry is enabled.
   bool get enableSentry => sentryDsn.isNotEmpty;
 
-  String get mySite => 'https://carapacik.github.io';
+  String get mySite => 'https://github.com/grandelagbanou28-gif/Lexora';
 
-  String get email => 'carapacik@gmail.com';
+  String get email => 'grandelagbanou28@gmail.com';
 
-  String get webLink => 'https://carapacik.github.io/wordly_plus/';
+  String get webLink => 'https://lexora-neon-one.vercel.app/';
 
-  String get androidLink => 'https://play.google.com/store/apps/details?id=com.carapacik.wordly';
+  String get androidLink => 'https://grandelagbanou28-gif.github.io/Lexora/';
 }

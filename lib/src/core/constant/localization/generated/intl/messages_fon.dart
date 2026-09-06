@@ -1,0 +1,119 @@
+// DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
+// This is a library that provides messages for a fon locale. All the
+// messages from the main program should be duplicated here with the same
+// function name.
+
+// Ignore issues from commonly used lints in this file.
+// ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
+// ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
+// ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
+// ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
+
+import 'package:intl/intl.dart';
+import 'package:intl/message_lookup_by_library.dart';
+
+final messages = new MessageLookup();
+
+typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
+
+class MessageLookup extends MessageLookupByLibrary {
+  String get localeName => 'fon';
+
+  static String m0(attemptNumber) =>
+      "N\'ma xɔ́ wɛn ɖaxó ɔ dó ${attemptNumber} alijɛ ɔ mɛ.";
+
+  static String m1(attemptNumber) =>
+      "N\'xɔ́ wɛn ɖaxó ɔ dó ${attemptNumber}/6 alijɛ ɔ mɛ.";
+
+  static String m2(number) => "Détré ${number}";
+
+  final messages = _notInlinedMessages(_notInlinedMessages);
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "about": MessageLookupByLibrary.simpleMessage("Nududó"),
+    "appDictionary": MessageLookupByLibrary.simpleMessage("Dictionnaire súsú"),
+    "appLanguage": MessageLookupByLibrary.simpleMessage("Gbè súsú"),
+    "appTitle": MessageLookupByLibrary.simpleMessage("Lexora"),
+    "casual": MessageLookupByLibrary.simpleMessage("Gbɛɖé"),
+    "checkResult": MessageLookupByLibrary.simpleMessage(
+      "A nɔ kpɔ́n nù e é wa lɛ ɖò fi:",
+    ),
+    "checkResultLose": m0,
+    "checkResultWin": m1,
+    "colorMode": MessageLookupByLibrary.simpleMessage("Mode koulè"),
+    "contact": MessageLookupByLibrary.simpleMessage(
+      "Né a ma mɔ wɛn ɖé ɖò dictionnaire ɔ mɛ\nkandé é ma ɖò wɛnjan ɖaxó ǎ,\nkplɛ́n mì ɖé ɖò, mì na ɖ\'é kpé\nɖò version vɔvɔ́ ɔ mɛ.\n",
+    ),
+    "currentStreak": MessageLookupByLibrary.simpleMessage("Série\nfɔnnú"),
+    "daily": MessageLookupByLibrary.simpleMessage("Azǎn ɖokpo"),
+    "en": MessageLookupByLibrary.simpleMessage("Glɛnsigbè"),
+    "examples": MessageLookupByLibrary.simpleMessage("Mɛɖokpo lɛ"),
+    "guessDistribution": MessageLookupByLibrary.simpleMessage(
+      "Alijɛ ɖékpó kpó wɛn ɔ ɖokpo",
+    ),
+    "highContrast": MessageLookupByLibrary.simpleMessage("Kandé daxó"),
+    "levelNumber": m2,
+    "levels": MessageLookupByLibrary.simpleMessage("Détré lɛ"),
+    "loseMessage": MessageLookupByLibrary.simpleMessage("A yí ɔ"),
+    "maxStreak": MessageLookupByLibrary.simpleMessage("Série\nsúgbo"),
+    "newWordAvailableEachDay": MessageLookupByLibrary.simpleMessage(
+      "Wɛn yɔyɔ́ ɖé na nɔ ɖò azǎn ɖokpo ɖokpo ɖò!",
+    ),
+    "nextLevel": MessageLookupByLibrary.simpleMessage("Détré ɖokpo"),
+    "nextWord": MessageLookupByLibrary.simpleMessage("Wɛn ɖokpo ɖò"),
+    "notPlayed": MessageLookupByLibrary.simpleMessage("A ma ko xlɛ́n azɔ̌ ɖé"),
+    "other": MessageLookupByLibrary.simpleMessage("Vɔvɔ́"),
+    "played": MessageLookupByLibrary.simpleMessage("É ko xlɛ́n"),
+    "progressSaveFailed": MessageLookupByLibrary.simpleMessage(
+      "Mì ma xwle nù e wa lɛ ɔ. A ɖò kpedji ɖokpo.",
+    ),
+    "resultUnavailable": MessageLookupByLibrary.simpleMessage(
+      "Nù e é wa ɔ ma ɖò tɛǹnɛ",
+    ),
+    "retry": MessageLookupByLibrary.simpleMessage("Lɛ́ xlɛ́n ɖokpo gbe"),
+    "fon": MessageLookupByLibrary.simpleMessage("Fɔngbè"),
+    "fr": MessageLookupByLibrary.simpleMessage("Flanségbè"),
+    "ru": MessageLookupByLibrary.simpleMessage("Rusiagbè"),
+    "secretWord": MessageLookupByLibrary.simpleMessage("Wɛn sín lɛn"),
+    "sendMessage": MessageLookupByLibrary.simpleMessage(
+      "subject=Lexora%20-%20Wɛn%20yɔyɔ́&body=Wɛn%20-%0ATínmɛ%20-",
+    ),
+    "settings": MessageLookupByLibrary.simpleMessage("Nùsúsú"),
+    "share": MessageLookupByLibrary.simpleMessage("Zɛ́ ɖ\'é mɛ"),
+    "start": MessageLookupByLibrary.simpleMessage("Jé azɔ̌ ɔ jí"),
+    "statistic": MessageLookupByLibrary.simpleMessage("Kpɔ́n azɔ̌ ɔ"),
+    "themeDark": MessageLookupByLibrary.simpleMessage("Zán"),
+    "themeLight": MessageLookupByLibrary.simpleMessage("Wlí"),
+    "themeMode": MessageLookupByLibrary.simpleMessage("Mode"),
+    "themeSystem": MessageLookupByLibrary.simpleMessage("Sistɛ̀m"),
+    "tutorial": MessageLookupByLibrary.simpleMessage("Nù bɛ ɖè azɔ̌ ɔ"),
+    "tutorialDescription1": MessageLookupByLibrary.simpleMessage(
+      "Wɛn ɖokpo ɖokpo na nyí wɛndagbé 5 tɔn. Zɛ́ enter kɔ́n nù ɔ dó.",
+    ),
+    "tutorialDescription2": MessageLookupByLibrary.simpleMessage(
+      "Xwé ɖɛkpó kpó wɛn ɖokpo ɖokpo kpó, koulè ɔ na sɔ́ na ɖɔ̀ nù e a sɔ́ wɛn ɔ dó.",
+    ),
+    "tutorialNotInWordSpot": MessageLookupByLibrary.simpleMessage(
+      "Wɛndagbé E ɔ ma ɖò wɛn ɔ mɛ.",
+    ),
+    "tutorialTitle": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́ WƐN ɖò alijɛ 6 mɛ.",
+    ),
+    "tutorialWordCorrectSpot": MessageLookupByLibrary.simpleMessage(
+      "Wɛndagbé P ɔ ɖò wɛn ɔ mɛ bó ɖò fi e é jlo ɔ.",
+    ),
+    "tutorialWordWrongSpot": MessageLookupByLibrary.simpleMessage(
+      "Wɛndagbé A ɔ ɖò wɛn ɔ mɛ vɔ̀ ma ɖò fi e é jlo ǎ.",
+    ),
+    "viewLevels": MessageLookupByLibrary.simpleMessage("Kpɔ́n détré lɛ"),
+    "viewStatistic": MessageLookupByLibrary.simpleMessage("Kpɔ́n azɔ̌ nù lɛ"),
+    "winMessage": MessageLookupByLibrary.simpleMessage("A xɔ́!"),
+    "winRate": MessageLookupByLibrary.simpleMessage("Xɔ́wɛn\nkpé"),
+    "wordNotFound": MessageLookupByLibrary.simpleMessage(
+      "Ma mɔ wɛn ɔ ɖò dictionnaire ɔ mɛ",
+    ),
+    "wordTooShort": MessageLookupByLibrary.simpleMessage(
+      "Wɛn ɔ ma ɖò wɛndagbé sìn mɛ ɖokpo",
+    ),
+  };
+}

@@ -83,10 +83,10 @@ class GeneratedLocalizations {
     );
   }
 
-  /// `Wordly Plus`
+  /// `Lexora`
   String get appTitle {
     return Intl.message(
-      'Wordly Plus',
+      'Lexora',
       name: 'appTitle',
       desc: 'The title of the application',
       args: [],
@@ -298,10 +298,10 @@ class GeneratedLocalizations {
     return Intl.message('Secret word', name: 'secretWord', desc: '', args: []);
   }
 
-  /// `subject=WordlyPlus%20-%20New%20word&body=Word%20-%0AMeaning%20-`
+  /// `subject=Lexora%20-%20New%20word&body=Word%20-%0AMeaning%20-`
   String get sendMessage {
     return Intl.message(
-      'subject=WordlyPlus%20-%20New%20word&body=Word%20-%0AMeaning%20-',
+      'subject=Lexora%20-%20New%20word&body=Word%20-%0AMeaning%20-',
       name: 'sendMessage',
       desc: '',
       args: [],
@@ -466,6 +466,8 @@ class AppLocalizationDelegate
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'fon'),
+      Locale.fromSubtags(languageCode: 'fr'),
       Locale.fromSubtags(languageCode: 'ru'),
     ];
   }

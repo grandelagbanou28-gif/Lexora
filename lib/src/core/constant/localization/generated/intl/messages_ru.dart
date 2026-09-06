@@ -33,7 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "about": MessageLookupByLibrary.simpleMessage("О приложении"),
     "appDictionary": MessageLookupByLibrary.simpleMessage("Язык словаря"),
     "appLanguage": MessageLookupByLibrary.simpleMessage("Язык приложения"),
-    "appTitle": MessageLookupByLibrary.simpleMessage("Словень Плюс"),
+    "appTitle": MessageLookupByLibrary.simpleMessage("Lexora"),
     "casual": MessageLookupByLibrary.simpleMessage("Обычный"),
     "checkResult": MessageLookupByLibrary.simpleMessage(
       "Можешь проверить свой результат тут:",
@@ -78,7 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "ru": MessageLookupByLibrary.simpleMessage("Русский"),
     "secretWord": MessageLookupByLibrary.simpleMessage("Загаданное слово"),
     "sendMessage": MessageLookupByLibrary.simpleMessage(
-      "subject=WordlyPlus%20-%20Новое%20слово&body=Слово%20-%0AЗначение%20-",
+      "subject=Lexora%20-%20Новое%20слово&body=Слово%20-%0AЗначение%20-",
     ),
     "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
     "share": MessageLookupByLibrary.simpleMessage("Поделиться"),
