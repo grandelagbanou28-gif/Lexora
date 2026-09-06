@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lexora - a Wordle-style word game in six tries. English, French, Fon and Russian dictionaries. Daily and Level modes. Install it safely on your phone or computer.">
+  <meta name="theme-color" content="#18122b">
+  <title>Lexora - Guess the WORD in six tries</title>
+  <link rel="icon" href="Icon-512.png">
+  <style>
+    :root {
+      --bg0: #120c22;
+      --bg1: #1d1536;
+      --accent: #6C4DF4;
+      --accent2: #3ddc97;
+      --text: #f5f2ff;
+      --muted: #ada3d6;
+      --border: rgba(255, 255, 255, 0.12);
+      --card: rgba(255, 255, 255, 0.05);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 15% -5%, #2a1f52 0%, transparent 55%),
+                  radial-gradient(1000px 500px at 90% 0%, #31255e 0%, transparent 50%),
+                  linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 60%, var(--bg0) 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- Nav ---------- */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(18, 12, 34, 0.72);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .wrap { display: flex; align-items: center; gap: 16px; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 19px; text-decoration: none; color: var(--text); }
+    .brand img { width: 38px; height: 38px; border-radius: 10px; }
+    .nav-links { margin-left: auto; display: flex; align-items: center; gap: 22px; font-size: 14px; }
+    .nav-links a { color: var(--muted); text-decoration: none; transition: color .15s; }
+    .nav-links a:hover { color: var(--text); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 13px 22px; border-radius: 12px; font-weight: 800; font-size: 15px;
+      text-decoration: none; border: 1px solid transparent; cursor: pointer;
+      transition: transform .12s ease, background .15s ease, box-shadow .15s ease;
+    }
+    .btn:active { transform: translateY(0); }
+    .btn.accent { background: linear-gradient(135deg, var(--accent), #8f6bff); color: #fff; box-shadow: 0 8px 24px rgba(108, 77, 244, 0.4); }
+    .btn.accent:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(108, 77, 244, 0.55); }
+    .btn.ghost { background: var(--card); color: var(--text); border-color: var(--border); }
+    .btn.ghost:hover { background: rgba(255,255,255,.1); }
+
+    /* ---------- Hero ---------- */
+    .hero { padding: 90px 0 40px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; }
+    .hero h1 { font-size: 56px; line-height: 1.08; letter-spacing: -1px; }
+    .hero h1 .grad {
+      background: linear-gradient(90deg, #a78bff, #3ddc97);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero p.sub { margin-top: 20px; font-size: 18px; color: var(--muted); max-width: 460px; }
+    .hero .cta { margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero .meta { margin-top: 22px; display: flex; gap: 18px; color: var(--muted); font-size: 13.5px; flex-wrap: wrap; }
+    .hero .meta span { display: inline-flex; align-items: center; gap: 6px; }
+
+    /* ---------- Phone mockup ---------- */
+    .phones { display: flex; justify-content: center; align-items: flex-end; gap: 26px; }
+    .phone {
+      width: 250px; border-radius: 42px; padding: 12px;
+      background: linear-gradient(145deg, #3a3170, #171031);
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: 0 30px 60px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.06);
+      position: relative;
+    }
+    .phone::before {
+      content: ""; position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+      width: 90px; height: 6px; border-radius: 99px; background: rgba(0,0,0,.55); z-index: 2;
+    }
+    .phone .screen {
+      border-radius: 30px; overflow: hidden; aspect-ratio: 9/19.5; background: #000;
+      box-shadow: inset 0 0 12px rgba(255,255,255,.05);
+    }
+    .phone .screen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .phone.small { width: 220px; transform: translateY(8px); }
+    .cap {
+      text-align: center; margin-top: 14px; font-size: 13px; color: var(--muted);
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .cap b { color: var(--text); }
+
+    /* ---------- Features ---------- */
+    .section { padding: 72px 0; }
+    .section-head { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+    .section-head .kicker { color: var(--accent2); font-weight: 800; letter-spacing: 2px; text-transform: uppercase; font-size: 13px; }
+    .section-head h2 { font-size: 38px; margin-top: 10px; letter-spacing: -.5px; }
+    .section-head p { color: var(--muted); margin-top: 14px; font-size: 16px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .tile {
+      background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+      padding: 26px; backdrop-filter: blur(6px); transition: transform .15s, border-color .15s;
+    }
+    .tile:hover { transform: translateY(-3px); border-color: rgba(167,139,255,.4); }
+    .tile .ico {
+      width: 46px; height: 46px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+      font-size: 22px; background: rgba(108,77,244,.18); margin-bottom: 16px; border: 1px solid rgba(108,77,244,.35);
+    }
+    .tile h3 { font-size: 18px; margin-bottom: 8px; }
+    .tile p { color: var(--muted); font-size: 14.5px; }
+
+    /* ---------- Dicts ---------- */
+    .dicts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .dict {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 18px 16px; text-align: center;
+    }
+    .dict .flag { font-size: 30px; display: block; margin-bottom: 8px; }
+    .dict .name { font-weight: 800; }
+    .dict .lang { font-size: 13px; color: var(--muted); margin-top: 3px; }
+
+    /* ---------- Install steps ---------- */
+    .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .stepbox { display: flex; gap: 14px; align-items: flex-start; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px; }
+    .stepbox .n { flex: 0 0 34px; height: 34px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+    .stepbox .txt b { color: var(--text); }
+    .stepbox .txt p { color: var(--muted); font-size: 14px; margin-top: 4px; }
+
+    /* ---------- CTA band ---------- */
+    .band {
+      margin: 20px 0 72px; border-radius: 24px; padding: 48px 40px; text-align: center;
+      background: linear-gradient(135deg, rgba(108,77,244,.28), rgba(61,220,151,.14));
+      border: 1px solid rgba(167,139,255,.35);
+      box-shadow: 0 20px 60px rgba(108,77,244,.25);
+    }
+    .band h2 { font-size: 34px; letter-spacing: -.5px; }
+    .band p { color: var(--muted); margin: 12px auto 24px; max-width: 520px; }
+    .band .cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    footer { border-top: 1px solid var(--border); padding: 30px 0 48px; text-align: center; color: var(--muted); font-size: 13.5px; }
+    footer .links { margin-top: 10px; display: flex; gap: 18px; justify-content: center; }
+    footer .links a { color: var(--accent2); text-decoration: none; }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding-top: 40px; gap: 46px; }
+      .hero h1 { font-size: 42px; }
+      .phone { width: 220px; } .phone.small { width: 195px; }
+      .grid, .steps { grid-template-columns: 1fr; }
+      .dicts { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="./"><img src="Icon-512.png" alt="">Lexora</a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#dicts">Dictionaries</a>
+      <a href="#install">Install</a>
+      <a class="btn accent" href="https://lexora-neon-one.vercel.app/" target="_blank" rel="noopener">Play now</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div>
+    <h1>Guess the WORD in <span class="grad">six tries</span></h1>
+    <p class="sub">A daily word game with four built-in dictionaries - English, French, Fon and Russian. Play in your browser, install it in one tap, play offline.</p>
+    <div class="cta">
+      <a class="btn accent" href="https://lexora-neon-one.vercel.app/" target="_blank" rel="noopener">Play instantly &rarr;</a>
+      <a class="btn ghost" href="#install">Install on your phone</a>
+    </div>
+    <div class="meta">
+      <span>&#10003;&#65039; Daily &amp; Level modes</span>
+      <span>&#10003;&#65039; Works offline</span>
+      <span>&#10003;&#65039; Chrome &amp; Safari</span>
+      <span>&#10003;&#65039; No APK, no installers</span>
+    </div>
+  </div>
+  <div>
+    <div class="phones">
+      <div class="phone">
+        <div class="screen"><img src="screenshots/iphone14-home.png" alt="Lexora on iPhone"></div>
+        <div class="cap"><b>iPhone</b> &middot; Safari</div>
+      </div>
+      <div class="phone small">
+        <div class="screen"><img src="screenshots/pixel7-home.png" alt="Lexora on Android"></div>
+        <div class="cap"><b>Android</b> &middot; Chrome</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Features</div>
+      <h2>Simply the best little word game</h2>
+      <p>Pick a dictionary, start typing, and beat the clock before your six tries run out.</p>
+    </div>
+    <div class="grid">
+      <div class="tile"><div class="ico">&#128197;</div><h3>Daily mode</h3><p>One shared word per day for everyone. Come back tomorrow for a fresh challenge.</p></div>
+      <div class="tile"><div class="ico">&#127909;</div><h3>Level mode</h3><p>Progress through hand-picked levels that push your vocabulary further and further.</p></div>
+      <div class="tile"><div class="ico">&#128218;</div><h3>Four dictionaries</h3><p>English, French, Fon and Russian. Instantly switch language and keep your stats.</p></div>
+      <div class="tile"><div class="ico">&#128241;</div><h3>Installable PWA</h3><p>Add it to your home screen and play like a native app - no app store needed.</p></div>
+      <div class="tile"><div class="ico">&#128274;</div><h3>Private &amp; safe</h3><p>Installed through your browser's official flow over HTTPS. No permissions, no account.</p></div>
+      <div class="tile"><div class="ico">&#128190;</div><h3>Offline ready</h3><p>Once installed, everything stays on your device. Play anywhere, even without signal.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="dicts">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Dictionaries</div>
+      <h2>Play in the language you love</h2>
+      <p>Switch dictionaries in one tap from the settings page. Built-in, no downloads.</p>
+    </div>
+    <div class="dicts">
+      <div class="dict"><span class="flag">&#127468;&#127463;</span><div class="name">English</div><div class="lang">en</div></div>
+      <div class="dict"><span class="flag">&#127467;&#127479;</span><div class="name">Fran&ccedil;ais</div><div class="lang">fr</div></div>
+      <div class="dict"><span class="flag">&#127471;&#127474;</span><div class="name">Fon (b&eacute;nin)</div><div class="lang">fon</div></div>
+      <div class="dict"><span class="flag">&#127479;&#127482;</span><div class="name">Русский</div><div class="lang">ru</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="install">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Install</div>
+      <h2>On your home screen in one tap</h2>
+      <p>Lexora installs like a native app - directly from your browser. No APK, no risk.</p>
+    </div>
+    <div class="steps">
+      <div class="stepbox"><span class="n">1</span><div class="txt"><b>Open the game</b><p>Tap "Play now" - Lexora runs in your browser instantly.</p></div></div>
+      <div class="stepbox"><span class="n">2</span><div class="txt"><b>Install</b><p>Chrome: menu &rarr; "Add to Home screen". Safari: Share &rarr; "Add to Home Screen".</p></div></div>
+      <div class="stepbox"><span class="n">3</span><div class="txt"><b>Play offline</b><p>Launch Lexora from your home screen like any app - no internet needed.</p></div></div>
+      <div class="stepbox"><span class="n">4</span><div class="txt"><b>Daily challenge</b><p>Come back daily for a new word and track your streak.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="band">
+    <h2>Ready to play?</h2>
+    <p>Six tries. Four languages. Zero excuses. Lexora runs right in your browser - or install it in one tap.</p>
+    <div class="cta">
+      <a class="btn accent" href="https://lexora-neon-one.vercel.app/" target="_blank" rel="noopener">Play on Vercel</a>
+      <a class="btn ghost" href="https://grandelagbanou28-gif.github.io/Lexora/" target="_blank" rel="noopener">Play on GitHub Pages</a>
+      <a class="btn ghost" href="https://lexora-neon-one.vercel.app/download.html" target="_blank" rel="noopener">Install guide</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>Lexora &middot; Guess the WORD in six tries</div>
+  <div class="links">
+    <a href="https://lexora-neon-one.vercel.app/" target="_blank" rel="noopener">Play online</a>
+    <a href="https://github.com/grandelagbanou28-gif/Lexora" target="_blank" rel="noopener">Source code</a>
+    <a href="https://grandelagbanou28-gif.github.io/Lexora/download.html" target="_blank" rel="noopener">Download app</a>
+  </div>
+</footer>
+
+</body>
+</html>
