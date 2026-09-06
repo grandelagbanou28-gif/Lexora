@@ -29,6 +29,7 @@ abstract interface class IGameRepository() {
 final class GameRepository({required final IGameDatasource _gameDataSource}) implements IGameRepository {
   late final Map<String, String> _ruDictionary;
   late final Map<String, String> _enDictionary;
+  late final Map<String, String> _frDictionary;
   late final GameResult? _savedResult;
 
   @override
@@ -37,6 +38,8 @@ final class GameRepository({required final IGameDatasource _gameDataSource}) imp
     _ruDictionary = rawDictionaryRu.map((key, value) => MapEntry(key, value.toString()));
     final rawDictionaryEn = await rootBundle.loadString(Assets.dictionary.en).then(json.decode) as Map<String, dynamic>;
     _enDictionary = rawDictionaryEn.map((key, value) => MapEntry(key, value.toString()));
+    final rawDictionaryFr = await rootBundle.loadString(Assets.dictionary.fr).then(json.decode) as Map<String, dynamic>;
+    _frDictionary = rawDictionaryFr.map((key, value) => MapEntry(key, value.toString()));
     _savedResult = await getDaily(dictionary, DateTime.now().toUtc());
   }
 
@@ -44,6 +47,7 @@ final class GameRepository({required final IGameDatasource _gameDataSource}) imp
   Map<String, String> currentDictionary(Locale dictionary) => switch (dictionary.languageCode) {
     'ru' => _ruDictionary,
     'en' => _enDictionary,
+    'fr' => _frDictionary,
     _ => _enDictionary,
   };
 

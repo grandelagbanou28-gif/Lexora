@@ -12,6 +12,7 @@ Guess the **WORD** in six tries.
 ## Dictionaries
 
 - English (EN)
+- French (FR)
 - Russian (RU)
 
 ## Features

@@ -140,6 +140,14 @@ class const TutorialPage({super.key}) extends StatelessWidget {
           LetterInfo(letter: 'з'),
           LetterInfo(letter: 'а'),
         ];
+      case const Locale('fr'):
+        return const [
+          LetterInfo(letter: 'p', status: LetterStatus.correctSpot),
+          LetterInfo(letter: 'i'),
+          LetterInfo(letter: 's'),
+          LetterInfo(letter: 't'),
+          LetterInfo(letter: 'e'),
+        ];
     }
     return const [
       LetterInfo(letter: 'p', status: LetterStatus.correctSpot),
@@ -160,6 +168,14 @@ class const TutorialPage({super.key}) extends StatelessWidget {
           LetterInfo(letter: 'к'),
           LetterInfo(letter: 'а'),
         ];
+      case const Locale('fr'):
+        return const [
+          LetterInfo(letter: 'p'),
+          LetterInfo(letter: 'o', status: LetterStatus.wrongSpot),
+          LetterInfo(letter: 'r'),
+          LetterInfo(letter: 't'),
+          LetterInfo(letter: 'e'),
+        ];
     }
     return const [
       LetterInfo(letter: 'c'),
@@ -179,6 +195,14 @@ class const TutorialPage({super.key}) extends StatelessWidget {
           LetterInfo(letter: 'й'),
           LetterInfo(letter: 'к'),
           LetterInfo(letter: 'а', status: LetterStatus.notInWord),
+        ];
+      case const Locale('fr'):
+        return const [
+          LetterInfo(letter: 'd'),
+          LetterInfo(letter: 'o'),
+          LetterInfo(letter: 'u'),
+          LetterInfo(letter: 't'),
+          LetterInfo(letter: 'e', status: LetterStatus.notInWord),
         ];
     }
     return const [

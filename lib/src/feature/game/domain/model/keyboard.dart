@@ -16,6 +16,12 @@ class KeyboardList() {
     ['ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э'],
     ['я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю'],
   );
+
+  static const (List<String>, List<String>, List<String>) frKeyboard = (
+    ['a', 'z', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+    ['q', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm'],
+    ['w', 'x', 'c', 'v', 'b', 'n'],
+  );
 }
 
 extension LocaleKeyboardX on Locale {
@@ -27,6 +33,9 @@ extension LocaleKeyboardX on Locale {
         return (min(screenWidth, 520) - (maxKeyboardLength + 1) * 6) / maxKeyboardLength;
       case 'ru':
         final int maxKeyboardLength = KeyboardList.ruKeyboard.$1.length;
+        return (min(screenWidth, 520) - (maxKeyboardLength + 1) * 6) / maxKeyboardLength;
+      case 'fr':
+        final int maxKeyboardLength = KeyboardList.frKeyboard.$1.length;
         return (min(screenWidth, 520) - (maxKeyboardLength + 1) * 6) / maxKeyboardLength;
     }
     return 0;
@@ -75,7 +84,38 @@ enum GameKeyboardKey(final LogicalKeyboardKey key, {required final String? enNam
     return switch (dictionary.languageCode) {
       'en' => gameKey.enName,
       'ru' => gameKey.ruName,
+      'fr' => _toFrLetter(gameKey),
       _ => gameKey.enName,
     };
   }
+
+  static String? _toFrLetter(GameKeyboardKey gk) => switch (gk) {
+    GameKeyboardKey.q => 'a',
+    GameKeyboardKey.w => 'z',
+    GameKeyboardKey.e => 'e',
+    GameKeyboardKey.r => 'r',
+    GameKeyboardKey.t => 't',
+    GameKeyboardKey.y => 'y',
+    GameKeyboardKey.u => 'u',
+    GameKeyboardKey.i => 'i',
+    GameKeyboardKey.o => 'o',
+    GameKeyboardKey.p => 'p',
+    GameKeyboardKey.a => 'q',
+    GameKeyboardKey.s => 's',
+    GameKeyboardKey.d => 'd',
+    GameKeyboardKey.f => 'f',
+    GameKeyboardKey.g => 'g',
+    GameKeyboardKey.h => 'h',
+    GameKeyboardKey.j => 'j',
+    GameKeyboardKey.k => 'k',
+    GameKeyboardKey.l => 'l',
+    GameKeyboardKey.m => null,
+    GameKeyboardKey.z => 'w',
+    GameKeyboardKey.x => 'x',
+    GameKeyboardKey.c => 'c',
+    GameKeyboardKey.v => 'v',
+    GameKeyboardKey.b => 'b',
+    GameKeyboardKey.n => 'n',
+    _ => null,
+  };
 }

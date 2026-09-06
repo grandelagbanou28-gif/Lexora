@@ -17,6 +17,7 @@ class const KeyboardByLanguage({super.key}) extends StatelessWidget {
           child: switch (dictionary.languageCode) {
             'en' => KeyboardEn(generalSettings: settings.general, dictionary: dictionary),
             'ru' => KeyboardRu(generalSettings: settings.general, dictionary: dictionary),
+            'fr' => KeyboardFr(generalSettings: settings.general, dictionary: dictionary),
             _ => const SizedBox.shrink(),
           },
         );
@@ -132,6 +133,66 @@ class const KeyboardRu({required final GeneralSettings generalSettings, required
                 letter: KeyboardList.ruKeyboard.$3[i],
                 status: statuses.containsKey(KeyboardList.ruKeyboard.$3[i])
                     ? statuses[KeyboardList.ruKeyboard.$3[i]]!
+                    : LetterStatus.unknown,
+                generalSettings: generalSettings,
+                dictionary: dictionary,
+              ),
+            DeleteKey(generalSettings: generalSettings, dictionary: dictionary),
+          ],
+        ),
+        const SizedBox(height: 8),
+      ],
+    );
+  }
+}
+
+class const KeyboardFr({required final GeneralSettings generalSettings, required final Locale dictionary, super.key})
+    extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final Map<String, LetterStatus> statuses = context.watch<GameBloc>().state.statuses;
+    return Column(
+      children: [
+        const SizedBox(height: 8),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            for (var i = 0; i < KeyboardList.frKeyboard.$1.length; i++)
+              KeyboardKey(
+                letter: KeyboardList.frKeyboard.$1[i],
+                status: statuses.containsKey(KeyboardList.frKeyboard.$1[i])
+                    ? statuses[KeyboardList.frKeyboard.$1[i]]!
+                    : LetterStatus.unknown,
+                generalSettings: generalSettings,
+                dictionary: dictionary,
+              ),
+          ],
+        ),
+        const Spacer(),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            for (var i = 0; i < KeyboardList.frKeyboard.$2.length; i++)
+              KeyboardKey(
+                letter: KeyboardList.frKeyboard.$2[i],
+                status: statuses.containsKey(KeyboardList.frKeyboard.$2[i])
+                    ? statuses[KeyboardList.frKeyboard.$2[i]]!
+                    : LetterStatus.unknown,
+                generalSettings: generalSettings,
+                dictionary: dictionary,
+              ),
+          ],
+        ),
+        const Spacer(),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            EnterKey(generalSettings: generalSettings, dictionary: dictionary),
+            for (var i = 0; i < KeyboardList.frKeyboard.$3.length; i++)
+              KeyboardKey(
+                letter: KeyboardList.frKeyboard.$3[i],
+                status: statuses.containsKey(KeyboardList.frKeyboard.$3[i])
+                    ? statuses[KeyboardList.frKeyboard.$3[i]]!
                     : LetterStatus.unknown,
                 generalSettings: generalSettings,
                 dictionary: dictionary,
