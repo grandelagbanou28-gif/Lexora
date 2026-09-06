@@ -42,7 +42,7 @@ jobs:
         run: flutter build apk --release --target-platform android-arm64
 
       - name: Rename APK
-        run: mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk Lexora-arm64.apk
+        run: mv build/app/outputs/flutter-apk/app-release.apk Lexora-arm64.apk
 
       - name: List APK
         run: ls -lh Lexora-arm64.apk
