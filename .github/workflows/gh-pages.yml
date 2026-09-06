@@ -43,7 +43,7 @@ jobs:
         run: flutter test
 
       - name: Prepare Drift web assets
-        run: ./tool/update_drift_web_assets.sh
+        run: sh tool/update_drift_web_assets.sh
 
       - name: Build Web
         run: flutter build web --wasm --release --base-href "/${{ github.event.repository.name }}/"
