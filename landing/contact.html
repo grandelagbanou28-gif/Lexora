@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contactez l'équipe Lexora : proposer un mot, signaler une erreur, poser une question. Réponse rapide par email.">
+  <meta name="theme-color" content="#18122b">
+  <title>Contact — Lexora</title>
+  <link rel="icon" href="Icon-512.png">
+  <link rel="stylesheet" href="assets/lexora.css">
+</head>
+<body>
+
+<nav class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="Icon-512.png" alt="">Lexora</a>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="faq.html">FAQ</a>
+      <a href="blog/">Blog</a>
+      <a href="telecharger.html">Télécharger</a>
+      <a class="active" href="contact.html">Contact</a>
+      <a class="btn accent btn-accent" href="https://lexora-neon-one.vercel.app/" target="_blank" rel="noopener">Jouer</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero page wrap">
+  <h1>Nous <span class="grad">contacter</span></h1>
+  <p class="sub">Une question, un mot à proposer, une erreur dans un dictionnaire ? Écrivez-nous, nous répondons vite.</p>
+</header>
+
+<section class="section">
+  <div class="wrap two-col">
+
+    <div>
+      <div class="card">
+        <h2>Formulaire de contact</h2>
+        <p style="margin-bottom:18px;">Le formulaire ouvre votre application email avec le message pré-rempli à l'adresse <strong>grandelagbanou28@gmail.com</strong>.</p>
+        <form class="contact" id="contactForm">
+          <div>
+            <label for="name">Votre nom (optionnel)</label>
+            <input type="text" id="name" name="name" placeholder="Ex : Afi">
+          </div>
+          <div>
+            <label for="email">Votre email (optionnel)</label>
+            <input type="email" id="email" name="email" placeholder="vous@exemple.com">
+          </div>
+          <div>
+            <label for="subject">Sujet</label>
+            <input type="text" id="subject" name="subject" value="Lexora —" required>
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Proposer un mot, signaler une erreur, poser une question…" required></textarea>
+          </div>
+          <button class="btn green" type="submit">Envoyer le message</button>
+        </form>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <h2>Contact direct</h2>
+        <p>Par email : <a href="mailto:grandelagbanou28@gmail.com">grandelagbanou28@gmail.com</a></p>
+        <p>Depuis l'application : page <em>À propos</em> &rarr; touchez l'adresse pour ouvrir le mail avec le sujet déjà rempli.</p>
+      </div>
+
+      <div class="card">
+        <h2>Proposer un mot manquant</h2>
+        <p>Le meilleur endroit pour suggérer un mot ou signaler une définition inexacte, c'est le dépôt GitHub :</p>
+        <p><a class="btn accent" href="https://github.com/grandelagbanou28-gif/Lexora/issues" target="_blank" rel="noopener">Ouvrir une issue GitHub</a></p>
+        <p style="font-size:14px;">Indiquez la langue (français, anglais, fon, russe) et le mot concerné : nous l'ajoutons lors de la prochaine mise à jour.</p>
+      </div>
+
+      <div class="card">
+        <h2>Communauté</h2>
+        <p>Code source &amp; suivi du projet : <a href="https://github.com/grandelagbanou28-gif/Lexora" target="_blank" rel="noopener">github.com/grandelagbanou28-gif/Lexora</a></p>
+        <p>Jeu en ligne : <a href="https://lexora-neon-one.vercel.app/" target="_blank" rel="noopener">lexora-neon-one.vercel.app</a></p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <h4>Lexora</h4>
+        <p>Devinez le mot en 6 essais. Un jeu de mots gratuit, hors-ligne et multilingue — créé au B&eacute;nin avec le dictionnaire fon.</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <a href="index.html">Accueil</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="faq.html">FAQ</a>
+        <a href="blog/">Blog</a>
+      </div>
+      <div>
+        <h4>Obtenir Lexora</h4>
+        <a href="telecharger.html">Télécharger</a>
+        <a href="https://github.com/grandelagbanou28-gif/Lexora/releases/download/android-arm64/Lexora-arm64.apk" target="_blank" rel="noopener">APK Android (arm64)</a>
+        <a href="https://lexora-neon-one.vercel.app/" target="_blank" rel="noopener">Jouer en ligne</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="contact.html">Écrire au support</a>
+        <a href="mailto:grandelagbanou28@gmail.com">grandelagbanou28@gmail.com</a>
+        <a href="https://github.com/grandelagbanou28-gif/Lexora" target="_blank" rel="noopener">Code source</a>
+      </div>
+    </div>
+    <div class="bottom">&copy; <span class="year">2026</span> Lexora &middot; Devinez le MOT en 6 essais &middot; Bas&eacute; sur Wordly Plus</div>
+  </div>
+</footer>
+
+<script src="assets/lexora.js"></script>
+</body>
+</html>
