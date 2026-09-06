@@ -1,11 +1,11 @@
 {
-    "name": "Wordly Plus",
-    "short_name": "WordlyPlus",
+    "name": "Lexora",
+    "short_name": "Lexora",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#FFFFFF",
     "theme_color": "#0175C2",
-    "description": "Guess the WORD in six tries",
+    "description": "Guess the WORD in six tries — EN, FR, RU and Fon dictionaries",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
