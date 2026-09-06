@@ -26,7 +26,7 @@ final class const LegacyLevelMigration({
   final LegacyMigrationLogger? logWarning,
 }) {
   static const int migrationVersion = 1;
-  static const supportedDictionaries = [Locale('en'), Locale('fr'), Locale('ru')];
+  static const supportedDictionaries = [Locale('en'), Locale('fon'), Locale('fr'), Locale('ru')];
 
   Future<List<LegacyLevelMigrationReport>> run() async {
     final reports = <LegacyLevelMigrationReport>[];

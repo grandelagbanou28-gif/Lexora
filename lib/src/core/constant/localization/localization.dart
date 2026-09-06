@@ -9,6 +9,7 @@ final class const Localization._({required final Locale locale}) {
 
   static List<Locale> get supportedDictionaryLocales => const [
     Locale.fromSubtags(languageCode: 'en'),
+    Locale.fromSubtags(languageCode: 'fon'),
     Locale.fromSubtags(languageCode: 'fr'),
     Locale.fromSubtags(languageCode: 'ru'),
   ];

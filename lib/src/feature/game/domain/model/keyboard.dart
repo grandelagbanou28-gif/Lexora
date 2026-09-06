@@ -22,6 +22,12 @@ class KeyboardList() {
     ['q', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm'],
     ['w', 'x', 'c', 'v', 'b', 'n'],
   );
+
+  static const (List<String>, List<String>, List<String>) fonKeyboard = (
+    ['a', 'z', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+    ['q', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm'],
+    ['w', 'x', 'c', 'v', 'b', 'n'],
+  );
 }
 
 extension LocaleKeyboardX on Locale {
@@ -36,6 +42,9 @@ extension LocaleKeyboardX on Locale {
         return (min(screenWidth, 520) - (maxKeyboardLength + 1) * 6) / maxKeyboardLength;
       case 'fr':
         final int maxKeyboardLength = KeyboardList.frKeyboard.$1.length;
+        return (min(screenWidth, 520) - (maxKeyboardLength + 1) * 6) / maxKeyboardLength;
+      case 'fon':
+        final int maxKeyboardLength = KeyboardList.fonKeyboard.$1.length;
         return (min(screenWidth, 520) - (maxKeyboardLength + 1) * 6) / maxKeyboardLength;
     }
     return 0;
@@ -85,6 +94,7 @@ enum GameKeyboardKey(final LogicalKeyboardKey key, {required final String? enNam
       'en' => gameKey.enName,
       'ru' => gameKey.ruName,
       'fr' => _toFrLetter(gameKey),
+      'fon' => _toFrLetter(gameKey),
       _ => gameKey.enName,
     };
   }

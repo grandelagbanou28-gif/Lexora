@@ -12,6 +12,7 @@ Guess the **WORD** in six tries.
 ## Dictionaries
 
 - English (EN)
+- Fon (FON)
 - French (FR)
 - Russian (RU)
 

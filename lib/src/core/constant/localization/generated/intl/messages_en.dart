@@ -73,6 +73,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Result unavailable",
     ),
     "retry": MessageLookupByLibrary.simpleMessage("Retry"),
+    "fon": MessageLookupByLibrary.simpleMessage("Fon"),
     "fr": MessageLookupByLibrary.simpleMessage("French"),
     "ru": MessageLookupByLibrary.simpleMessage("Russian"),
     "secretWord": MessageLookupByLibrary.simpleMessage("Secret word"),

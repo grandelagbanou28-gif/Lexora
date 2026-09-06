@@ -15,6 +15,9 @@ class $AssetsDictionaryGen {
   /// File path: assets/dictionary/en.json
   String get en => 'assets/dictionary/en.json';
 
+  /// File path: assets/dictionary/fon.json
+  String get fon => 'assets/dictionary/fon.json';
+
   /// File path: assets/dictionary/fr.json
   String get fr => 'assets/dictionary/fr.json';
 
@@ -22,7 +25,7 @@ class $AssetsDictionaryGen {
   String get ru => 'assets/dictionary/ru.json';
 
   /// List of all assets
-  List<String> get values => [en, fr, ru];
+  List<String> get values => [en, fon, fr, ru];
 }
 
 abstract final class Assets {

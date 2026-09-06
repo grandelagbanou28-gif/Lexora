@@ -278,6 +278,11 @@ class GeneratedLocalizations {
     return Intl.message('Retry', name: 'retry', desc: '', args: []);
   }
 
+  /// `Fon`
+  String get fon {
+    return Intl.message('Fon', name: 'fon', desc: '', args: []);
+  }
+
   /// `French`
   String get fr {
     return Intl.message('French', name: 'fr', desc: '', args: []);

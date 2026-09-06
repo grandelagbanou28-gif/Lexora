@@ -30,6 +30,7 @@ final class GameRepository({required final IGameDatasource _gameDataSource}) imp
   late final Map<String, String> _ruDictionary;
   late final Map<String, String> _enDictionary;
   late final Map<String, String> _frDictionary;
+  late final Map<String, String> _fonDictionary;
   late final GameResult? _savedResult;
 
   @override
@@ -40,6 +41,8 @@ final class GameRepository({required final IGameDatasource _gameDataSource}) imp
     _enDictionary = rawDictionaryEn.map((key, value) => MapEntry(key, value.toString()));
     final rawDictionaryFr = await rootBundle.loadString(Assets.dictionary.fr).then(json.decode) as Map<String, dynamic>;
     _frDictionary = rawDictionaryFr.map((key, value) => MapEntry(key, value.toString()));
+    final rawDictionaryFon = await rootBundle.loadString(Assets.dictionary.fon).then(json.decode) as Map<String, dynamic>;
+    _fonDictionary = rawDictionaryFon.map((key, value) => MapEntry(key, value.toString()));
     _savedResult = await getDaily(dictionary, DateTime.now().toUtc());
   }
 
@@ -48,6 +51,7 @@ final class GameRepository({required final IGameDatasource _gameDataSource}) imp
     'ru' => _ruDictionary,
     'en' => _enDictionary,
     'fr' => _frDictionary,
+    'fon' => _fonDictionary,
     _ => _enDictionary,
   };
 
