@@ -2,7 +2,7 @@
 
 Guess the **WORD** in six tries.
 
-<p align="center"><img src="./assets/images/splash.png" alt="Lexora Logo" width="70%" /></p>
+<p align="center"><img src="./assets/images/icon-1024x1024.png" alt="Lexora Logo" width="30%" /></p>
 
 ## Game modes
 
