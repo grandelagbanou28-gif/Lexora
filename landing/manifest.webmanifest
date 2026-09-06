@@ -1,0 +1,32 @@
+{
+  "name": "Lexora — Devinez le MOT en 6 essais",
+  "short_name": "Lexora",
+  "description": "Jeu de mots quotidien en français, anglais, fon et russe. Gratuit, hors-ligne, sans compte.",
+  "lang": "fr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0816",
+  "theme_color": "#0b0816",
+  "icons": [
+    {
+      "src": "/Icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/Icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

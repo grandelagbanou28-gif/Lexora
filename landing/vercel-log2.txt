@@ -1,0 +1,36 @@
+Vercel CLI 59.11.7 (Node.js 24.15.0)
+Deploying lexora-landing
+Uploading [--------------------] (0.0B/532B)
+Uploading [====================] (532.0B/532B)
+  Inspect         https://vercel.com/grandelagbanou28-gifs-projects/lexora-landing/CrTZTHGWv93G6QdfJsxaHHxZCyFK
+  Production      https://lexora-landing-4cb1ybs9e-grandelagbanou28-gifs-projects.vercel.app
+Building…
+[2K[1A[2K[G  Production      https://lexora-landing-4cb1ybs9e-grandelagbanou28-gifs-projects.vercel.app
+Completing…
+▲ Aliased         https://lexora-landing-one.vercel.app
+{
+  "status": "ok",
+  "deployment": {
+    "id": "dpl_CrTZTHGWv93G6QdfJsxaHHxZCyFK",
+    "url": "https://lexora-landing-4cb1ybs9e-grandelagbanou28-gifs-projects.vercel.app",
+    "inspectorUrl": "https://vercel.com/grandelagbanou28-gifs-projects/lexora-landing/CrTZTHGWv93G6QdfJsxaHHxZCyFK",
+    "readyState": "READY",
+    "target": "production",
+    "deploymentApiUrl": "https://api.vercel.com/v13/deployments/dpl_CrTZTHGWv93G6QdfJsxaHHxZCyFK"
+  },
+  "message": "Deployment lexora-landing-4cb1ybs9e-grandelagbanou28-gifs-projects.vercel.app ready.",
+  "next": [
+    {
+      "command": "vercel curl https://lexora-landing-4cb1ybs9e-grandelagbanou28-gifs-projects.vercel.app",
+      "when": "Verify deployment, including when Deployment Protection is enabled"
+    },
+    {
+      "command": "vercel inspect lexora-landing-4cb1ybs9e-grandelagbanou28-gifs-projects.vercel.app --scope grandelagbanou28-gifs-projects",
+      "when": "Inspect deployment"
+    },
+    {
+      "command": "vercel deploy --prod --scope grandelagbanou28-gifs-projects",
+      "when": "Promote to production"
+    }
+  ]
+}

@@ -3,39 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="À propos de Lexora : l'histoire du jeu, les dictionnaires français, anglais, fon et russe, le respect de la vie privée et l'origine du projet.">
-  <meta name="theme-color" content="#18122b">
-  <title>À propos — Lexora</title>
-  <link rel="icon" href="Icon-512.png">
+  <title>À propos de Lexora — un jeu de mots qui honore les langues</title>
+  <meta name="description" content="L'histoire de Lexora : un jeu de mots lancé au Bénin avec le dictionnaire fon aux côtés du français, de l'anglais et du russe. Nos engagements : hors-ligne, privé, gratuit et open source.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://lexora-landing-one.vercel.app/a-propos.html">
+  <meta name="theme-color" content="#0b0816">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Lexora">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="À propos de Lexora">
+  <meta property="og:description" content="Un jeu de mots lancé au Bénin, avec le dictionnaire fon au cœur du projet. Hors-ligne, privé, gratuit et open source.">
+  <meta property="og:url" content="https://lexora-landing-one.vercel.app/a-propos.html">
+  <meta property="og:image" content="https://lexora-landing-one.vercel.app/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="Icon-512.png">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/lexora.css">
 </head>
 <body>
 
 <nav class="site">
   <div class="wrap">
-    <a class="brand" href="index.html"><img src="Icon-512.png" alt="">Lexora</a>
-    <div class="nav-links">
-      <a href="index.html">Accueil</a>
-      <a class="active" href="a-propos.html">À propos</a>
-      <a href="faq.html">FAQ</a>
-      <a href="blog/">Blog</a>
-      <a href="telecharger.html">Télécharger</a>
-      <a href="contact.html">Contact</a>
-      <a class="btn accent btn-accent" href="https://lexora-neon-one.vercel.app/" target="_blank" rel="noopener">Jouer</a>
+    <a class="brand" href="index.html">
+      <img src="Icon-512.png" alt="Logo Lexora">
+      <span>Lexora<small>Devinez le MOT</small></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" data-page="index">Accueil</a>
+      <a href="a-propos.html" data-page="a-propos">À propos</a>
+      <a href="faq.html" data-page="faq">FAQ</a>
+      <a href="blog/" data-page="blog">Blog</a>
+      <a href="telecharger.html" data-page="telecharger">Télécharger</a>
+      <a href="contact.html" data-page="contact">Contact</a>
+      <a class="btn accent" href="https://lexora-neon-one.vercel.app/" target="_blank" rel="noopener">Jouer maintenant</a>
     </div>
+    <button class="nav-burger" id="navBurger" aria-label="Ouvrir le menu" aria-expanded="false">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
   </div>
 </nav>
 
-<header class="hero page wrap">
-  <h1>À propos de <span class="grad">Lexora</span></h1>
-  <p class="sub">Un petit jeu de mots, une grande ambition : donner envie de jouer avec les langues du monde, du français au fon.</p>
+<header class="hero page wrap reveal">
+  <span class="tag violet">Histoire &amp; valeurs</span>
+  <h1 style="margin-top:16px;">À propos de <span class="grad">Lexora</span></h1>
+  <p class="sub">Un petit jeu de mots, une grande ambition : donner envie de jouer avec les langues du monde — du français au fon.</p>
 </header>
 
 <section class="section">
   <div class="wrap prose">
+
     <h2>L'histoire du projet</h2>
     <p>Lexora est né d'une idée simple : et si le jeu de mots le plus joué au monde pouvait se jouer dans de vraies langues locales ? Le projet a démarré au Bénin, avec l'envie d'intégrer le <strong>fongbè</strong> — la langue fon — aux côtés du français, de l'anglais et du russe.</p>
-    <p>Le jeu s'appuie sur le principe du mot mystère en six essais, dont la mécanique est universelle : une seule bonne réponse par jour, des indices de couleur, et une communauté qui partage ses résultats. Lexora ajoute à ce plaisir une dimension éditoriale rare : des dictionnaires « vivants », entretenus et ouverts.</p>
+    <p>Le jeu s'appuie sur le principe du mot mystère en six essais : une seule bonne réponse par jour, des indices de couleur, et une communauté qui partage ses résultats. Lexora ajoute à ce plaisir une dimension éditoriale rare : des dictionnaires « vivants », entretenus et ouverts.</p>
 
     <h2>Quatre langues, quatre dictionnaires</h2>
     <p>Lexora embarque aujourd'hui quatre dictionnaires : le <strong>français</strong>, l'<strong>anglais</strong>, le <strong>fon (fɔngbè)</strong> et le <strong>russe</strong>. Changer de dictionnaire se fait en un geste depuis les réglages, sans perdre vos statistiques. L'interface elle-même est traduite dans ces quatre langues.</p>
@@ -47,16 +73,19 @@
     <h3>Respect de la vie privée</h3>
     <p>Pas de compte, pas de publicité, pas de données envoyées. L'application ne demande aucune permission superflue.</p>
     <h3>Gratuit, construit en sources ouvertes</h3>
-    <p>Lexora est gratuit et son code source est public. Vous pouvez vérifier, contribuer et proposer de nouveaux mots.</p>
+    <p>Lexora est gratuit et son code source est public. Vous pouvez vérifier, contribuer et proposer de nouveaux mots. Consultez notre <a href="confidentialite.html">politique de confidentialité</a>.</p>
+
+    <blockquote>« Une langue se joue, se pratique, se célèbre. Lexora invite le fɔngbè dans vos six essais quotidiens. »</blockquote>
 
     <h2>Origine du code</h2>
     <p>Lexora est un projet construit à partir de <strong>Wordly Plus</strong>, créé par <a href="https://carapacik.github.io" target="_blank" rel="noopener">Roman Laptev (Carapacik)</a>, un jeu de mots sous licence ouverte. Un grand merci à son auteur pour cette base élégante et bien architecturée.</p>
     <p>Vous voulez suivre l'aventure ? <a href="https://github.com/grandelagbanou28-gif/Lexora" target="_blank" rel="noopener">Consultez le code source</a> ou <a href="contact.html">écrivez-nous</a>.</p>
+
   </div>
 </section>
 
 <div class="wrap">
-  <div class="band">
+  <div class="band reveal">
     <h2>Envie d'essayer ?</h2>
     <p>Six essais. Quatre langues. Un mot par jour. Lancez une partie.</p>
     <div class="cta">
@@ -70,8 +99,19 @@
   <div class="wrap">
     <div class="grid">
       <div>
-        <h4>Lexora</h4>
-        <p>Devinez le mot en 6 essais. Un jeu de mots gratuit, hors-ligne et multilingue — créé au B&eacute;nin avec le dictionnaire fon.</p>
+        <a class="brand" href="index.html"><img src="Icon-512.png" alt="Logo Lexora"><span>Lexora<small>Devinez le MOT</small></span></a>
+        <p style="margin-top:14px;">Un jeu de mots gratuit, hors-ligne et multilingue — créé au Bénin avec le dictionnaire fon.</p>
+        <div class="socials">
+          <a href="https://github.com/grandelagbanou28-gif/Lexora" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.94.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.36 9.36 0 0 1 12 6.92c.85 0 1.71.12 2.51.34 1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.31.68.93.68 1.88v2.79c0 .27.18.59.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+          </a>
+          <a href="https://lexora-neon-one.vercel.app/" target="_blank" rel="noopener" aria-label="Jouer en ligne">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </a>
+          <a href="mailto:grandelagbanou28@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
       </div>
       <div>
         <h4>Pages</h4>
@@ -79,23 +119,32 @@
         <a href="a-propos.html">À propos</a>
         <a href="faq.html">FAQ</a>
         <a href="blog/">Blog</a>
+        <a href="contact.html">Contact</a>
       </div>
       <div>
         <h4>Obtenir Lexora</h4>
         <a href="telecharger.html">Télécharger</a>
         <a href="https://github.com/grandelagbanou28-gif/Lexora/releases/download/android-arm64/Lexora-arm64.apk" target="_blank" rel="noopener">APK Android (arm64)</a>
         <a href="https://lexora-neon-one.vercel.app/" target="_blank" rel="noopener">Jouer en ligne</a>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <a href="contact.html">Écrire au support</a>
-        <a href="mailto:grandelagbanou28@gmail.com">grandelagbanou28@gmail.com</a>
         <a href="https://github.com/grandelagbanou28-gif/Lexora" target="_blank" rel="noopener">Code source</a>
       </div>
+      <div>
+        <h4>Info</h4>
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialite.html">Confidentialité</a>
+        <a href="mailto:grandelagbanou28@gmail.com">grandelagbanou28@gmail.com</a>
+      </div>
     </div>
-    <div class="bottom">&copy; <span class="year">2026</span> Lexora &middot; Devinez le MOT en 6 essais &middot; Bas&eacute; sur Wordly Plus</div>
+    <div class="bottom">
+      <span>&copy; <span class="year">2026</span> Lexora — Devinez le MOT en 6 essais.</span>
+      <span>Basé sur Wordly Plus par Roman Laptev (Carapacik)</span>
+    </div>
   </div>
 </footer>
+
+<button class="backtotop" id="backToTop" aria-label="Remonter en haut">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
 
 <script src="assets/lexora.js"></script>
 </body>
