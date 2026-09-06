@@ -6,6 +6,9 @@ Guess the **WORD** in six tries.
 
 Play it online: <https://grandelagbanou28-gif.github.io/Lexora/>
 
+**Install the app safely** (no APK needed — works in Chrome and Safari):
+<https://grandelagbanou28-gif.github.io/Lexora/download.html>
+
 ## Game modes
 
 - **Daily** (default): one word per day
