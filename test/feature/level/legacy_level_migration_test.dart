@@ -95,7 +95,7 @@ void main() {
     expect(warnings, isNotEmpty);
   });
 
-  test('keeps English and Russian data and markers isolated', () async {
+  test('keeps every dictionary data and markers isolated', () async {
     final store = _LegacyStore({
       'level_en': [
         jsonEncode({'word': 'english', 'isWin': true}),
@@ -113,7 +113,10 @@ void main() {
     final List<MigrationMarkerRow> markers = await database.select(database.migrationMarkers).get();
     expect(results.where((row) => row.dictionaryCode == 'en').single.secretWord, 'english');
     expect(results.where((row) => row.dictionaryCode == 'ru').single.secretWord, 'russian');
-    expect(markers.map((row) => row.migrationKey).toSet(), {'legacy_level.en', 'legacy_level.ru'});
+    expect(
+      markers.map((row) => row.migrationKey).toSet(),
+      {'legacy_level.en', 'legacy_level.fon', 'legacy_level.fr', 'legacy_level.ru'},
+    );
   });
 
   test('a crash before marker rolls back import and a later run succeeds', () async {
