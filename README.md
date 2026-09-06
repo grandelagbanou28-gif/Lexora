@@ -2,12 +2,15 @@
 
 Guess the **WORD** in six tries.
 
-<p align="center"><a href="https://grandelagbanou28-gif.github.io/Lexora/"><img src="./assets/images/icon-1024x1024.png" alt="Lexora Logo" width="30%" /></a></p>
+<p align="center"><a href="https://lexora-landing-one.vercel.app/"><img src="./assets/images/icon-1024x1024.png" alt="Lexora Logo" width="30%" /></a></p>
 
-Play it online: <https://grandelagbanou28-gif.github.io/Lexora/>
+**Official site (landing):** <https://lexora-landing-one.vercel.app/>
+
+**Play it online (Vercel):** <https://lexora-neon-one.vercel.app/>
+**Play it online (GitHub Pages):** <https://grandelagbanou28-gif.github.io/Lexora/>
 
 **Install the app safely** (no APK needed — works in Chrome and Safari):
-<https://grandelagbanou28-gif.github.io/Lexora/download.html>
+<https://lexora-neon-one.vercel.app/download.html>
 
 ## Game modes
 
@@ -29,6 +32,7 @@ Play it online: <https://grandelagbanou28-gif.github.io/Lexora/>
 - Light / dark theme support
 - Available on Android, iOS, Web, and desktop platforms
 - Auto-deployed to GitHub Pages on every push to main
+- Production build on Vercel
 
 ## Attribution
 
