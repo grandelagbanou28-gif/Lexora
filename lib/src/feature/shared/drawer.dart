@@ -5,6 +5,7 @@ import 'package:wordly/src/feature/about/widget/about_page.dart';
 import 'package:wordly/src/feature/game/bloc/game_bloc.dart';
 import 'package:wordly/src/feature/game/domain/model/game_mode.dart';
 import 'package:wordly/src/feature/game/widget/game_page.dart';
+import 'package:wordly/src/feature/profile/profile.dart';
 import 'package:wordly/src/feature/settings/settings.dart';
 import 'package:wordly/src/feature/tutorial/widget/tutorial_page.dart';
 
@@ -55,6 +56,19 @@ class const CustomDrawer({super.key}) extends StatelessWidget {
             final NavigatorState navigator = Navigator.of(context);
             await navigator.push(
               MaterialPageRoute<void>(builder: (context) => const TutorialPage(), fullscreenDialog: true),
+            );
+          },
+        ),
+        ListTile(
+          title: Text(context.l10n.profile, style: const TextStyle(fontWeight: FontWeight.w500)),
+          onTap: () async {
+            Scaffold.of(context).closeDrawer();
+            final NavigatorState navigator = Navigator.of(context);
+            final GameBloc bloc = context.read<GameBloc>();
+            await navigator.push(
+              MaterialPageRoute<void>(
+                builder: (context) => BlocProvider.value(value: bloc, child: const ProfilePage()),
+              ),
             );
           },
         ),

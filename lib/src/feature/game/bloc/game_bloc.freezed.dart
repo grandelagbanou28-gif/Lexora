@@ -21,7 +21,7 @@ mixin _$GameEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GameEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is GameEvent);
 }
 
 
@@ -30,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'GameEvent()';
+    return 'GameEvent()';
 }
 
 
@@ -53,7 +53,7 @@ extension GameEventPatterns on GameEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GameChangeDictionary value)?  changeDictionary,TResult Function( _GameChangeGameMode value)?  changeGameMode,TResult Function( _GameResetBoard value)?  resetBoard,TResult Function( _GameLetterPressed value)?  letterPressed,TResult Function( _GameDeletePressed value)?  deletePressed,TResult Function( _GameDeleteLongPressed value)?  deleteLongPressed,TResult Function( _GameEnterPressed value)?  enterPressed,TResult Function( _GameRetryLevelPersistence value)?  retryLevelPersistence,TResult Function( _GameListenKeyEvent value)?  listenKeyEvent,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GameChangeDictionary value)?  changeDictionary,TResult Function( _GameChangeGameMode value)?  changeGameMode,TResult Function( _GameResetBoard value)?  resetBoard,TResult Function( _GameLetterPressed value)?  letterPressed,TResult Function( _GameDeletePressed value)?  deletePressed,TResult Function( _GameDeleteLongPressed value)?  deleteLongPressed,TResult Function( _GameEnterPressed value)?  enterPressed,TResult Function( _GameRetryLevelPersistence value)?  retryLevelPersistence,TResult Function( _GameListenKeyEvent value)?  listenKeyEvent,TResult Function( _GameRevealLetterPressed value)?  revealLetterPressed,TResult Function( _GameEliminateLettersPressed value)?  eliminateLettersPressed,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _GameChangeDictionary() when changeDictionary != null:
@@ -65,7 +65,9 @@ return deletePressed(_that);case _GameDeleteLongPressed() when deleteLongPressed
 return deleteLongPressed(_that);case _GameEnterPressed() when enterPressed != null:
 return enterPressed(_that);case _GameRetryLevelPersistence() when retryLevelPersistence != null:
 return retryLevelPersistence(_that);case _GameListenKeyEvent() when listenKeyEvent != null:
-return listenKeyEvent(_that);case _:
+return listenKeyEvent(_that);case _GameRevealLetterPressed() when revealLetterPressed != null:
+return revealLetterPressed(_that);case _GameEliminateLettersPressed() when eliminateLettersPressed != null:
+return eliminateLettersPressed(_that);case _:
   return orElse();
 
 }
@@ -83,7 +85,7 @@ return listenKeyEvent(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GameChangeDictionary value)  changeDictionary,required TResult Function( _GameChangeGameMode value)  changeGameMode,required TResult Function( _GameResetBoard value)  resetBoard,required TResult Function( _GameLetterPressed value)  letterPressed,required TResult Function( _GameDeletePressed value)  deletePressed,required TResult Function( _GameDeleteLongPressed value)  deleteLongPressed,required TResult Function( _GameEnterPressed value)  enterPressed,required TResult Function( _GameRetryLevelPersistence value)  retryLevelPersistence,required TResult Function( _GameListenKeyEvent value)  listenKeyEvent,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GameChangeDictionary value)  changeDictionary,required TResult Function( _GameChangeGameMode value)  changeGameMode,required TResult Function( _GameResetBoard value)  resetBoard,required TResult Function( _GameLetterPressed value)  letterPressed,required TResult Function( _GameDeletePressed value)  deletePressed,required TResult Function( _GameDeleteLongPressed value)  deleteLongPressed,required TResult Function( _GameEnterPressed value)  enterPressed,required TResult Function( _GameRetryLevelPersistence value)  retryLevelPersistence,required TResult Function( _GameListenKeyEvent value)  listenKeyEvent,required TResult Function( _GameRevealLetterPressed value)  revealLetterPressed,required TResult Function( _GameEliminateLettersPressed value)  eliminateLettersPressed,}){
 final _that = this;
 switch (_that) {
 case _GameChangeDictionary():
@@ -95,7 +97,9 @@ return deletePressed(_that);case _GameDeleteLongPressed():
 return deleteLongPressed(_that);case _GameEnterPressed():
 return enterPressed(_that);case _GameRetryLevelPersistence():
 return retryLevelPersistence(_that);case _GameListenKeyEvent():
-return listenKeyEvent(_that);}
+return listenKeyEvent(_that);case _GameRevealLetterPressed():
+return revealLetterPressed(_that);case _GameEliminateLettersPressed():
+return eliminateLettersPressed(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -109,7 +113,7 @@ return listenKeyEvent(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GameChangeDictionary value)?  changeDictionary,TResult? Function( _GameChangeGameMode value)?  changeGameMode,TResult? Function( _GameResetBoard value)?  resetBoard,TResult? Function( _GameLetterPressed value)?  letterPressed,TResult? Function( _GameDeletePressed value)?  deletePressed,TResult? Function( _GameDeleteLongPressed value)?  deleteLongPressed,TResult? Function( _GameEnterPressed value)?  enterPressed,TResult? Function( _GameRetryLevelPersistence value)?  retryLevelPersistence,TResult? Function( _GameListenKeyEvent value)?  listenKeyEvent,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GameChangeDictionary value)?  changeDictionary,TResult? Function( _GameChangeGameMode value)?  changeGameMode,TResult? Function( _GameResetBoard value)?  resetBoard,TResult? Function( _GameLetterPressed value)?  letterPressed,TResult? Function( _GameDeletePressed value)?  deletePressed,TResult? Function( _GameDeleteLongPressed value)?  deleteLongPressed,TResult? Function( _GameEnterPressed value)?  enterPressed,TResult? Function( _GameRetryLevelPersistence value)?  retryLevelPersistence,TResult? Function( _GameListenKeyEvent value)?  listenKeyEvent,TResult? Function( _GameRevealLetterPressed value)?  revealLetterPressed,TResult? Function( _GameEliminateLettersPressed value)?  eliminateLettersPressed,}){
 final _that = this;
 switch (_that) {
 case _GameChangeDictionary() when changeDictionary != null:
@@ -121,7 +125,9 @@ return deletePressed(_that);case _GameDeleteLongPressed() when deleteLongPressed
 return deleteLongPressed(_that);case _GameEnterPressed() when enterPressed != null:
 return enterPressed(_that);case _GameRetryLevelPersistence() when retryLevelPersistence != null:
 return retryLevelPersistence(_that);case _GameListenKeyEvent() when listenKeyEvent != null:
-return listenKeyEvent(_that);case _:
+return listenKeyEvent(_that);case _GameRevealLetterPressed() when revealLetterPressed != null:
+return revealLetterPressed(_that);case _GameEliminateLettersPressed() when eliminateLettersPressed != null:
+return eliminateLettersPressed(_that);case _:
   return null;
 
 }
@@ -134,7 +140,7 @@ return listenKeyEvent(_that);case _:
 
 class _GameChangeDictionary implements GameEvent {
   const _GameChangeDictionary(this.dictionary);
-
+  
 
  final  Locale dictionary;
 
@@ -143,16 +149,18 @@ class _GameChangeDictionary implements GameEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameChangeDictionary&&(identical(other.dictionary, dictionary) || other.dictionary == dictionary));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameChangeDictionary&&(identical(other.dictionary, dictionary) || other.dictionary == dictionary));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,dictionary);
+int get hashCode {
+    return Object.hash(runtimeType,dictionary);
+}
 
 @override
 String toString() {
-  return 'GameEvent.changeDictionary(dictionary: $dictionary)';
+    return 'GameEvent.changeDictionary(dictionary: $dictionary)';
 }
 
 
@@ -166,7 +174,7 @@ String toString() {
 
 class _GameChangeGameMode implements GameEvent {
   const _GameChangeGameMode(this.gameMode);
-
+  
 
  final  GameMode gameMode;
 
@@ -175,16 +183,18 @@ class _GameChangeGameMode implements GameEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameChangeGameMode&&(identical(other.gameMode, gameMode) || other.gameMode == gameMode));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameChangeGameMode&&(identical(other.gameMode, gameMode) || other.gameMode == gameMode));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,gameMode);
+int get hashCode {
+    return Object.hash(runtimeType,gameMode);
+}
 
 @override
 String toString() {
-  return 'GameEvent.changeGameMode(gameMode: $gameMode)';
+    return 'GameEvent.changeGameMode(gameMode: $gameMode)';
 }
 
 
@@ -198,7 +208,7 @@ String toString() {
 
 class _GameResetBoard implements GameEvent {
   const _GameResetBoard(this.gameMode);
-
+  
 
  final  GameMode gameMode;
 
@@ -207,16 +217,18 @@ class _GameResetBoard implements GameEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameResetBoard&&(identical(other.gameMode, gameMode) || other.gameMode == gameMode));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameResetBoard&&(identical(other.gameMode, gameMode) || other.gameMode == gameMode));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,gameMode);
+int get hashCode {
+    return Object.hash(runtimeType,gameMode);
+}
 
 @override
 String toString() {
-  return 'GameEvent.resetBoard(gameMode: $gameMode)';
+    return 'GameEvent.resetBoard(gameMode: $gameMode)';
 }
 
 
@@ -230,7 +242,7 @@ String toString() {
 
 class _GameLetterPressed implements GameEvent {
   const _GameLetterPressed(this.key);
-
+  
 
  final  String key;
 
@@ -239,16 +251,18 @@ class _GameLetterPressed implements GameEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameLetterPressed&&(identical(other.key, key) || other.key == key));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameLetterPressed&&(identical(other.key, key) || other.key == key));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,key);
+int get hashCode {
+    return Object.hash(runtimeType,key);
+}
 
 @override
 String toString() {
-  return 'GameEvent.letterPressed(key: $key)';
+    return 'GameEvent.letterPressed(key: $key)';
 }
 
 
@@ -262,7 +276,7 @@ String toString() {
 
 class _GameDeletePressed implements GameEvent {
   const _GameDeletePressed();
-
+  
 
 
 
@@ -271,7 +285,7 @@ class _GameDeletePressed implements GameEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameDeletePressed);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameDeletePressed);
 }
 
 
@@ -280,7 +294,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'GameEvent.deletePressed()';
+    return 'GameEvent.deletePressed()';
 }
 
 
@@ -294,7 +308,7 @@ String toString() {
 
 class _GameDeleteLongPressed implements GameEvent {
   const _GameDeleteLongPressed();
-
+  
 
 
 
@@ -303,7 +317,7 @@ class _GameDeleteLongPressed implements GameEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameDeleteLongPressed);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameDeleteLongPressed);
 }
 
 
@@ -312,7 +326,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'GameEvent.deleteLongPressed()';
+    return 'GameEvent.deleteLongPressed()';
 }
 
 
@@ -326,7 +340,7 @@ String toString() {
 
 class _GameEnterPressed implements GameEvent {
   const _GameEnterPressed();
-
+  
 
 
 
@@ -335,7 +349,7 @@ class _GameEnterPressed implements GameEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameEnterPressed);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameEnterPressed);
 }
 
 
@@ -344,7 +358,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'GameEvent.enterPressed()';
+    return 'GameEvent.enterPressed()';
 }
 
 
@@ -358,7 +372,7 @@ String toString() {
 
 class _GameRetryLevelPersistence implements GameEvent {
   const _GameRetryLevelPersistence();
-
+  
 
 
 
@@ -367,7 +381,7 @@ class _GameRetryLevelPersistence implements GameEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameRetryLevelPersistence);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameRetryLevelPersistence);
 }
 
 
@@ -376,7 +390,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'GameEvent.retryLevelPersistence()';
+    return 'GameEvent.retryLevelPersistence()';
 }
 
 
@@ -390,7 +404,7 @@ String toString() {
 
 class _GameListenKeyEvent implements GameEvent {
   const _GameListenKeyEvent(this.keyEvent);
-
+  
 
  final  KeyEvent keyEvent;
 
@@ -399,16 +413,82 @@ class _GameListenKeyEvent implements GameEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameListenKeyEvent&&(identical(other.keyEvent, keyEvent) || other.keyEvent == keyEvent));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameListenKeyEvent&&(identical(other.keyEvent, keyEvent) || other.keyEvent == keyEvent));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,keyEvent);
+int get hashCode {
+    return Object.hash(runtimeType,keyEvent);
+}
 
 @override
 String toString() {
-  return 'GameEvent.listenKeyEvent(keyEvent: $keyEvent)';
+    return 'GameEvent.listenKeyEvent(keyEvent: $keyEvent)';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _GameRevealLetterPressed implements GameEvent {
+  const _GameRevealLetterPressed();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameRevealLetterPressed);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+    return 'GameEvent.revealLetterPressed()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _GameEliminateLettersPressed implements GameEvent {
+  const _GameEliminateLettersPressed();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameEliminateLettersPressed);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+    return 'GameEvent.eliminateLettersPressed()';
 }
 
 
@@ -420,22 +500,27 @@ String toString() {
 /// @nodoc
 mixin _$GameState {
 
- Locale get dictionary; String get secretWord; GameMode get gameMode; bool get gameCompleted; List<LetterInfo> get board; Map<String, LetterStatus> get statuses; int? get lvlNumber;
+ Locale get dictionary; String get secretWord; GameMode get gameMode; bool get gameCompleted; List<LetterInfo> get board; Map<String, LetterStatus> get statuses; int? get lvlNumber; Set<String> get eliminatedKeys;
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GameState&&(identical(other.dictionary, dictionary) || other.dictionary == dictionary)&&(identical(other.secretWord, secretWord) || other.secretWord == secretWord)&&(identical(other.gameMode, gameMode) || other.gameMode == gameMode)&&(identical(other.gameCompleted, gameCompleted) || other.gameCompleted == gameCompleted)&&const DeepCollectionEquality().equals(other.board, board)&&const DeepCollectionEquality().equals(other.statuses, statuses)&&(identical(other.lvlNumber, lvlNumber) || other.lvlNumber == lvlNumber));
+  final _this = this as GameState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GameState&&(identical(other.dictionary, _this.dictionary) || other.dictionary == _this.dictionary)&&(identical(other.secretWord, _this.secretWord) || other.secretWord == _this.secretWord)&&(identical(other.gameMode, _this.gameMode) || other.gameMode == _this.gameMode)&&(identical(other.gameCompleted, _this.gameCompleted) || other.gameCompleted == _this.gameCompleted)&&const DeepCollectionEquality().equals(other.board, _this.board)&&const DeepCollectionEquality().equals(other.statuses, _this.statuses)&&(identical(other.lvlNumber, _this.lvlNumber) || other.lvlNumber == _this.lvlNumber)&&const DeepCollectionEquality().equals(other.eliminatedKeys, _this.eliminatedKeys));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,dictionary,secretWord,gameMode,gameCompleted,const DeepCollectionEquality().hash(board),const DeepCollectionEquality().hash(statuses),lvlNumber);
+int get hashCode {
+  final _this = this as GameState;
+  return Object.hash(runtimeType,_this.dictionary,_this.secretWord,_this.gameMode,_this.gameCompleted,const DeepCollectionEquality().hash(_this.board),const DeepCollectionEquality().hash(_this.statuses),_this.lvlNumber,const DeepCollectionEquality().hash(_this.eliminatedKeys));
+}
 
 @override
 String toString() {
-  return 'GameState(dictionary: $dictionary, secretWord: $secretWord, gameMode: $gameMode, gameCompleted: $gameCompleted, board: $board, statuses: $statuses, lvlNumber: $lvlNumber)';
+  final _this = this as GameState;
+  return 'GameState(dictionary: ${_this.dictionary}, secretWord: ${_this.secretWord}, gameMode: ${_this.gameMode}, gameCompleted: ${_this.gameCompleted}, board: ${_this.board}, statuses: ${_this.statuses}, lvlNumber: ${_this.lvlNumber}, eliminatedKeys: ${_this.eliminatedKeys})';
 }
 
 
@@ -526,8 +611,8 @@ return persistenceFailure(_that);case _:
 
 
 class GameIdle extends GameState {
-  const GameIdle({required this.dictionary, required this.secretWord, required this.gameMode, required this.gameCompleted, required  List<LetterInfo> board, required  Map<String, LetterStatus> statuses, required this.lvlNumber}): _board = board,_statuses = statuses,super._();
-
+  const GameIdle({required this.dictionary, required this.secretWord, required this.gameMode, required this.gameCompleted, required  List<LetterInfo> board, required  Map<String, LetterStatus> statuses, required this.lvlNumber,  Set<String> eliminatedKeys = const {}}): _board = board,_statuses = statuses,_eliminatedKeys = eliminatedKeys,super._();
+  
 
 @override final  Locale dictionary;
 @override final  String secretWord;
@@ -548,22 +633,31 @@ class GameIdle extends GameState {
 }
 
 @override final  int? lvlNumber;
+ final  Set<String> _eliminatedKeys;
+@override@JsonKey() Set<String> get eliminatedKeys {
+  if (_eliminatedKeys is EqualUnmodifiableSetView) return _eliminatedKeys;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableSetView(_eliminatedKeys);
+}
+
 
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GameIdle&&(identical(other.dictionary, dictionary) || other.dictionary == dictionary)&&(identical(other.secretWord, secretWord) || other.secretWord == secretWord)&&(identical(other.gameMode, gameMode) || other.gameMode == gameMode)&&(identical(other.gameCompleted, gameCompleted) || other.gameCompleted == gameCompleted)&&const DeepCollectionEquality().equals(other._board, _board)&&const DeepCollectionEquality().equals(other._statuses, _statuses)&&(identical(other.lvlNumber, lvlNumber) || other.lvlNumber == lvlNumber));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is GameIdle&&(identical(other.dictionary, dictionary) || other.dictionary == dictionary)&&(identical(other.secretWord, secretWord) || other.secretWord == secretWord)&&(identical(other.gameMode, gameMode) || other.gameMode == gameMode)&&(identical(other.gameCompleted, gameCompleted) || other.gameCompleted == gameCompleted)&&const DeepCollectionEquality().equals(other.board, _board)&&const DeepCollectionEquality().equals(other.statuses, _statuses)&&(identical(other.lvlNumber, lvlNumber) || other.lvlNumber == lvlNumber)&&const DeepCollectionEquality().equals(other.eliminatedKeys, _eliminatedKeys));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,dictionary,secretWord,gameMode,gameCompleted,const DeepCollectionEquality().hash(_board),const DeepCollectionEquality().hash(_statuses),lvlNumber);
+int get hashCode {
+    return Object.hash(runtimeType,dictionary,secretWord,gameMode,gameCompleted,const DeepCollectionEquality().hash(_board),const DeepCollectionEquality().hash(_statuses),lvlNumber,const DeepCollectionEquality().hash(_eliminatedKeys));
+}
 
 @override
 String toString() {
-  return 'GameState.idle(dictionary: $dictionary, secretWord: $secretWord, gameMode: $gameMode, gameCompleted: $gameCompleted, board: $board, statuses: $statuses, lvlNumber: $lvlNumber)';
+    return 'GameState.idle(dictionary: $dictionary, secretWord: $secretWord, gameMode: $gameMode, gameCompleted: $gameCompleted, board: $board, statuses: $statuses, lvlNumber: $lvlNumber, eliminatedKeys: $eliminatedKeys)';
 }
 
 
@@ -576,8 +670,8 @@ String toString() {
 
 
 class GameLoss extends GameState {
-  const GameLoss({required this.dictionary, required this.secretWord, required this.gameMode, required this.gameCompleted, required  List<LetterInfo> board, required  Map<String, LetterStatus> statuses, required this.lvlNumber}): _board = board,_statuses = statuses,super._();
-
+  const GameLoss({required this.dictionary, required this.secretWord, required this.gameMode, required this.gameCompleted, required  List<LetterInfo> board, required  Map<String, LetterStatus> statuses, required this.lvlNumber,  Set<String> eliminatedKeys = const {}}): _board = board,_statuses = statuses,_eliminatedKeys = eliminatedKeys,super._();
+  
 
 @override final  Locale dictionary;
 @override final  String secretWord;
@@ -598,22 +692,31 @@ class GameLoss extends GameState {
 }
 
 @override final  int? lvlNumber;
+ final  Set<String> _eliminatedKeys;
+@override@JsonKey() Set<String> get eliminatedKeys {
+  if (_eliminatedKeys is EqualUnmodifiableSetView) return _eliminatedKeys;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableSetView(_eliminatedKeys);
+}
+
 
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GameLoss&&(identical(other.dictionary, dictionary) || other.dictionary == dictionary)&&(identical(other.secretWord, secretWord) || other.secretWord == secretWord)&&(identical(other.gameMode, gameMode) || other.gameMode == gameMode)&&(identical(other.gameCompleted, gameCompleted) || other.gameCompleted == gameCompleted)&&const DeepCollectionEquality().equals(other._board, _board)&&const DeepCollectionEquality().equals(other._statuses, _statuses)&&(identical(other.lvlNumber, lvlNumber) || other.lvlNumber == lvlNumber));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is GameLoss&&(identical(other.dictionary, dictionary) || other.dictionary == dictionary)&&(identical(other.secretWord, secretWord) || other.secretWord == secretWord)&&(identical(other.gameMode, gameMode) || other.gameMode == gameMode)&&(identical(other.gameCompleted, gameCompleted) || other.gameCompleted == gameCompleted)&&const DeepCollectionEquality().equals(other.board, _board)&&const DeepCollectionEquality().equals(other.statuses, _statuses)&&(identical(other.lvlNumber, lvlNumber) || other.lvlNumber == lvlNumber)&&const DeepCollectionEquality().equals(other.eliminatedKeys, _eliminatedKeys));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,dictionary,secretWord,gameMode,gameCompleted,const DeepCollectionEquality().hash(_board),const DeepCollectionEquality().hash(_statuses),lvlNumber);
+int get hashCode {
+    return Object.hash(runtimeType,dictionary,secretWord,gameMode,gameCompleted,const DeepCollectionEquality().hash(_board),const DeepCollectionEquality().hash(_statuses),lvlNumber,const DeepCollectionEquality().hash(_eliminatedKeys));
+}
 
 @override
 String toString() {
-  return 'GameState.loss(dictionary: $dictionary, secretWord: $secretWord, gameMode: $gameMode, gameCompleted: $gameCompleted, board: $board, statuses: $statuses, lvlNumber: $lvlNumber)';
+    return 'GameState.loss(dictionary: $dictionary, secretWord: $secretWord, gameMode: $gameMode, gameCompleted: $gameCompleted, board: $board, statuses: $statuses, lvlNumber: $lvlNumber, eliminatedKeys: $eliminatedKeys)';
 }
 
 
@@ -626,8 +729,8 @@ String toString() {
 
 
 class GameWin extends GameState {
-  const GameWin({required this.dictionary, required this.secretWord, required this.gameMode, required this.gameCompleted, required  List<LetterInfo> board, required  Map<String, LetterStatus> statuses, required this.lvlNumber}): _board = board,_statuses = statuses,super._();
-
+  const GameWin({required this.dictionary, required this.secretWord, required this.gameMode, required this.gameCompleted, required  List<LetterInfo> board, required  Map<String, LetterStatus> statuses, required this.lvlNumber,  Set<String> eliminatedKeys = const {}}): _board = board,_statuses = statuses,_eliminatedKeys = eliminatedKeys,super._();
+  
 
 @override final  Locale dictionary;
 @override final  String secretWord;
@@ -648,22 +751,31 @@ class GameWin extends GameState {
 }
 
 @override final  int? lvlNumber;
+ final  Set<String> _eliminatedKeys;
+@override@JsonKey() Set<String> get eliminatedKeys {
+  if (_eliminatedKeys is EqualUnmodifiableSetView) return _eliminatedKeys;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableSetView(_eliminatedKeys);
+}
+
 
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GameWin&&(identical(other.dictionary, dictionary) || other.dictionary == dictionary)&&(identical(other.secretWord, secretWord) || other.secretWord == secretWord)&&(identical(other.gameMode, gameMode) || other.gameMode == gameMode)&&(identical(other.gameCompleted, gameCompleted) || other.gameCompleted == gameCompleted)&&const DeepCollectionEquality().equals(other._board, _board)&&const DeepCollectionEquality().equals(other._statuses, _statuses)&&(identical(other.lvlNumber, lvlNumber) || other.lvlNumber == lvlNumber));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is GameWin&&(identical(other.dictionary, dictionary) || other.dictionary == dictionary)&&(identical(other.secretWord, secretWord) || other.secretWord == secretWord)&&(identical(other.gameMode, gameMode) || other.gameMode == gameMode)&&(identical(other.gameCompleted, gameCompleted) || other.gameCompleted == gameCompleted)&&const DeepCollectionEquality().equals(other.board, _board)&&const DeepCollectionEquality().equals(other.statuses, _statuses)&&(identical(other.lvlNumber, lvlNumber) || other.lvlNumber == lvlNumber)&&const DeepCollectionEquality().equals(other.eliminatedKeys, _eliminatedKeys));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,dictionary,secretWord,gameMode,gameCompleted,const DeepCollectionEquality().hash(_board),const DeepCollectionEquality().hash(_statuses),lvlNumber);
+int get hashCode {
+    return Object.hash(runtimeType,dictionary,secretWord,gameMode,gameCompleted,const DeepCollectionEquality().hash(_board),const DeepCollectionEquality().hash(_statuses),lvlNumber,const DeepCollectionEquality().hash(_eliminatedKeys));
+}
 
 @override
 String toString() {
-  return 'GameState.win(dictionary: $dictionary, secretWord: $secretWord, gameMode: $gameMode, gameCompleted: $gameCompleted, board: $board, statuses: $statuses, lvlNumber: $lvlNumber)';
+    return 'GameState.win(dictionary: $dictionary, secretWord: $secretWord, gameMode: $gameMode, gameCompleted: $gameCompleted, board: $board, statuses: $statuses, lvlNumber: $lvlNumber, eliminatedKeys: $eliminatedKeys)';
 }
 
 
@@ -676,8 +788,8 @@ String toString() {
 
 
 class GameFailure extends GameState {
-  const GameFailure({required this.dictionary, required this.secretWord, required this.gameMode, required this.gameCompleted, required  List<LetterInfo> board, required  Map<String, LetterStatus> statuses, required this.error, required this.lvlNumber}): _board = board,_statuses = statuses,super._();
-
+  const GameFailure({required this.dictionary, required this.secretWord, required this.gameMode, required this.gameCompleted, required  List<LetterInfo> board, required  Map<String, LetterStatus> statuses, required this.error, required this.lvlNumber,  Set<String> eliminatedKeys = const {}}): _board = board,_statuses = statuses,_eliminatedKeys = eliminatedKeys,super._();
+  
 
 @override final  Locale dictionary;
 @override final  String secretWord;
@@ -699,22 +811,31 @@ class GameFailure extends GameState {
 
  final  WordError error;
 @override final  int? lvlNumber;
+ final  Set<String> _eliminatedKeys;
+@override@JsonKey() Set<String> get eliminatedKeys {
+  if (_eliminatedKeys is EqualUnmodifiableSetView) return _eliminatedKeys;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableSetView(_eliminatedKeys);
+}
+
 
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GameFailure&&(identical(other.dictionary, dictionary) || other.dictionary == dictionary)&&(identical(other.secretWord, secretWord) || other.secretWord == secretWord)&&(identical(other.gameMode, gameMode) || other.gameMode == gameMode)&&(identical(other.gameCompleted, gameCompleted) || other.gameCompleted == gameCompleted)&&const DeepCollectionEquality().equals(other._board, _board)&&const DeepCollectionEquality().equals(other._statuses, _statuses)&&(identical(other.error, error) || other.error == error)&&(identical(other.lvlNumber, lvlNumber) || other.lvlNumber == lvlNumber));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is GameFailure&&(identical(other.dictionary, dictionary) || other.dictionary == dictionary)&&(identical(other.secretWord, secretWord) || other.secretWord == secretWord)&&(identical(other.gameMode, gameMode) || other.gameMode == gameMode)&&(identical(other.gameCompleted, gameCompleted) || other.gameCompleted == gameCompleted)&&const DeepCollectionEquality().equals(other.board, _board)&&const DeepCollectionEquality().equals(other.statuses, _statuses)&&(identical(other.error, error) || other.error == error)&&(identical(other.lvlNumber, lvlNumber) || other.lvlNumber == lvlNumber)&&const DeepCollectionEquality().equals(other.eliminatedKeys, _eliminatedKeys));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,dictionary,secretWord,gameMode,gameCompleted,const DeepCollectionEquality().hash(_board),const DeepCollectionEquality().hash(_statuses),error,lvlNumber);
+int get hashCode {
+    return Object.hash(runtimeType,dictionary,secretWord,gameMode,gameCompleted,const DeepCollectionEquality().hash(_board),const DeepCollectionEquality().hash(_statuses),error,lvlNumber,const DeepCollectionEquality().hash(_eliminatedKeys));
+}
 
 @override
 String toString() {
-  return 'GameState.failure(dictionary: $dictionary, secretWord: $secretWord, gameMode: $gameMode, gameCompleted: $gameCompleted, board: $board, statuses: $statuses, error: $error, lvlNumber: $lvlNumber)';
+    return 'GameState.failure(dictionary: $dictionary, secretWord: $secretWord, gameMode: $gameMode, gameCompleted: $gameCompleted, board: $board, statuses: $statuses, error: $error, lvlNumber: $lvlNumber, eliminatedKeys: $eliminatedKeys)';
 }
 
 
@@ -727,8 +848,8 @@ String toString() {
 
 
 class GamePersistenceFailure extends GameState {
-  const GamePersistenceFailure({required this.dictionary, required this.secretWord, required this.gameMode, required this.gameCompleted, required  List<LetterInfo> board, required  Map<String, LetterStatus> statuses, required this.lvlNumber, required this.operation, required this.pendingProgress, required this.completedLevel, required this.pendingIsWin, required this.retryCount}): _board = board,_statuses = statuses,super._();
-
+  const GamePersistenceFailure({required this.dictionary, required this.secretWord, required this.gameMode, required this.gameCompleted, required  List<LetterInfo> board, required  Map<String, LetterStatus> statuses, required this.lvlNumber, required this.operation, required this.pendingProgress, required this.completedLevel, required this.pendingIsWin, required this.retryCount,  Set<String> eliminatedKeys = const {}}): _board = board,_statuses = statuses,_eliminatedKeys = eliminatedKeys,super._();
+  
 
 @override final  Locale dictionary;
 @override final  String secretWord;
@@ -754,22 +875,31 @@ class GamePersistenceFailure extends GameState {
  final  GameResult? completedLevel;
  final  bool? pendingIsWin;
  final  int retryCount;
+ final  Set<String> _eliminatedKeys;
+@override@JsonKey() Set<String> get eliminatedKeys {
+  if (_eliminatedKeys is EqualUnmodifiableSetView) return _eliminatedKeys;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableSetView(_eliminatedKeys);
+}
+
 
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is GamePersistenceFailure&&(identical(other.dictionary, dictionary) || other.dictionary == dictionary)&&(identical(other.secretWord, secretWord) || other.secretWord == secretWord)&&(identical(other.gameMode, gameMode) || other.gameMode == gameMode)&&(identical(other.gameCompleted, gameCompleted) || other.gameCompleted == gameCompleted)&&const DeepCollectionEquality().equals(other._board, _board)&&const DeepCollectionEquality().equals(other._statuses, _statuses)&&(identical(other.lvlNumber, lvlNumber) || other.lvlNumber == lvlNumber)&&(identical(other.operation, operation) || other.operation == operation)&&(identical(other.pendingProgress, pendingProgress) || other.pendingProgress == pendingProgress)&&(identical(other.completedLevel, completedLevel) || other.completedLevel == completedLevel)&&(identical(other.pendingIsWin, pendingIsWin) || other.pendingIsWin == pendingIsWin)&&(identical(other.retryCount, retryCount) || other.retryCount == retryCount));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is GamePersistenceFailure&&(identical(other.dictionary, dictionary) || other.dictionary == dictionary)&&(identical(other.secretWord, secretWord) || other.secretWord == secretWord)&&(identical(other.gameMode, gameMode) || other.gameMode == gameMode)&&(identical(other.gameCompleted, gameCompleted) || other.gameCompleted == gameCompleted)&&const DeepCollectionEquality().equals(other.board, _board)&&const DeepCollectionEquality().equals(other.statuses, _statuses)&&(identical(other.lvlNumber, lvlNumber) || other.lvlNumber == lvlNumber)&&(identical(other.operation, operation) || other.operation == operation)&&(identical(other.pendingProgress, pendingProgress) || other.pendingProgress == pendingProgress)&&(identical(other.completedLevel, completedLevel) || other.completedLevel == completedLevel)&&(identical(other.pendingIsWin, pendingIsWin) || other.pendingIsWin == pendingIsWin)&&(identical(other.retryCount, retryCount) || other.retryCount == retryCount)&&const DeepCollectionEquality().equals(other.eliminatedKeys, _eliminatedKeys));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,dictionary,secretWord,gameMode,gameCompleted,const DeepCollectionEquality().hash(_board),const DeepCollectionEquality().hash(_statuses),lvlNumber,operation,pendingProgress,completedLevel,pendingIsWin,retryCount);
+int get hashCode {
+    return Object.hash(runtimeType,dictionary,secretWord,gameMode,gameCompleted,const DeepCollectionEquality().hash(_board),const DeepCollectionEquality().hash(_statuses),lvlNumber,operation,pendingProgress,completedLevel,pendingIsWin,retryCount,const DeepCollectionEquality().hash(_eliminatedKeys));
+}
 
 @override
 String toString() {
-  return 'GameState.persistenceFailure(dictionary: $dictionary, secretWord: $secretWord, gameMode: $gameMode, gameCompleted: $gameCompleted, board: $board, statuses: $statuses, lvlNumber: $lvlNumber, operation: $operation, pendingProgress: $pendingProgress, completedLevel: $completedLevel, pendingIsWin: $pendingIsWin, retryCount: $retryCount)';
+    return 'GameState.persistenceFailure(dictionary: $dictionary, secretWord: $secretWord, gameMode: $gameMode, gameCompleted: $gameCompleted, board: $board, statuses: $statuses, lvlNumber: $lvlNumber, operation: $operation, pendingProgress: $pendingProgress, completedLevel: $completedLevel, pendingIsWin: $pendingIsWin, retryCount: $retryCount, eliminatedKeys: $eliminatedKeys)';
 }
 
 

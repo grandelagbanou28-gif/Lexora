@@ -8,7 +8,9 @@ import 'package:wordly/src/feature/game/data/datasources/game_datasource.dart';
 import 'package:wordly/src/feature/game/domain/repositories/game_repository.dart';
 import 'package:wordly/src/feature/level/level.dart';
 import 'package:wordly/src/feature/settings/settings.dart';
+import 'package:wordly/src/feature/sound/sound.dart';
 import 'package:wordly/src/feature/statistic/statistic.dart';
+import 'package:wordly/src/feature/wallet/wallet.dart';
 
 Future<CompositionResult> composeDependencies({required ApplicationConfig config}) async {
   final Stopwatch stopwatch = clock.stopwatch()..start();
@@ -58,6 +60,9 @@ Future<DependenciesContainer> createDependenciesContainer(ApplicationConfig conf
     statisticsDatasource: StatisticDatasource(sharedPreferences: sharedPreferences),
   );
 
+  final WalletContainer walletContainer = await WalletContainer.create(sharedPreferences: sharedPreferences);
+  final soundService = SoundService(settingsService: settingsContainer.settingsService);
+
   return DependenciesContainer(
     config: config,
     packageInfo: packageInfo,
@@ -65,5 +70,7 @@ Future<DependenciesContainer> createDependenciesContainer(ApplicationConfig conf
     gameRepository: gameRepository,
     levelRepository: levelRepository,
     statisticsRepository: statisticsRepository,
+    walletContainer: walletContainer,
+    soundService: soundService,
   );
 }

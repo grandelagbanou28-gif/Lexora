@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:wordly/src/core/common/common.dart';
 import 'package:wordly/src/feature/app/model/dependencies_container.dart';
 import 'package:wordly/src/feature/settings/settings.dart';
+import 'package:wordly/src/feature/wallet/wallet.dart';
 
 class const DependenciesScope({
   required final DependenciesContainer dependencies,
@@ -18,7 +19,13 @@ class const DependenciesScope({
   Widget build(BuildContext context) {
     return _DependenciesInherited(
       dependencies: dependencies,
-      child: SettingsScope(settingsContainer: dependencies.settingsContainer, child: child),
+      child: SettingsScope(
+        settingsContainer: dependencies.settingsContainer,
+        child: WalletScope(
+          walletService: dependencies.walletContainer.walletService,
+          child: child,
+        ),
+      ),
     );
   }
 }

@@ -21,8 +21,10 @@ import 'package:wordly/src/feature/game/widget/game_result_dialog.dart';
 import 'package:wordly/src/feature/level/domain/model/level_result.dart';
 import 'package:wordly/src/feature/level/domain/repositories/level_repository.dart';
 import 'package:wordly/src/feature/settings/settings.dart';
+import 'package:wordly/src/feature/sound/sound.dart';
 import 'package:wordly/src/feature/statistic/domain/model/game_statistic.dart';
 import 'package:wordly/src/feature/statistic/domain/repositories/statistics_repository.dart';
+import 'package:wordly/src/feature/wallet/wallet.dart';
 
 void main() {
   test('does not publish win until completeLevel commits', () async {
@@ -106,6 +108,9 @@ void main() {
     SharedPreferencesAsyncPlatform.instance = InMemorySharedPreferencesAsync.empty();
     addTearDown(() => SharedPreferencesAsyncPlatform.instance = previousPreferencesPlatform);
     final SettingsContainer settings = await SettingsContainer.create(sharedPreferences: SharedPreferencesAsync());
+    final WalletContainer walletContainer = await WalletContainer.create(
+      sharedPreferences: SharedPreferencesAsync(),
+    );
     final levelRepository = _LevelRepository()..failuresRemaining = 1;
     final gameRepository = _GameRepository();
     final bloc = GameBloc(
@@ -123,6 +128,8 @@ void main() {
       statisticsRepository: const _StatisticsRepository(),
       levelRepository: levelRepository,
       gameRepository: gameRepository,
+      walletContainer: walletContainer,
+      soundService: SoundService(settingsService: settings.settingsService),
     );
     await tester.pumpWidget(
       DependenciesScope(
@@ -154,7 +161,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.byType(DialogContent), findsOneWidget);
-    expect(find.byType(SnackBar), findsNothing);
+    expect(find.byType(SnackBar), findsOneWidget);
     expect(bloc.state, isA<GameWin>());
     expect(bloc.state.gameCompleted, isTrue);
     expect(levelRepository.completions, hasLength(2));

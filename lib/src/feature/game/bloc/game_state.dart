@@ -15,6 +15,7 @@ sealed class const GameState._() with _$GameState {
     required List<LetterInfo> board,
     required Map<String, LetterStatus> statuses,
     required int? lvlNumber,
+    @Default({}) Set<String> eliminatedKeys,
   }) = GameIdle;
 
   const factory loss({
@@ -25,6 +26,7 @@ sealed class const GameState._() with _$GameState {
     required List<LetterInfo> board,
     required Map<String, LetterStatus> statuses,
     required int? lvlNumber,
+    @Default({}) Set<String> eliminatedKeys,
   }) = GameLoss;
 
   const factory win({
@@ -35,6 +37,7 @@ sealed class const GameState._() with _$GameState {
     required List<LetterInfo> board,
     required Map<String, LetterStatus> statuses,
     required int? lvlNumber,
+    @Default({}) Set<String> eliminatedKeys,
   }) = GameWin;
 
   const factory failure({
@@ -46,6 +49,7 @@ sealed class const GameState._() with _$GameState {
     required Map<String, LetterStatus> statuses,
     required WordError error,
     required int? lvlNumber,
+    @Default({}) Set<String> eliminatedKeys,
   }) = GameFailure;
 
   const factory persistenceFailure({
@@ -61,6 +65,7 @@ sealed class const GameState._() with _$GameState {
     required GameResult? completedLevel,
     required bool? pendingIsWin,
     required int retryCount,
+    @Default({}) Set<String> eliminatedKeys,
   }) = GamePersistenceFailure;
 
   int get currentWordIndex => (board.length - 1) ~/ 5;
@@ -74,6 +79,8 @@ sealed class const GameState._() with _$GameState {
   bool get isPersistenceFailure => this is GamePersistenceFailure;
 
   bool get isInputBlocked => gameCompleted || isPersistenceFailure;
+
+  bool isLetterEliminated(String letter) => eliminatedKeys.contains(letter);
 
   (bool, int, List<LetterInfo>)? get buildResultString {
     final bool? result = switch (this) {

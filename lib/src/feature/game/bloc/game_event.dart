@@ -19,4 +19,8 @@ sealed class GameEvent with _$GameEvent {
   const factory retryLevelPersistence() = _GameRetryLevelPersistence;
 
   const factory listenKeyEvent(KeyEvent keyEvent) = _GameListenKeyEvent;
+
+  const factory revealLetterPressed() = _GameRevealLetterPressed;
+
+  const factory eliminateLettersPressed() = _GameEliminateLettersPressed;
 }

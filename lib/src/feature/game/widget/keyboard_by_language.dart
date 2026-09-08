@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wordly/src/core/common/common.dart';
 import 'package:wordly/src/core/constant/generated/fonts.gen.dart';
 import 'package:wordly/src/feature/game/bloc/game_bloc.dart';
 import 'package:wordly/src/feature/game/domain/model/keyboard.dart';
@@ -280,7 +281,10 @@ class const EnterKey({required final GeneralSettings generalSettings, required f
           color: LetterStatus.unknown.cellColor(context, generalSettings),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           child: InkWell(
-            onTap: () => context.read<GameBloc>().add(const GameEvent.enterPressed()),
+            onTap: () {
+              context.dependencies.soundService.enter();
+              context.read<GameBloc>().add(const GameEvent.enterPressed());
+            },
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
               child: FittedBox(
@@ -307,8 +311,14 @@ class const DeleteKey({required final GeneralSettings generalSettings, required 
           color: LetterStatus.unknown.cellColor(context, generalSettings),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           child: InkWell(
-            onTap: () => context.read<GameBloc>().add(const GameEvent.deletePressed()),
-            onLongPress: () => context.read<GameBloc>().add(const GameEvent.deleteLongPressed()),
+            onTap: () {
+              context.dependencies.soundService.keyPress();
+              context.read<GameBloc>().add(const GameEvent.deletePressed());
+            },
+            onLongPress: () {
+              context.dependencies.soundService.keyPress();
+              context.read<GameBloc>().add(const GameEvent.deleteLongPressed());
+            },
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
               child: FittedBox(
@@ -341,6 +351,7 @@ class const KeyboardKey({
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
           child: InkWell(
             onTap: () {
+              context.dependencies.soundService.keyPress();
               context.read<GameBloc>().add(GameEvent.letterPressed(letter));
             },
             child: Padding(

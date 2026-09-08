@@ -119,5 +119,134 @@ class MessageLookup extends MessageLookupByLibrary {
     "wordTooShort": MessageLookupByLibrary.simpleMessage(
       "Слово неправильной длины",
     ),
+    "achFiftyLevels": MessageLookupByLibrary.simpleMessage(
+      "50 уровней",
+    ),
+    "achFiftyLevelsDesc": MessageLookupByLibrary.simpleMessage(
+      "Пройди 50 уровней",
+    ),
+    "achFirstWin": MessageLookupByLibrary.simpleMessage(
+      "Первая победа",
+    ),
+    "achFirstWinDesc": MessageLookupByLibrary.simpleMessage(
+      "Выиграй свою первую игру",
+    ),
+    "achFiveWins": MessageLookupByLibrary.simpleMessage(
+      "5 побед",
+    ),
+    "achFiveWinsDesc": MessageLookupByLibrary.simpleMessage(
+      "Выиграй 5 игр",
+    ),
+    "achHintUser": MessageLookupByLibrary.simpleMessage(
+      "Мастер подсказок",
+    ),
+    "achHintUserDesc": MessageLookupByLibrary.simpleMessage(
+      "Используй подсказку 3 раза",
+    ),
+    "achRich": MessageLookupByLibrary.simpleMessage(
+      "Сокровище",
+    ),
+    "achRichDesc": MessageLookupByLibrary.simpleMessage(
+      "Накопи 500 монет",
+    ),
+    "achStreak3": MessageLookupByLibrary.simpleMessage(
+      "Серия из 3 побед",
+    ),
+    "achStreak3Desc": MessageLookupByLibrary.simpleMessage(
+      "Выиграй 3 ежедневные игры подряд",
+    ),
+    "achStreak7": MessageLookupByLibrary.simpleMessage(
+      "Серия из 7 побед",
+    ),
+    "achStreak7Desc": MessageLookupByLibrary.simpleMessage(
+      "Выиграй 7 ежедневных игр подряд",
+    ),
+    "achTenLevels": MessageLookupByLibrary.simpleMessage(
+      "10 уровней",
+    ),
+    "achTenLevelsDesc": MessageLookupByLibrary.simpleMessage(
+      "Пройди 10 уровней",
+    ),
+    "achTwentyFiveWins": MessageLookupByLibrary.simpleMessage(
+      "25 побед",
+    ),
+    "achTwentyFiveWinsDesc": MessageLookupByLibrary.simpleMessage(
+      "Выиграй 25 игр",
+    ),
+    "achievements": MessageLookupByLibrary.simpleMessage(
+      "Достижения",
+    ),
+    "achievementsLocked": MessageLookupByLibrary.simpleMessage(
+      "Закрыто",
+    ),
+    "achievementsUnlocked": MessageLookupByLibrary.simpleMessage(
+      "Достижение открыто!",
+    ),
+    "balance": MessageLookupByLibrary.simpleMessage(
+      "Баланс",
+    ),
+    "challengeCompleted": MessageLookupByLibrary.simpleMessage(
+      "Задание выполнено!",
+    ),
+    "challengeReward": MessageLookupByLibrary.simpleMessage(
+      "Награда",
+    ),
+    "dailyChallengeFast": MessageLookupByLibrary.simpleMessage(
+      "Победить за 4 попытки или меньше",
+    ),
+    "dailyChallengeStreak": MessageLookupByLibrary.simpleMessage(
+      "Выиграть 3 ежедневные игры подряд",
+    ),
+    "dailyChallengeWord": MessageLookupByLibrary.simpleMessage(
+      "Отгадай сегодняшнее слово",
+    ),
+    "dailyChallenges": MessageLookupByLibrary.simpleMessage(
+      "Ежедневные задания",
+    ),
+    "earnTip": MessageLookupByLibrary.simpleMessage(
+      "Выигрывай игры, чтобы получать монеты и опыт!",
+    ),
+    "eliminateLetters": MessageLookupByLibrary.simpleMessage(
+      "Убрать буквы",
+    ),
+    "hintShop": MessageLookupByLibrary.simpleMessage(
+      "Магазин подсказок",
+    ),
+    "hints": MessageLookupByLibrary.simpleMessage(
+      "Подсказки",
+    ),
+    "levelUpMessage": MessageLookupByLibrary.simpleMessage(
+      "Вы достигли нового уровня",
+    ),
+    "levelUpTitle": MessageLookupByLibrary.simpleMessage(
+      "Новый уровень!",
+    ),
+    "notEnoughTokens": MessageLookupByLibrary.simpleMessage(
+      "Недостаточно монет",
+    ),
+    "playerLevel": MessageLookupByLibrary.simpleMessage(
+      "Уровень игрока",
+    ),
+    "profile": MessageLookupByLibrary.simpleMessage(
+      "Профиль",
+    ),
+    "revealLetter": MessageLookupByLibrary.simpleMessage(
+      "Показать букву",
+    ),
+    "rowIsFullFirst": MessageLookupByLibrary.simpleMessage(
+      "Сначала заверши текущее слово",
+    ),
+    "sound": MessageLookupByLibrary.simpleMessage(
+      "Звуковые эффекты",
+    ),
+    "tokens": MessageLookupByLibrary.simpleMessage(
+      "Монеты",
+    ),
+    "vibration": MessageLookupByLibrary.simpleMessage(
+      "Вибрация",
+    ),
+    "xp": MessageLookupByLibrary.simpleMessage(
+      "Опыт",
+    ),
   };
 }

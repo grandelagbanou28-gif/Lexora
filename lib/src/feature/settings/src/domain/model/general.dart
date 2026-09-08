@@ -32,17 +32,23 @@ final class const GeneralSettings({
   final ThemeModeVO themeMode = ThemeModeVO.system,
   final ColorMode colorMode = ColorMode.casual,
   final (Color, Color, Color)? otherColors,
+  final bool soundEnabled = true,
+  final bool vibrationEnabled = true,
 }) {
   GeneralSettings copyWith({
     ThemeModeVO? themeMode,
     ColorMode? colorMode,
     (Color, Color, Color)? otherColors,
     Locale? locale,
+    bool? soundEnabled,
+    bool? vibrationEnabled,
   }) => GeneralSettings(
     themeMode: themeMode ?? this.themeMode,
     colorMode: colorMode ?? this.colorMode,
     otherColors: otherColors ?? this.otherColors,
     locale: locale ?? this.locale,
+    soundEnabled: soundEnabled ?? this.soundEnabled,
+    vibrationEnabled: vibrationEnabled ?? this.vibrationEnabled,
   );
 
   Color get correctColor => switch (colorMode) {
@@ -75,12 +81,20 @@ final class const GeneralSettings({
       other is GeneralSettings &&
           themeMode == other.themeMode &&
           colorMode == other.colorMode &&
+          soundEnabled == other.soundEnabled &&
+          vibrationEnabled == other.vibrationEnabled &&
           locale == other.locale &&
           (colorMode != ColorMode.other || _colorsEqual(otherColors, other.otherColors));
 
   @override
-  int get hashCode =>
-      Object.hash(themeMode, colorMode, locale, colorMode == ColorMode.other ? _colorsHash(otherColors) : 0);
+  int get hashCode => Object.hash(
+    themeMode,
+    colorMode,
+    locale,
+    soundEnabled,
+    vibrationEnabled,
+    colorMode == ColorMode.other ? _colorsHash(otherColors) : 0,
+  );
 
   bool _colorsEqual((Color, Color, Color)? a, (Color, Color, Color)? b) {
     if (identical(a, b)) {

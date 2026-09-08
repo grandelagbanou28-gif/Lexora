@@ -117,5 +117,134 @@ class MessageLookup extends MessageLookupByLibrary {
     "wordTooShort": MessageLookupByLibrary.simpleMessage(
       "Word is not correct length",
     ),
+    "achFiftyLevels": MessageLookupByLibrary.simpleMessage(
+      "Fifty levels",
+    ),
+    "achFiftyLevelsDesc": MessageLookupByLibrary.simpleMessage(
+      "Complete 50 levels",
+    ),
+    "achFirstWin": MessageLookupByLibrary.simpleMessage(
+      "First win",
+    ),
+    "achFirstWinDesc": MessageLookupByLibrary.simpleMessage(
+      "Win your first game",
+    ),
+    "achFiveWins": MessageLookupByLibrary.simpleMessage(
+      "Five wins",
+    ),
+    "achFiveWinsDesc": MessageLookupByLibrary.simpleMessage(
+      "Win 5 games",
+    ),
+    "achHintUser": MessageLookupByLibrary.simpleMessage(
+      "Hint master",
+    ),
+    "achHintUserDesc": MessageLookupByLibrary.simpleMessage(
+      "Use a hint 3 times",
+    ),
+    "achRich": MessageLookupByLibrary.simpleMessage(
+      "Treasure",
+    ),
+    "achRichDesc": MessageLookupByLibrary.simpleMessage(
+      "Hold 500 tokens",
+    ),
+    "achStreak3": MessageLookupByLibrary.simpleMessage(
+      "Streak of 3 wins",
+    ),
+    "achStreak3Desc": MessageLookupByLibrary.simpleMessage(
+      "Win 3 daily games in a row",
+    ),
+    "achStreak7": MessageLookupByLibrary.simpleMessage(
+      "Streak of 7 wins",
+    ),
+    "achStreak7Desc": MessageLookupByLibrary.simpleMessage(
+      "Win 7 daily games in a row",
+    ),
+    "achTenLevels": MessageLookupByLibrary.simpleMessage(
+      "Ten levels",
+    ),
+    "achTenLevelsDesc": MessageLookupByLibrary.simpleMessage(
+      "Complete 10 levels",
+    ),
+    "achTwentyFiveWins": MessageLookupByLibrary.simpleMessage(
+      "25 wins",
+    ),
+    "achTwentyFiveWinsDesc": MessageLookupByLibrary.simpleMessage(
+      "Win 25 games",
+    ),
+    "achievements": MessageLookupByLibrary.simpleMessage(
+      "Achievements",
+    ),
+    "achievementsLocked": MessageLookupByLibrary.simpleMessage(
+      "Locked",
+    ),
+    "achievementsUnlocked": MessageLookupByLibrary.simpleMessage(
+      "Achievement unlocked!",
+    ),
+    "balance": MessageLookupByLibrary.simpleMessage(
+      "Balance",
+    ),
+    "challengeCompleted": MessageLookupByLibrary.simpleMessage(
+      "Challenge completed!",
+    ),
+    "challengeReward": MessageLookupByLibrary.simpleMessage(
+      "Reward",
+    ),
+    "dailyChallengeFast": MessageLookupByLibrary.simpleMessage(
+      "Win in 4 tries or less",
+    ),
+    "dailyChallengeStreak": MessageLookupByLibrary.simpleMessage(
+      "Win 3 daily games in a row",
+    ),
+    "dailyChallengeWord": MessageLookupByLibrary.simpleMessage(
+      "Complete today’s word",
+    ),
+    "dailyChallenges": MessageLookupByLibrary.simpleMessage(
+      "Daily challenges",
+    ),
+    "earnTip": MessageLookupByLibrary.simpleMessage(
+      "Win games to earn tokens and XP!",
+    ),
+    "eliminateLetters": MessageLookupByLibrary.simpleMessage(
+      "Eliminate letters",
+    ),
+    "hintShop": MessageLookupByLibrary.simpleMessage(
+      "Hint shop",
+    ),
+    "hints": MessageLookupByLibrary.simpleMessage(
+      "Hints",
+    ),
+    "levelUpMessage": MessageLookupByLibrary.simpleMessage(
+      "You reached a new level",
+    ),
+    "levelUpTitle": MessageLookupByLibrary.simpleMessage(
+      "Level up!",
+    ),
+    "notEnoughTokens": MessageLookupByLibrary.simpleMessage(
+      "Not enough tokens",
+    ),
+    "playerLevel": MessageLookupByLibrary.simpleMessage(
+      "Player level",
+    ),
+    "profile": MessageLookupByLibrary.simpleMessage(
+      "Profile",
+    ),
+    "revealLetter": MessageLookupByLibrary.simpleMessage(
+      "Reveal a letter",
+    ),
+    "rowIsFullFirst": MessageLookupByLibrary.simpleMessage(
+      "Complete the current word first",
+    ),
+    "sound": MessageLookupByLibrary.simpleMessage(
+      "Sound effects",
+    ),
+    "tokens": MessageLookupByLibrary.simpleMessage(
+      "Tokens",
+    ),
+    "vibration": MessageLookupByLibrary.simpleMessage(
+      "Vibration",
+    ),
+    "xp": MessageLookupByLibrary.simpleMessage(
+      "XP",
+    ),
   };
 }

@@ -43,6 +43,8 @@ final class GameBloc({
         final _GameDeletePressed e => _deletePressed(e, emit),
         final _GameDeleteLongPressed e => _deleteLongPressed(e, emit),
         final _GameListenKeyEvent e => _listenKeyEvent(e, emit),
+        final _GameRevealLetterPressed e => _revealLetterPressed(e, emit),
+        final _GameEliminateLettersPressed e => _eliminateLettersPressed(e, emit),
       },
       transformer: (events, mapper) => events.asyncExpand(mapper),
     );
@@ -67,6 +69,7 @@ final class GameBloc({
     GameMode? gameMode,
     Locale? dictionary,
     int? lvlNumber,
+    Set<String>? eliminatedKeys,
   }) {
     return GameState.idle(
       dictionary: dictionary ?? state.dictionary,
@@ -76,6 +79,7 @@ final class GameBloc({
       board: board ?? state.board,
       statuses: statuses ?? state.statuses,
       lvlNumber: lvlNumber ?? state.lvlNumber,
+      eliminatedKeys: eliminatedKeys ?? state.eliminatedKeys,
     );
   }
 
@@ -303,6 +307,10 @@ final class GameBloc({
     if (state.isInputBlocked) {
       return;
     }
+    final String letter = event.key.toLowerCase();
+    if (state.isLetterEliminated(letter)) {
+      return;
+    }
     if (state.board.length >= _maxLetters) {
       return;
     }
@@ -311,7 +319,50 @@ final class GameBloc({
         state.board[state.currentWordIndex * _wordLength].status == LetterStatus.unknown) {
       return;
     }
-    emit(_buildIdleState(board: List.of(state.board)..add(LetterInfo(letter: event.key.toLowerCase()))));
+    emit(_buildIdleState(board: List.of(state.board)..add(LetterInfo(letter: letter))));
+  }
+
+  void _revealLetterPressed(_GameRevealLetterPressed event, Emitter<GameState> emit) {
+    final GameState current = state;
+    if (current.isInputBlocked) {
+      return;
+    }
+    final int rowStart = current.board.isEmpty ? 0 : current.currentWordIndex * _wordLength;
+    final int placed = current.board.length - rowStart;
+    if (placed >= _wordLength) {
+      return;
+    }
+    final String letter = current.secretWord[placed];
+    emit(
+      _buildIdleState(board: List.of(current.board)..add(LetterInfo(letter: letter))),
+    );
+  }
+
+  void _eliminateLettersPressed(_GameEliminateLettersPressed event, Emitter<GameState> emit) {
+    final GameState current = state;
+    if (current.isInputBlocked) {
+      return;
+    }
+    final List<String> keyboardLetters = _keyboardLetters(current.dictionary);
+    final Iterable<String> secretLetters = current.secretWord.split('').toSet();
+    final List<String> candidates = keyboardLetters
+        .where((l) => !secretLetters.contains(l) && !current.eliminatedKeys.contains(l))
+        .toList(growable: false);
+    if (candidates.isEmpty) {
+      return;
+    }
+    candidates.shuffle();
+    final Set<String> eliminated = {...current.eliminatedKeys}..addAll(candidates.take(5));
+    emit(_buildIdleState(eliminatedKeys: eliminated));
+  }
+
+  List<String> _keyboardLetters(Locale dictionary) {
+    final (List<String>, List<String>, List<String>) keyboard = switch (dictionary.languageCode) {
+      'ru' => KeyboardList.ruKeyboard,
+      'fr' || 'fon' => KeyboardList.frKeyboard,
+      _ => KeyboardList.enKeyboard,
+    };
+    return [...keyboard.$1, ...keyboard.$2, ...keyboard.$3];
   }
 
   void _deletePressed(_GameDeletePressed event, Emitter<GameState> emit) {

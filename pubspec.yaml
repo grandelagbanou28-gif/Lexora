@@ -9,6 +9,7 @@ workspace:
   - packages/logger
 
 dependencies:
+  audioplayers: ^6.8.1
   bloc: ^9.2.1
   clock: ^1.1.3
   collection: ^1.19.1
@@ -47,6 +48,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/dictionary/
+    - assets/sounds/
   fonts:
     - family: Nunito
       fonts:

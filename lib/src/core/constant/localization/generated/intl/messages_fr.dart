@@ -123,5 +123,134 @@ class MessageLookup extends MessageLookupByLibrary {
     "wordTooShort": MessageLookupByLibrary.simpleMessage(
       "Le mot n\'a pas la bonne longueur",
     ),
+    "achFiftyLevels": MessageLookupByLibrary.simpleMessage(
+      "50 niveaux",
+    ),
+    "achFiftyLevelsDesc": MessageLookupByLibrary.simpleMessage(
+      "Termine 50 niveaux",
+    ),
+    "achFirstWin": MessageLookupByLibrary.simpleMessage(
+      "Première victoire",
+    ),
+    "achFirstWinDesc": MessageLookupByLibrary.simpleMessage(
+      "Remporte ta première partie",
+    ),
+    "achFiveWins": MessageLookupByLibrary.simpleMessage(
+      "5 victoires",
+    ),
+    "achFiveWinsDesc": MessageLookupByLibrary.simpleMessage(
+      "Gagne 5 parties",
+    ),
+    "achHintUser": MessageLookupByLibrary.simpleMessage(
+      "Maître des indices",
+    ),
+    "achHintUserDesc": MessageLookupByLibrary.simpleMessage(
+      "Utilise un indice 3 fois",
+    ),
+    "achRich": MessageLookupByLibrary.simpleMessage(
+      "Trésor",
+    ),
+    "achRichDesc": MessageLookupByLibrary.simpleMessage(
+      "Détenir 500 jetons",
+    ),
+    "achStreak3": MessageLookupByLibrary.simpleMessage(
+      "Série de 3 victoires",
+    ),
+    "achStreak3Desc": MessageLookupByLibrary.simpleMessage(
+      "Gagne 3 parties quotidiennes d’affilée",
+    ),
+    "achStreak7": MessageLookupByLibrary.simpleMessage(
+      "Série de 7 victoires",
+    ),
+    "achStreak7Desc": MessageLookupByLibrary.simpleMessage(
+      "Gagne 7 parties quotidiennes d’affilée",
+    ),
+    "achTenLevels": MessageLookupByLibrary.simpleMessage(
+      "10 niveaux",
+    ),
+    "achTenLevelsDesc": MessageLookupByLibrary.simpleMessage(
+      "Termine 10 niveaux",
+    ),
+    "achTwentyFiveWins": MessageLookupByLibrary.simpleMessage(
+      "25 victoires",
+    ),
+    "achTwentyFiveWinsDesc": MessageLookupByLibrary.simpleMessage(
+      "Gagne 25 parties",
+    ),
+    "achievements": MessageLookupByLibrary.simpleMessage(
+      "Succès",
+    ),
+    "achievementsLocked": MessageLookupByLibrary.simpleMessage(
+      "Verrouillé",
+    ),
+    "achievementsUnlocked": MessageLookupByLibrary.simpleMessage(
+      "Succès débloqué !",
+    ),
+    "balance": MessageLookupByLibrary.simpleMessage(
+      "Solde",
+    ),
+    "challengeCompleted": MessageLookupByLibrary.simpleMessage(
+      "Défi relevé !",
+    ),
+    "challengeReward": MessageLookupByLibrary.simpleMessage(
+      "Récompense",
+    ),
+    "dailyChallengeFast": MessageLookupByLibrary.simpleMessage(
+      "Gagner en 4 essais ou moins",
+    ),
+    "dailyChallengeStreak": MessageLookupByLibrary.simpleMessage(
+      "Gagner 3 parties quotidiennes d’affilée",
+    ),
+    "dailyChallengeWord": MessageLookupByLibrary.simpleMessage(
+      "Terminer le mot du jour",
+    ),
+    "dailyChallenges": MessageLookupByLibrary.simpleMessage(
+      "Défis du jour",
+    ),
+    "earnTip": MessageLookupByLibrary.simpleMessage(
+      "Gagne des parties pour gagner des jetons et de l’XP !",
+    ),
+    "eliminateLetters": MessageLookupByLibrary.simpleMessage(
+      "Éliminer des lettres",
+    ),
+    "hintShop": MessageLookupByLibrary.simpleMessage(
+      "Boutique d’indices",
+    ),
+    "hints": MessageLookupByLibrary.simpleMessage(
+      "Indices",
+    ),
+    "levelUpMessage": MessageLookupByLibrary.simpleMessage(
+      "Vous avez atteint un nouveau niveau",
+    ),
+    "levelUpTitle": MessageLookupByLibrary.simpleMessage(
+      "Niveau supérieur !",
+    ),
+    "notEnoughTokens": MessageLookupByLibrary.simpleMessage(
+      "Pas assez de jetons",
+    ),
+    "playerLevel": MessageLookupByLibrary.simpleMessage(
+      "Niveau du joueur",
+    ),
+    "profile": MessageLookupByLibrary.simpleMessage(
+      "Profil",
+    ),
+    "revealLetter": MessageLookupByLibrary.simpleMessage(
+      "Révéler une lettre",
+    ),
+    "rowIsFullFirst": MessageLookupByLibrary.simpleMessage(
+      "Complète d’abord le mot en cours",
+    ),
+    "sound": MessageLookupByLibrary.simpleMessage(
+      "Effets sonores",
+    ),
+    "tokens": MessageLookupByLibrary.simpleMessage(
+      "Jetons",
+    ),
+    "vibration": MessageLookupByLibrary.simpleMessage(
+      "Vibrations",
+    ),
+    "xp": MessageLookupByLibrary.simpleMessage(
+      "XP",
+    ),
   };
 }

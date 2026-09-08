@@ -3,7 +3,9 @@ import 'package:wordly/src/feature/app/model/application_config.dart';
 import 'package:wordly/src/feature/game/domain/repositories/game_repository.dart';
 import 'package:wordly/src/feature/level/level.dart';
 import 'package:wordly/src/feature/settings/settings.dart';
+import 'package:wordly/src/feature/sound/sound.dart';
 import 'package:wordly/src/feature/statistic/statistic.dart';
+import 'package:wordly/src/feature/wallet/wallet.dart';
 
 class const DependenciesContainer({
   required final ApplicationConfig config,
@@ -12,4 +14,6 @@ class const DependenciesContainer({
   required final IStatisticsRepository statisticsRepository,
   required final ILevelRepository levelRepository,
   required final IGameRepository gameRepository,
+  required final WalletContainer walletContainer,
+  required final SoundService soundService,
 });

@@ -110,6 +110,32 @@ class _SettingsPageState() extends State<SettingsPage> {
                       ),
                     ),
                   ),
+                  SwitchListTile(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                    title: Text(
+                      context.l10n.sound,
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    ),
+                    value: settings.general.soundEnabled,
+                    onChanged: (value) async {
+                      await settingsScope.settingsService.update(
+                        (current) => current.copyWith(general: current.general.copyWith(soundEnabled: value)),
+                      );
+                    },
+                  ),
+                  SwitchListTile(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                    title: Text(
+                      context.l10n.vibration,
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    ),
+                    value: settings.general.vibrationEnabled,
+                    onChanged: (value) async {
+                      await settingsScope.settingsService.update(
+                        (current) => current.copyWith(general: current.general.copyWith(vibrationEnabled: value)),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

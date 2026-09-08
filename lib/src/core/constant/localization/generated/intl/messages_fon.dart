@@ -115,5 +115,134 @@ class MessageLookup extends MessageLookupByLibrary {
     "wordTooShort": MessageLookupByLibrary.simpleMessage(
       "Wɛn ɔ ma ɖò wɛndagbé sìn mɛ ɖokpo",
     ),
+    "achFiftyLevels": MessageLookupByLibrary.simpleMessage(
+      "Détré 50",
+    ),
+    "achFiftyLevelsDesc": MessageLookupByLibrary.simpleMessage(
+      "Bɔ́ détré 50",
+    ),
+    "achFirstWin": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́wɛn nukɔntɔn",
+    ),
+    "achFirstWinDesc": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́ aɖo e ɖokpo ɖokpo",
+    ),
+    "achFiveWins": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́wɛn 5",
+    ),
+    "achFiveWinsDesc": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́ azɔ̌ 5",
+    ),
+    "achHintUser": MessageLookupByLibrary.simpleMessage(
+      "Alɔ́donú daxó",
+    ),
+    "achHintUserDesc": MessageLookupByLibrary.simpleMessage(
+      "Zǎ alɔ́dodo 3",
+    ),
+    "achRich": MessageLookupByLibrary.simpleMessage(
+      "Akwe daxó",
+    ),
+    "achRichDesc": MessageLookupByLibrary.simpleMessage(
+      "Kúntó 500 dó alɔ́ mɛ",
+    ),
+    "achStreak3": MessageLookupByLibrary.simpleMessage(
+      "Série 3",
+    ),
+    "achStreak3Desc": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́ azɔ̌ 3 sɔsɔ́",
+    ),
+    "achStreak7": MessageLookupByLibrary.simpleMessage(
+      "Série 7",
+    ),
+    "achStreak7Desc": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́ azɔ̌ 7 sɔsɔ́",
+    ),
+    "achTenLevels": MessageLookupByLibrary.simpleMessage(
+      "Détré 10",
+    ),
+    "achTenLevelsDesc": MessageLookupByLibrary.simpleMessage(
+      "Bɔ́ détré 10",
+    ),
+    "achTwentyFiveWins": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́wɛn 25",
+    ),
+    "achTwentyFiveWinsDesc": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́ azɔ̌ 25",
+    ),
+    "achievements": MessageLookupByLibrary.simpleMessage(
+      "Njijɛ lɛ",
+    ),
+    "achievementsLocked": MessageLookupByLibrary.simpleMessage(
+      "Klú",
+    ),
+    "achievementsUnlocked": MessageLookupByLibrary.simpleMessage(
+      "Njijɛ ɔ hùn!",
+    ),
+    "balance": MessageLookupByLibrary.simpleMessage(
+      "Fɖe é ɖe",
+    ),
+    "challengeCompleted": MessageLookupByLibrary.simpleMessage(
+      "Azɔ̌ ɔ kpé!",
+    ),
+    "challengeReward": MessageLookupByLibrary.simpleMessage(
+      "Fɖé ù",
+    ),
+    "dailyChallengeFast": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́ ɖò alijɛ 4 mɛ kpɛ́",
+    ),
+    "dailyChallengeStreak": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́ azɔ̌ 3 sɔsɔ́ azǎn ɖokpo",
+    ),
+    "dailyChallengeWord": MessageLookupByLibrary.simpleMessage(
+      "Bɔ́ azǎn ɔ tɔn wɛn ɔ",
+    ),
+    "dailyChallenges": MessageLookupByLibrary.simpleMessage(
+      "Azɔ̌ azǎn ɖokpo lɛ",
+    ),
+    "earnTip": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́ azɔ̌ ɔ dó nú kplé kúntó kpó XP kpó!",
+    ),
+    "eliminateLetters": MessageLookupByLibrary.simpleMessage(
+      "Súsú wɛndagbé lɛ",
+    ),
+    "hintShop": MessageLookupByLibrary.simpleMessage(
+      "Xwégbé nú alɔ́dodo",
+    ),
+    "hints": MessageLookupByLibrary.simpleMessage(
+      "Alɔ́dodo lɛ",
+    ),
+    "levelUpMessage": MessageLookupByLibrary.simpleMessage(
+      "A wɛ détré vɔvɔ́ ɖé jí",
+    ),
+    "levelUpTitle": MessageLookupByLibrary.simpleMessage(
+      "Détré vɔvɔ́!",
+    ),
+    "notEnoughTokens": MessageLookupByLibrary.simpleMessage(
+      "Kúntó ma sú dó",
+    ),
+    "playerLevel": MessageLookupByLibrary.simpleMessage(
+      "Détré nú xwlántó",
+    ),
+    "profile": MessageLookupByLibrary.simpleMessage(
+      "Nù hùnwlán",
+    ),
+    "revealLetter": MessageLookupByLibrary.simpleMessage(
+      "Sɔ́ wɛndagbé ɖé ɖo alɔ́",
+    ),
+    "rowIsFullFirst": MessageLookupByLibrary.simpleMessage(
+      "Bɔ́ wɛn e ɖo tɛǹnɛ ɔ dó hwɛ",
+    ),
+    "sound": MessageLookupByLibrary.simpleMessage(
+      "Sín bìbù",
+    ),
+    "tokens": MessageLookupByLibrary.simpleMessage(
+      "Kúntó",
+    ),
+    "vibration": MessageLookupByLibrary.simpleMessage(
+      "Dɔkɔ̀nɔ",
+    ),
+    "xp": MessageLookupByLibrary.simpleMessage(
+      "XP",
+    ),
   };
 }

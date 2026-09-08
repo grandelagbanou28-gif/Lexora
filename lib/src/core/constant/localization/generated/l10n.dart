@@ -457,6 +457,436 @@ class GeneratedLocalizations {
       args: [],
     );
   }
+
+  /// `Fifty levels`
+  String get achFiftyLevels {
+    return Intl.message(
+      'Fifty levels',
+      name: 'achFiftyLevels',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complete 50 levels`
+  String get achFiftyLevelsDesc {
+    return Intl.message(
+      'Complete 50 levels',
+      name: 'achFiftyLevelsDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `First win`
+  String get achFirstWin {
+    return Intl.message(
+      'First win',
+      name: 'achFirstWin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Win your first game`
+  String get achFirstWinDesc {
+    return Intl.message(
+      'Win your first game',
+      name: 'achFirstWinDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Five wins`
+  String get achFiveWins {
+    return Intl.message(
+      'Five wins',
+      name: 'achFiveWins',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Win 5 games`
+  String get achFiveWinsDesc {
+    return Intl.message(
+      'Win 5 games',
+      name: 'achFiveWinsDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hint master`
+  String get achHintUser {
+    return Intl.message(
+      'Hint master',
+      name: 'achHintUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use a hint 3 times`
+  String get achHintUserDesc {
+    return Intl.message(
+      'Use a hint 3 times',
+      name: 'achHintUserDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Treasure`
+  String get achRich {
+    return Intl.message(
+      'Treasure',
+      name: 'achRich',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hold 500 tokens`
+  String get achRichDesc {
+    return Intl.message(
+      'Hold 500 tokens',
+      name: 'achRichDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Streak of 3 wins`
+  String get achStreak3 {
+    return Intl.message(
+      'Streak of 3 wins',
+      name: 'achStreak3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Win 3 daily games in a row`
+  String get achStreak3Desc {
+    return Intl.message(
+      'Win 3 daily games in a row',
+      name: 'achStreak3Desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Streak of 7 wins`
+  String get achStreak7 {
+    return Intl.message(
+      'Streak of 7 wins',
+      name: 'achStreak7',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Win 7 daily games in a row`
+  String get achStreak7Desc {
+    return Intl.message(
+      'Win 7 daily games in a row',
+      name: 'achStreak7Desc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ten levels`
+  String get achTenLevels {
+    return Intl.message(
+      'Ten levels',
+      name: 'achTenLevels',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complete 10 levels`
+  String get achTenLevelsDesc {
+    return Intl.message(
+      'Complete 10 levels',
+      name: 'achTenLevelsDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `25 wins`
+  String get achTwentyFiveWins {
+    return Intl.message(
+      '25 wins',
+      name: 'achTwentyFiveWins',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Win 25 games`
+  String get achTwentyFiveWinsDesc {
+    return Intl.message(
+      'Win 25 games',
+      name: 'achTwentyFiveWinsDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Achievements`
+  String get achievements {
+    return Intl.message(
+      'Achievements',
+      name: 'achievements',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Locked`
+  String get achievementsLocked {
+    return Intl.message(
+      'Locked',
+      name: 'achievementsLocked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Achievement unlocked!`
+  String get achievementsUnlocked {
+    return Intl.message(
+      'Achievement unlocked!',
+      name: 'achievementsUnlocked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Balance`
+  String get balance {
+    return Intl.message(
+      'Balance',
+      name: 'balance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Challenge completed!`
+  String get challengeCompleted {
+    return Intl.message(
+      'Challenge completed!',
+      name: 'challengeCompleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reward`
+  String get challengeReward {
+    return Intl.message(
+      'Reward',
+      name: 'challengeReward',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Win in 4 tries or less`
+  String get dailyChallengeFast {
+    return Intl.message(
+      'Win in 4 tries or less',
+      name: 'dailyChallengeFast',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Win 3 daily games in a row`
+  String get dailyChallengeStreak {
+    return Intl.message(
+      'Win 3 daily games in a row',
+      name: 'dailyChallengeStreak',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complete today’s word`
+  String get dailyChallengeWord {
+    return Intl.message(
+      'Complete today’s word',
+      name: 'dailyChallengeWord',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily challenges`
+  String get dailyChallenges {
+    return Intl.message(
+      'Daily challenges',
+      name: 'dailyChallenges',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Win games to earn tokens and XP!`
+  String get earnTip {
+    return Intl.message(
+      'Win games to earn tokens and XP!',
+      name: 'earnTip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Eliminate letters`
+  String get eliminateLetters {
+    return Intl.message(
+      'Eliminate letters',
+      name: 'eliminateLetters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hint shop`
+  String get hintShop {
+    return Intl.message(
+      'Hint shop',
+      name: 'hintShop',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hints`
+  String get hints {
+    return Intl.message(
+      'Hints',
+      name: 'hints',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You reached a new level`
+  String get levelUpMessage {
+    return Intl.message(
+      'You reached a new level',
+      name: 'levelUpMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Level up!`
+  String get levelUpTitle {
+    return Intl.message(
+      'Level up!',
+      name: 'levelUpTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not enough tokens`
+  String get notEnoughTokens {
+    return Intl.message(
+      'Not enough tokens',
+      name: 'notEnoughTokens',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Player level`
+  String get playerLevel {
+    return Intl.message(
+      'Player level',
+      name: 'playerLevel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message(
+      'Profile',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reveal a letter`
+  String get revealLetter {
+    return Intl.message(
+      'Reveal a letter',
+      name: 'revealLetter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complete the current word first`
+  String get rowIsFullFirst {
+    return Intl.message(
+      'Complete the current word first',
+      name: 'rowIsFullFirst',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sound effects`
+  String get sound {
+    return Intl.message(
+      'Sound effects',
+      name: 'sound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tokens`
+  String get tokens {
+    return Intl.message(
+      'Tokens',
+      name: 'tokens',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vibration`
+  String get vibration {
+    return Intl.message(
+      'Vibration',
+      name: 'vibration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `XP`
+  String get xp {
+    return Intl.message(
+      'XP',
+      name: 'xp',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate

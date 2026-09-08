@@ -11,15 +11,18 @@ import 'package:wordly/src/feature/game/domain/model/letter_info.dart';
 import 'package:wordly/src/feature/game/domain/model/word_error.dart';
 import 'package:wordly/src/feature/game/domain/repositories/game_repository.dart';
 import 'package:wordly/src/feature/game/widget/game_result_dialog.dart';
+import 'package:wordly/src/feature/game/widget/hint_bar.dart';
 import 'package:wordly/src/feature/game/widget/keyboard_by_language.dart';
 import 'package:wordly/src/feature/game/widget/words_grid.dart';
 import 'package:wordly/src/feature/level/level.dart';
 import 'package:wordly/src/feature/level/widget/level_page.dart';
 import 'package:wordly/src/feature/settings/settings.dart';
 import 'package:wordly/src/feature/shared/drawer.dart';
+import 'package:wordly/src/feature/sound/sound.dart';
 import 'package:wordly/src/feature/statistic/statistic.dart';
 import 'package:wordly/src/feature/statistic/widget/statistic_page.dart';
 import 'package:wordly/src/feature/tutorial/widget/tutorial_page.dart';
+import 'package:wordly/src/feature/wallet/wallet.dart';
 
 class const GamePage({super.key}) extends StatefulWidget {
   @override
@@ -141,6 +144,13 @@ class const GameBody({super.key}) extends StatelessWidget {
           if (state.isResult) {
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
             final GameBloc bloc = context.read<GameBloc>();
+            final SoundService soundService = context.dependencies.soundService;
+            if (state.isWin) {
+              soundService.win();
+            } else {
+              soundService.lose();
+            }
+            unawaited(_processRewards(context, state));
             unawaited(
               showGameResultDialog(
                 context,
@@ -182,6 +192,9 @@ class const GameBody({super.key}) extends StatelessWidget {
             if (state case final GameFailure e) {
               error = e.error;
             }
+            if (error != null) {
+              context.dependencies.soundService.notInWord();
+            }
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 backgroundColor: LetterStatus.unknown.cellColor(context, settings.general),
@@ -205,6 +218,7 @@ class const GameBody({super.key}) extends StatelessWidget {
             children: [
               const SizedBox(height: 12),
               const Center(child: WordsGrid()),
+              const HintBar(),
               if (useSpacer) const Spacer(),
               const Center(child: KeyboardByLanguage()),
               if (useSpacer) const Spacer(),
@@ -215,4 +229,44 @@ class const GameBody({super.key}) extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<void> _processRewards(BuildContext context, GameState state) async {
+  final WalletService wallet = WalletScope.of(context);
+  final GameReward reward = await wallet.processGameResult(
+    mode: state.gameMode,
+    isWin: state.isWin,
+    attempt: state.board.length ~/ 5,
+    now: DateTime.now(),
+  );
+  if (!context.mounted) {
+    return;
+  }
+  final SoundService soundService = context.dependencies.soundService;
+  if (reward.leveledUp) {
+    soundService.levelUp();
+  }
+  if (reward.achievements.isNotEmpty) {
+    soundService.achievement();
+  }
+  final parts = <String>[
+    if (reward.tokenDelta != 0 || reward.xpDelta != 0)
+      '+${reward.tokenDelta} ${context.l10n.tokens}  +${reward.xpDelta} ${context.l10n.xp}',
+    if (reward.leveledUp)
+      '${context.l10n.levelUpTitle} ${context.l10n.playerLevel} ${reward.wallet.playerLevel}',
+    if (reward.achievements.isNotEmpty)
+      '${context.l10n.achievementsUnlocked} (+${reward.achievements.length})',
+    if (reward.challenges.isNotEmpty)
+      '${context.l10n.challengeCompleted} (+${reward.challenges.length})',
+  ];
+  if (parts.isEmpty) {
+    return;
+  }
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(parts.join('\n'), textAlign: TextAlign.center),
+      duration: const Duration(seconds: 3),
+      behavior: SnackBarBehavior.floating,
+    ),
+  );
 }
