@@ -1,4 +1,4 @@
 enum GameMode() {
   daily,
-  lvl
+  lvl,
 }

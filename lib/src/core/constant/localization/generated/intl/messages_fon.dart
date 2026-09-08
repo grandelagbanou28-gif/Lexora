@@ -244,5 +244,125 @@ class MessageLookup extends MessageLookupByLibrary {
     "xp": MessageLookupByLibrary.simpleMessage(
       "XP",
     ),
+    "avatarApplied": MessageLookupByLibrary.simpleMessage(
+      "Avata xón dó",
+    ),
+    "avatarFox": MessageLookupByLibrary.simpleMessage(
+      "Wɛcèní",
+    ),
+    "avatarOwl": MessageLookupByLibrary.simpleMessage(
+      "Xlèxlu",
+    ),
+    "avatarTiger": MessageLookupByLibrary.simpleMessage(
+      "Tigrí",
+    ),
+    "chestOpen": MessageLookupByLibrary.simpleMessage(
+      "Hùn",
+    ),
+    "chestReward": MessageLookupByLibrary.simpleMessage(
+      "Akwe hùn!",
+    ),
+    "chestTitle": MessageLookupByLibrary.simpleMessage(
+      "Akwe azǎn ɖokpo",
+    ),
+    "chestTomorrow": MessageLookupByLibrary.simpleMessage(
+      "Gbɔ̀ ɖò sɔ̀",
+    ),
+    "itemActive": MessageLookupByLibrary.simpleMessage(
+      "E nyí zínzín",
+    ),
+    "itemBuy": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́",
+    ),
+    "itemOwned": MessageLookupByLibrary.simpleMessage(
+      "Ɖe nà",
+    ),
+    "league": MessageLookupByLibrary.simpleMessage(
+      "Xwéta",
+    ),
+    "leagueBronze": MessageLookupByLibrary.simpleMessage(
+      "Avala",
+    ),
+    "leagueBronzeNext": MessageLookupByLibrary.simpleMessage(
+      "Xwá vɔ́vɔ́ ɖò XP 100",
+    ),
+    "leagueClaim": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́ bonus",
+    ),
+    "leagueClaimed": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́ kpó",
+    ),
+    "leagueDiamond": MessageLookupByLibrary.simpleMessage(
+      "Kplándén",
+    ),
+    "leagueDiamondNext": MessageLookupByLibrary.simpleMessage(
+      "Xwá daxó!",
+    ),
+    "leagueGold": MessageLookupByLibrary.simpleMessage(
+      "Sáxlu",
+    ),
+    "leagueGoldNext": MessageLookupByLibrary.simpleMessage(
+      "Xwá vɔ́vɔ́ ɖò XP 500",
+    ),
+    "leagueNoPrevious": MessageLookupByLibrary.simpleMessage(
+      "XP ma ɖó sɛ́nsɛ́n xó",
+    ),
+    "leaguePerLanguage": MessageLookupByLibrary.simpleMessage(
+      "XP sɛ́nsɛ́n dó gbɛ̀mé ɖokpo",
+    ),
+    "leaguePrevious": MessageLookupByLibrary.simpleMessage(
+      "Sɛ́nsɛ́n xó",
+    ),
+    "leagueReward": MessageLookupByLibrary.simpleMessage(
+      "Bonus",
+    ),
+    "leagueSilver": MessageLookupByLibrary.simpleMessage(
+      "Klúsó",
+    ),
+    "leagueSilverNext": MessageLookupByLibrary.simpleMessage(
+      "Xwá vɔ́vɔ́ ɖò XP 250",
+    ),
+    "leagueSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Zán XP sɛ́nsɛ́n ɔ dó xɔ́ bonus",
+    ),
+    "leagueThisWeek": MessageLookupByLibrary.simpleMessage(
+      "Sɛ́nsɛ́n e ɔ",
+    ),
+    "leagueTier": MessageLookupByLibrary.simpleMessage(
+      "Xwá",
+    ),
+    "shop": MessageLookupByLibrary.simpleMessage(
+      "Xwégbé",
+    ),
+    "shopAvatars": MessageLookupByLibrary.simpleMessage(
+      "Avata lɛ",
+    ),
+    "shopBought": MessageLookupByLibrary.simpleMessage(
+      "Nú dídó xɔ́!",
+    ),
+    "shopSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Zán kúntó ná ɖé kpó avata kpó",
+    ),
+    "shopThemes": MessageLookupByLibrary.simpleMessage(
+      "Ɖé lɛ",
+    ),
+    "themeApplied": MessageLookupByLibrary.simpleMessage(
+      "Ɖé xón dó",
+    ),
+    "themeForest": MessageLookupByLibrary.simpleMessage(
+      "Gbɛ́zìn",
+    ),
+    "themeMidnight": MessageLookupByLibrary.simpleMessage(
+      "Zǎngbɛ",
+    ),
+    "themeOcean": MessageLookupByLibrary.simpleMessage(
+      "Atlan",
+    ),
+    "themeRoyal": MessageLookupByLibrary.simpleMessage(
+      "Xwétɔ́",
+    ),
+    "themeSunset": MessageLookupByLibrary.simpleMessage(
+      "Hwlɛvínyínyí",
+    ),
   };
 }

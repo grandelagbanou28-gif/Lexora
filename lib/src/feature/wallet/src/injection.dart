@@ -10,9 +10,7 @@ class const WalletContainer._(
 ) {
   /// Create a new [WalletContainer] with the given [sharedPreferences].
   static Future<WalletContainer> create({required SharedPreferencesAsync sharedPreferences}) async {
-    final walletRepository = WalletRepositoryImpl(
-      datasource: WalletDatasource(preferences: sharedPreferences),
-    );
+    final walletRepository = WalletRepositoryImpl(datasource: WalletDatasource(preferences: sharedPreferences));
 
     final WalletService walletService = await WalletService.create(repository: walletRepository);
 

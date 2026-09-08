@@ -150,9 +150,65 @@ STRINGS = {
         'Zǎ alɔ́dodo 3',
         'Используй подсказку 3 раза',
     ),
+    'shop': ('Shop', 'Boutique', 'Xwégbé', 'Магазин'),
+    'shopSubtitle': (
+        'Spend tokens on themes and avatars',
+        'Dépense des jetons pour des thèmes et avatars',
+        'Zán kúntó ná ɖé kpó avata kpó',
+        'Трать монеты на темы и аватары',
+    ),
+    'shopThemes': ('Themes', 'Thèmes', 'Ɖé lɛ', 'Темы'),
+    'shopAvatars': ('Avatars', 'Avatars', 'Avata lɛ', 'Аватары'),
+    'themeOcean': ('Ocean', 'Océan', 'Atlan', 'Океан'),
+    'themeForest': ('Forest', 'Forêt', 'Gbɛ́zìn', 'Лес'),
+    'themeSunset': ('Sunset', 'Coucher de soleil', 'Hwlɛvínyínyí', 'Закат'),
+    'themeMidnight': ('Midnight', 'Minuit', 'Zǎngbɛ', 'Полночь'),
+    'themeRoyal': ('Royal', 'Royal', 'Xwétɔ́', 'Королевский'),
+    'avatarFox': ('Fox', 'Renard', 'Wɛcèní', 'Лиса'),
+    'avatarTiger': ('Tiger', 'Tigre', 'Tigrí', 'Тигр'),
+    'avatarOwl': ('Owl', 'Chouette', 'Xlèxlu', 'Сова'),
+    'itemOwned': ('Owned', 'Possédé', 'Ɖe nà', 'Куплено'),
+    'itemActive': ('Active', 'Actif', 'E nyí zínzín', 'Активно'),
+    'itemBuy': ('Buy', 'Acheter', 'Xɔ́', 'Купить'),
+    'shopBought': ('Item purchased!', 'Article acheté !', 'Nú dídó xɔ́!', 'Товар куплен!'),
+    'themeApplied': ('Theme applied', 'Thème appliqué', 'Ɖé xón dó', 'Тема применена'),
+    'avatarApplied': ('Avatar selected', 'Avatar sélectionné', 'Avata xón dó', 'Аватар выбран'),
+    'chestTitle': ('Daily treasure', 'Trésor quotidien', 'Akwe azǎn ɖokpo', 'Ежедневное сокровище'),
+    'chestOpen': ('Open', 'Ouvrir', 'Hùn', 'Открыть'),
+    'chestTomorrow': ('Come back tomorrow', 'Reviens demain', 'Gbɔ̀ ɖò sɔ̀', 'Вернись завтра'),
+    'chestReward': ('Treasure opened!', 'Trésor ouvert !', 'Akwe hùn!', 'Сокровище открыто!'),
+    'league': ('League', 'Ligue', 'Xwéta', 'Лига'),
+    'leagueSubtitle': (
+        'Earn XP every week and claim bonuses',
+        'Gagne de l\u2019XP chaque semaine et réclame des bonus',
+        'Zán XP sɛ́nsɛ́n ɔ dó xɔ́ bonus',
+        'Зарабатывай опыт каждую неделю и получай бонусы',
+    ),
+    'leagueThisWeek': ('This week', 'Cette semaine', 'Sɛ́nsɛ́n e ɔ', 'Эта неделя'),
+    'leagueTier': ('Tier', 'Palier', 'Xwá', 'Дивизион'),
+    'leagueBronze': ('Bronze', 'Bronze', 'Avala', 'Бронза'),
+    'leagueSilver': ('Silver', 'Argent', 'Klúsó', 'Серебро'),
+    'leagueGold': ('Gold', 'Or', 'Sáxlu', 'Золото'),
+    'leagueDiamond': ('Diamond', 'Diamant', 'Kplándén', 'Алмаз'),
+    'leaguePerLanguage': (
+        'Weekly XP per language',
+        'XP hebdo par langue',
+        'XP sɛ́nsɛ́n dó gbɛ̀mé ɖokpo',
+        'Недельный опыт по языкам',
+    ),
+    'leaguePrevious': ('Last week', 'Semaine dernière', 'Sɛ́nsɛ́n xó', 'Прошлая неделя'),
+    'leagueClaim': ('Claim bonus', 'Réclamer le bonus', 'Xɔ́ bonus', 'Получить бонус'),
+    'leagueClaimed': ('Claimed', 'Réclamé', 'Xɔ́ kpó', 'Получено'),
+    'leagueNoPrevious': ('No XP last week', 'Aucun XP la semaine dernière', 'XP ma ɖó sɛ́nsɛ́n xó', 'За прошлую неделю опыта нет'),
+    'leagueReward': ('Bonus', 'Bonus', 'Bonus', 'Бонус'),
+    'leagueBronzeNext': ('Tier up at 100 XP', 'Palier suivant à 100 XP', 'Xwá vɔ́vɔ́ ɖò XP 100', 'Следующий дивизион на 100 XP'),
+    'leagueSilverNext': ('Tier up at 250 XP', 'Palier suivant à 250 XP', 'Xwá vɔ́vɔ́ ɖò XP 250', 'Следующий дивизион на 250 XP'),
+    'leagueGoldNext': ('Tier up at 500 XP', 'Palier suivant à 500 XP', 'Xwá vɔ́vɔ́ ɖò XP 500', 'Следующий дивизион на 500 XP'),
+    'leagueDiamondNext': ('Top tier!', 'Palier maximum !', 'Xwá daxó!', 'Максимальный дивизион!'),
 }
 
 _sorted_keys = sorted(STRINGS)
+_messages_cache: dict[str, str] = {}
 
 
 def _load_arb(path):
@@ -194,15 +250,19 @@ def _dart_single_escape(text):
 def _messages_snippet(locale):
     lines = []
     for key in _sorted_keys:
-        value = STRINGS[key][LOCALES.index(locale)]
-        escaped = _dart_double_escape(value)
-        lines.append(f'    "{key}": MessageLookupByLibrary.simpleMessage(\n      "{escaped}",\n    ),')
+        if f'    "{key}":' not in _messages_cache[locale]:
+            value = STRINGS[key][LOCALES.index(locale)]
+            escaped = _dart_double_escape(value)
+            lines.append(f'    "{key}": MessageLookupByLibrary.simpleMessage(\n      "{escaped}",\n    ),')
     return '\n'.join(lines)
 
 
-def _l10n_getters_snippet():
+def _l10n_getters_snippet(content, anchor_offset):
     lines = []
     for key in _sorted_keys:
+        marker = f'  String get {key} {{'
+        if marker in content[:anchor_offset]:
+            continue
         en = STRINGS[key][0]
         escaped = _dart_single_escape(en)
         doc = _dart_single_escape(en)
@@ -220,45 +280,39 @@ def _l10n_getters_snippet():
 
 
 def _update_generated_dart():
-    # messages_*.dart: insert before the closing "};" of the map.
+    # messages_*.dart: insert missing keys right before the closing "};" of the map.
     for locale in LOCALES:
         path = os.path.join(GEN, 'intl', f'messages_{locale}.dart')
         with open(path, encoding='utf-8') as f:
-            content = f.read()
-        first_key = _sorted_keys[0]
-        if f'    "{first_key}":' in content:
-            print(f'{os.path.basename(path)}: up to date')
-            continue
-        marker = '  };'
-        idx = content.rfind(marker)
-        assert idx != -1, f'no map close in {path}'
+            _messages_cache[locale] = f.read()
         snippet = _messages_snippet(locale)
-        new_content = content[:idx] + snippet + '\n' + content[idx:]
-        with open(path, 'w', encoding='utf-8', newline='') as f:
-            f.write(new_content)
-        print(f'updated {os.path.basename(path)}')
+        if snippet:
+            marker = '  };'
+            idx = _messages_cache[locale].rfind(marker)
+            assert idx != -1, f'no map close in {path}'
+            new_content = _messages_cache[locale][:idx] + snippet + '\n' + _messages_cache[locale][idx:]
+            with open(path, 'w', encoding='utf-8', newline='') as f:
+                f.write(new_content)
+            print(f'updated {os.path.basename(path)}')
+        else:
+            print(f'{os.path.basename(path)}: up to date')
 
-    # l10n.dart: insert getters inside GeneratedLocalizations, right before the
-    # final closing brace of the class (the one preceding AppLocalizationDelegate).
+    # l10n.dart: insert missing getters right before the final class closing brace.
     path = os.path.join(GEN, 'l10n.dart')
     with open(path, encoding='utf-8') as f:
         content = f.read()
     anchor = 'class AppLocalizationDelegate'
     a = content.index(anchor)
-    first_key = _sorted_keys[0]
-    getter_mark = f'  String get {first_key} {{'
-    start = content.find(getter_mark, 0, a)
-    if start != -1:
-        # Already inserted inside the class on a previous run.
+    snippet = _l10n_getters_snippet(content, a)
+    if snippet:
+        pre = content[:a]
+        lb = pre.rindex('}')
+        new_content = pre[:lb] + '\n' + snippet + pre[lb:] + content[a:]
+        with open(path, 'w', encoding='utf-8', newline='') as f:
+            f.write(new_content)
+        print('updated l10n.dart')
+    else:
         print('l10n.dart: up to date')
-        return
-    pre = content[:a]
-    lb = pre.rindex('}')
-    snippet = _l10n_getters_snippet()
-    new_content = pre[:lb] + '\n' + snippet + pre[lb:] + content[a:]
-    with open(path, 'w', encoding='utf-8', newline='') as f:
-        f.write(new_content)
-    print('updated l10n.dart')
 
 
 def main():

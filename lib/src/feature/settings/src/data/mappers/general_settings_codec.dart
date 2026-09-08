@@ -14,6 +14,7 @@ class const GeneralSettingsCodec() extends JsonMapCodec<GeneralSettings> {
     final locale = input['locale'] as String?;
     final soundEnabled = input['soundEnabled'] as bool?;
     final vibrationEnabled = input['vibrationEnabled'] as bool?;
+    final activeTheme = input['activeTheme'] as String?;
     final otherColor1 = input['otherColor1'] as Map<String, Object?>?;
     final otherColor2 = input['otherColor2'] as Map<String, Object?>?;
     final otherColor3 = input['otherColor3'] as Map<String, Object?>?;
@@ -62,6 +63,7 @@ class const GeneralSettingsCodec() extends JsonMapCodec<GeneralSettings> {
       locale: localeValue ?? defaults.locale,
       soundEnabled: soundEnabled ?? defaults.soundEnabled,
       vibrationEnabled: vibrationEnabled ?? defaults.vibrationEnabled,
+      activeTheme: activeTheme,
     );
   }
 
@@ -73,6 +75,7 @@ class const GeneralSettingsCodec() extends JsonMapCodec<GeneralSettings> {
       'colorMode': input.colorMode.name,
       'soundEnabled': input.soundEnabled,
       'vibrationEnabled': input.vibrationEnabled,
+      'activeTheme': input.activeTheme,
       if (input.otherColors != null)
         'otherColor1': {
           'r': input.otherColors!.$1.r,

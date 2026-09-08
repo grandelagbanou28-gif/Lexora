@@ -887,6 +887,406 @@ class GeneratedLocalizations {
       args: [],
     );
   }
+
+  /// `Avatar selected`
+  String get avatarApplied {
+    return Intl.message(
+      'Avatar selected',
+      name: 'avatarApplied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fox`
+  String get avatarFox {
+    return Intl.message(
+      'Fox',
+      name: 'avatarFox',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Owl`
+  String get avatarOwl {
+    return Intl.message(
+      'Owl',
+      name: 'avatarOwl',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tiger`
+  String get avatarTiger {
+    return Intl.message(
+      'Tiger',
+      name: 'avatarTiger',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open`
+  String get chestOpen {
+    return Intl.message(
+      'Open',
+      name: 'chestOpen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Treasure opened!`
+  String get chestReward {
+    return Intl.message(
+      'Treasure opened!',
+      name: 'chestReward',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily treasure`
+  String get chestTitle {
+    return Intl.message(
+      'Daily treasure',
+      name: 'chestTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Come back tomorrow`
+  String get chestTomorrow {
+    return Intl.message(
+      'Come back tomorrow',
+      name: 'chestTomorrow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Active`
+  String get itemActive {
+    return Intl.message(
+      'Active',
+      name: 'itemActive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Buy`
+  String get itemBuy {
+    return Intl.message(
+      'Buy',
+      name: 'itemBuy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Owned`
+  String get itemOwned {
+    return Intl.message(
+      'Owned',
+      name: 'itemOwned',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `League`
+  String get league {
+    return Intl.message(
+      'League',
+      name: 'league',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bronze`
+  String get leagueBronze {
+    return Intl.message(
+      'Bronze',
+      name: 'leagueBronze',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tier up at 100 XP`
+  String get leagueBronzeNext {
+    return Intl.message(
+      'Tier up at 100 XP',
+      name: 'leagueBronzeNext',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Claim bonus`
+  String get leagueClaim {
+    return Intl.message(
+      'Claim bonus',
+      name: 'leagueClaim',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Claimed`
+  String get leagueClaimed {
+    return Intl.message(
+      'Claimed',
+      name: 'leagueClaimed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Diamond`
+  String get leagueDiamond {
+    return Intl.message(
+      'Diamond',
+      name: 'leagueDiamond',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Top tier!`
+  String get leagueDiamondNext {
+    return Intl.message(
+      'Top tier!',
+      name: 'leagueDiamondNext',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gold`
+  String get leagueGold {
+    return Intl.message(
+      'Gold',
+      name: 'leagueGold',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tier up at 500 XP`
+  String get leagueGoldNext {
+    return Intl.message(
+      'Tier up at 500 XP',
+      name: 'leagueGoldNext',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No XP last week`
+  String get leagueNoPrevious {
+    return Intl.message(
+      'No XP last week',
+      name: 'leagueNoPrevious',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Weekly XP per language`
+  String get leaguePerLanguage {
+    return Intl.message(
+      'Weekly XP per language',
+      name: 'leaguePerLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last week`
+  String get leaguePrevious {
+    return Intl.message(
+      'Last week',
+      name: 'leaguePrevious',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bonus`
+  String get leagueReward {
+    return Intl.message(
+      'Bonus',
+      name: 'leagueReward',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Silver`
+  String get leagueSilver {
+    return Intl.message(
+      'Silver',
+      name: 'leagueSilver',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tier up at 250 XP`
+  String get leagueSilverNext {
+    return Intl.message(
+      'Tier up at 250 XP',
+      name: 'leagueSilverNext',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Earn XP every week and claim bonuses`
+  String get leagueSubtitle {
+    return Intl.message(
+      'Earn XP every week and claim bonuses',
+      name: 'leagueSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This week`
+  String get leagueThisWeek {
+    return Intl.message(
+      'This week',
+      name: 'leagueThisWeek',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tier`
+  String get leagueTier {
+    return Intl.message(
+      'Tier',
+      name: 'leagueTier',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shop`
+  String get shop {
+    return Intl.message(
+      'Shop',
+      name: 'shop',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Avatars`
+  String get shopAvatars {
+    return Intl.message(
+      'Avatars',
+      name: 'shopAvatars',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Item purchased!`
+  String get shopBought {
+    return Intl.message(
+      'Item purchased!',
+      name: 'shopBought',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spend tokens on themes and avatars`
+  String get shopSubtitle {
+    return Intl.message(
+      'Spend tokens on themes and avatars',
+      name: 'shopSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Themes`
+  String get shopThemes {
+    return Intl.message(
+      'Themes',
+      name: 'shopThemes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Theme applied`
+  String get themeApplied {
+    return Intl.message(
+      'Theme applied',
+      name: 'themeApplied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forest`
+  String get themeForest {
+    return Intl.message(
+      'Forest',
+      name: 'themeForest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Midnight`
+  String get themeMidnight {
+    return Intl.message(
+      'Midnight',
+      name: 'themeMidnight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ocean`
+  String get themeOcean {
+    return Intl.message(
+      'Ocean',
+      name: 'themeOcean',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Royal`
+  String get themeRoyal {
+    return Intl.message(
+      'Royal',
+      name: 'themeRoyal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sunset`
+  String get themeSunset {
+    return Intl.message(
+      'Sunset',
+      name: 'themeSunset',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate

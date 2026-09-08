@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wordly/src/core/common/common.dart';
 import 'package:wordly/src/core/resources/resources.dart';
+import 'package:wordly/src/feature/settings/settings.dart';
 
 enum ThemeModeVO() {
   light,
@@ -34,6 +35,7 @@ final class const GeneralSettings({
   final (Color, Color, Color)? otherColors,
   final bool soundEnabled = true,
   final bool vibrationEnabled = true,
+  final String? activeTheme,
 }) {
   GeneralSettings copyWith({
     ThemeModeVO? themeMode,
@@ -42,6 +44,7 @@ final class const GeneralSettings({
     Locale? locale,
     bool? soundEnabled,
     bool? vibrationEnabled,
+    String? activeTheme,
   }) => GeneralSettings(
     themeMode: themeMode ?? this.themeMode,
     colorMode: colorMode ?? this.colorMode,
@@ -49,22 +52,39 @@ final class const GeneralSettings({
     locale: locale ?? this.locale,
     soundEnabled: soundEnabled ?? this.soundEnabled,
     vibrationEnabled: vibrationEnabled ?? this.vibrationEnabled,
+    activeTheme: activeTheme ?? this.activeTheme,
   );
 
-  Color get correctColor => switch (colorMode) {
-    ColorMode.casual => AppColors.green,
-    ColorMode.highContrast => AppColors.orange,
-    ColorMode.other => otherColors?.$1 ?? AppColors.green,
-  };
+  Color get correctColor {
+    final ThemePalette? theme = ThemesCatalog.byId(activeTheme);
+    if (theme != null) {
+      return theme.correct;
+    }
+    return switch (colorMode) {
+      ColorMode.casual => AppColors.green,
+      ColorMode.highContrast => AppColors.orange,
+      ColorMode.other => otherColors?.$1 ?? AppColors.green,
+    };
+  }
 
-  Color get wrongSpotColor => switch (colorMode) {
-    ColorMode.casual => AppColors.yellow,
-    ColorMode.highContrast => AppColors.blue,
-    ColorMode.other => otherColors?.$2 ?? AppColors.yellow,
-  };
+  Color get wrongSpotColor {
+    final ThemePalette? theme = ThemesCatalog.byId(activeTheme);
+    if (theme != null) {
+      return theme.wrongSpot;
+    }
+    return switch (colorMode) {
+      ColorMode.casual => AppColors.yellow,
+      ColorMode.highContrast => AppColors.blue,
+      ColorMode.other => otherColors?.$2 ?? AppColors.yellow,
+    };
+  }
 
   Color notInWordColor(BuildContext context) {
+    final ThemePalette? theme = ThemesCatalog.byId(activeTheme);
     final bool isDark = isDarkTheme(context);
+    if (theme != null) {
+      return isDark ? theme.inactiveDark : theme.inactive;
+    }
     if (colorMode case ColorMode.casual || ColorMode.highContrast) {
       return isDark ? AppColors.tertiary : AppColors.grey;
     }
@@ -83,6 +103,7 @@ final class const GeneralSettings({
           colorMode == other.colorMode &&
           soundEnabled == other.soundEnabled &&
           vibrationEnabled == other.vibrationEnabled &&
+          activeTheme == other.activeTheme &&
           locale == other.locale &&
           (colorMode != ColorMode.other || _colorsEqual(otherColors, other.otherColors));
 
@@ -93,6 +114,7 @@ final class const GeneralSettings({
     locale,
     soundEnabled,
     vibrationEnabled,
+    activeTheme,
     colorMode == ColorMode.other ? _colorsHash(otherColors) : 0,
   );
 

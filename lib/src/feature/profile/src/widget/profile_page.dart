@@ -4,6 +4,7 @@ import 'package:wordly/src/feature/game/domain/model/letter_info.dart';
 import 'package:wordly/src/feature/settings/settings.dart';
 import 'package:wordly/src/feature/shared/coin.dart';
 import 'package:wordly/src/feature/shared/constraint_screen.dart';
+import 'package:wordly/src/feature/shop/shop.dart';
 import 'package:wordly/src/feature/wallet/wallet.dart';
 
 /// A dashboard with the player level, tokens, daily challenges and achievements.
@@ -32,6 +33,8 @@ class const ProfilePage({super.key}) extends StatelessWidget {
                     _LevelCard(state: state),
                     const SizedBox(height: 16),
                     _BalanceCard(state: state),
+                    const SizedBox(height: 16),
+                    _ChestCard(state: state),
                     const SizedBox(height: 24),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -77,8 +80,24 @@ class const _LevelCard({required final WalletState state}) extends StatelessWidg
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         child: Column(
           children: [
-            Text(state.playerLevel.toString(), style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 44)),
-            Text(context.l10n.playerLevel, style: const TextStyle(fontWeight: FontWeight.w500)),
+            Row(
+              children: [
+                _AvatarBadge(state: state),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        state.playerLevel.toString(),
+                        style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 44),
+                      ),
+                      Text(context.l10n.playerLevel, style: const TextStyle(fontWeight: FontWeight.w500)),
+                    ],
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: 8),
             ClipRRect(
               borderRadius: BorderRadius.circular(4),
@@ -101,6 +120,69 @@ class const _LevelCard({required final WalletState state}) extends StatelessWidg
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class const _AvatarBadge({required final WalletState state}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final String? avatarId = state.activeAvatar;
+    final AvatarInfo? avatar = avatarId == null ? null : ShopCatalog.avatarById(avatarId);
+    return CircleAvatar(
+      radius: 28,
+      backgroundColor: avatar?.color ?? Theme.of(context).colorScheme.primaryContainer,
+      child: avatar == null
+          ? Text(state.playerLevel.toString(), style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 22))
+          : Icon(avatar.icon, color: Colors.white, size: 30),
+    );
+  }
+}
+
+class const _ChestCard({required final WalletState state}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final WalletService wallet = WalletScope.of(context);
+    final claimed = state.lastChestDateKey == _todayKey();
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 12),
+      child: ListTile(
+        leading: Icon(claimed ? Icons.check_circle_outline : Icons.card_giftcard, size: 36),
+        title: Text(context.l10n.chestTitle, style: const TextStyle(fontWeight: FontWeight.w700)),
+        subtitle: Text(claimed ? context.l10n.chestTomorrow : context.l10n.earnTip),
+        trailing: claimed
+            ? Text(context.l10n.chestTomorrow, style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 12))
+            : FilledButton.tonalIcon(
+                onPressed: () async {
+                  final int reward = await wallet.claimDailyChest(DateTime.now());
+                  if (!context.mounted) {
+                    return;
+                  }
+                  if (reward > 0) {
+                    context.dependencies.soundService.coins();
+                    ScaffoldMessenger.of(context)
+                      ..hideCurrentSnackBar()
+                      ..showSnackBar(
+                        SnackBar(
+                          content: Row(
+                            children: [
+                              Text('${context.l10n.chestReward} +$reward'),
+                              const SizedBox(width: 4),
+                              const Coin(size: 18),
+                            ],
+                          ),
+                        ),
+                      );
+                  } else {
+                    ScaffoldMessenger.of(context)
+                      ..hideCurrentSnackBar()
+                      ..showSnackBar(SnackBar(content: Text(context.l10n.chestTomorrow)));
+                  }
+                },
+                icon: const Icon(Icons.card_giftcard),
+                label: Text(context.l10n.chestOpen),
+              ),
       ),
     );
   }

@@ -239,6 +239,7 @@ Future<void> _processRewards(BuildContext context, GameState state) async {
     isWin: state.isWin,
     attempt: state.board.length ~/ 5,
     now: DateTime.now(),
+    dictionary: state.dictionary.languageCode,
   );
   if (!context.mounted) {
     return;

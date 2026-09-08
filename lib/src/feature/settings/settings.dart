@@ -1,6 +1,7 @@
 export 'src/application/settings_service.dart';
 export 'src/domain/model/general.dart';
 export 'src/domain/model/settings.dart';
+export 'src/domain/model/shop_themes.dart';
 export 'src/domain/repositories/settings_repository.dart';
 export 'src/injection.dart';
 export 'src/widget/change_color_page.dart';

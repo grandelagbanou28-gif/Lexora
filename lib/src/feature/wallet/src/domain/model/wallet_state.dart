@@ -14,6 +14,11 @@ final class const WalletState({
   final String? lastGameDateKey,
   final List<String> unlockedAchievements = const [],
   final Map<String, List<String>> dailyChallenges = const {},
+  final List<String> ownedItems = const [],
+  final String? activeAvatar,
+  final String? lastChestDateKey,
+  final Map<String, int> weeklyXp = const {},
+  final List<String> leagueBonusClaimed = const [],
 }) {
   static const int xpPerLevel = 100;
 
@@ -33,6 +38,11 @@ final class const WalletState({
     String? lastGameDateKey,
     List<String>? unlockedAchievements,
     Map<String, List<String>>? dailyChallenges,
+    List<String>? ownedItems,
+    String? activeAvatar,
+    String? lastChestDateKey,
+    Map<String, int>? weeklyXp,
+    List<String>? leagueBonusClaimed,
   }) => WalletState(
     tokens: tokens ?? this.tokens,
     xp: xp ?? this.xp,
@@ -45,6 +55,11 @@ final class const WalletState({
     lastGameDateKey: lastGameDateKey ?? this.lastGameDateKey,
     unlockedAchievements: unlockedAchievements ?? this.unlockedAchievements,
     dailyChallenges: dailyChallenges ?? this.dailyChallenges,
+    ownedItems: ownedItems ?? this.ownedItems,
+    activeAvatar: activeAvatar ?? this.activeAvatar,
+    lastChestDateKey: lastChestDateKey ?? this.lastChestDateKey,
+    weeklyXp: weeklyXp ?? this.weeklyXp,
+    leagueBonusClaimed: leagueBonusClaimed ?? this.leagueBonusClaimed,
   );
 }
 
@@ -55,10 +70,15 @@ final class const WalletCodec() extends JsonMapCodec<WalletState> {
     final List<String> unlockedAchievements =
         (input['unlockedAchievements'] as List<Object?>?)?.cast<String>() ?? const [];
     final Map<String, List<String>> dailyChallenges = {
-      for (final MapEntry(:key, :value)
-          in (input['dailyChallenges'] as Map<String, Object?>? ?? const {}).entries)
+      for (final MapEntry(:key, :value) in (input['dailyChallenges'] as Map<String, Object?>? ?? const {}).entries)
         key: (value! as List<Object?>).cast<String>(),
     };
+    final List<String> ownedItems = (input['ownedItems'] as List<Object?>?)?.cast<String>() ?? const [];
+    final Map<String, int> weeklyXp = {
+      for (final MapEntry(:key, :value) in (input['weeklyXp'] as Map<String, Object?>? ?? const {}).entries)
+        key: (value! as num).toInt(),
+    };
+    final List<String> leagueBonusClaimed = (input['leagueBonusClaimed'] as List<Object?>?)?.cast<String>() ?? const [];
     return WalletState(
       tokens: input['tokens'] as int? ?? 0,
       xp: input['xp'] as int? ?? 0,
@@ -71,6 +91,11 @@ final class const WalletCodec() extends JsonMapCodec<WalletState> {
       lastGameDateKey: lastGameDateKey,
       unlockedAchievements: unlockedAchievements,
       dailyChallenges: dailyChallenges,
+      ownedItems: ownedItems,
+      activeAvatar: input['activeAvatar'] as String?,
+      lastChestDateKey: input['lastChestDateKey'] as String?,
+      weeklyXp: weeklyXp,
+      leagueBonusClaimed: leagueBonusClaimed,
     );
   }
 
@@ -87,5 +112,10 @@ final class const WalletCodec() extends JsonMapCodec<WalletState> {
     'lastGameDateKey': input.lastGameDateKey,
     'unlockedAchievements': input.unlockedAchievements,
     'dailyChallenges': input.dailyChallenges,
+    'ownedItems': input.ownedItems,
+    'activeAvatar': input.activeAvatar,
+    'lastChestDateKey': input.lastChestDateKey,
+    'weeklyXp': input.weeklyXp,
+    'leagueBonusClaimed': input.leagueBonusClaimed,
   };
 }

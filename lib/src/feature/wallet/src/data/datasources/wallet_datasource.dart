@@ -3,9 +3,7 @@ import 'dart:convert' show jsonDecode, jsonEncode;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wordly/src/feature/wallet/wallet.dart';
 
-final class const WalletDatasource({
-  required final SharedPreferencesAsync preferences,
-}) {
+final class const WalletDatasource({required final SharedPreferencesAsync preferences}) {
   static const String _key = 'wallet';
 
   Future<WalletState> read() async {

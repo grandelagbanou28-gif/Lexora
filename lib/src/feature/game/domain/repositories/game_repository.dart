@@ -41,7 +41,8 @@ final class GameRepository({required final IGameDatasource _gameDataSource}) imp
     _enDictionary = rawDictionaryEn.map((key, value) => MapEntry(key, value.toString()));
     final rawDictionaryFr = await rootBundle.loadString(Assets.dictionary.fr).then(json.decode) as Map<String, dynamic>;
     _frDictionary = rawDictionaryFr.map((key, value) => MapEntry(key, value.toString()));
-    final rawDictionaryFon = await rootBundle.loadString(Assets.dictionary.fon).then(json.decode) as Map<String, dynamic>;
+    final rawDictionaryFon =
+        await rootBundle.loadString(Assets.dictionary.fon).then(json.decode) as Map<String, dynamic>;
     _fonDictionary = rawDictionaryFon.map((key, value) => MapEntry(key, value.toString()));
     _savedResult = await getDaily(dictionary, DateTime.now().toUtc());
   }

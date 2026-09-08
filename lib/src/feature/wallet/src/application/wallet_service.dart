@@ -6,9 +6,7 @@ import 'package:wordly/src/feature/wallet/src/domain/model/game_reward.dart';
 import 'package:wordly/src/feature/wallet/src/domain/model/wallet_state.dart';
 import 'package:wordly/src/feature/wallet/src/domain/repositories/wallet_repository.dart';
 
-final class WalletService({
-  required final WalletRepository _repository,
-}) {
+final class WalletService({required final WalletRepository _repository}) {
   final ValueNotifier<WalletState> _notifier = ValueNotifier<WalletState>(const WalletState());
   WalletState _current = const WalletState();
 
@@ -39,11 +37,49 @@ final class WalletService({
     return _update(_current.copyWith(tokens: _current.tokens - amount, hintsUsed: _current.hintsUsed + 1));
   }
 
+  Future<bool> purchaseItem(String itemId, int price) {
+    if (_current.tokens < price || _current.ownedItems.contains(itemId)) {
+      return Future.value(false);
+    }
+    return _update(_current.copyWith(tokens: _current.tokens - price, ownedItems: [..._current.ownedItems, itemId]));
+  }
+
+  Future<bool> setActiveAvatar(String avatarId) {
+    if (!_current.ownedItems.contains(avatarId)) {
+      return Future.value(false);
+    }
+    return _update(_current.copyWith(activeAvatar: avatarId));
+  }
+
+  Future<int> claimDailyChest(DateTime now) async {
+    final String key = _dateKey(now);
+    if (_current.lastChestDateKey == key) {
+      return 0;
+    }
+    final int reward = 5 + _stableHash(key) % 21;
+    await _update(_current.copyWith(tokens: _current.tokens + reward, lastChestDateKey: key));
+    return reward;
+  }
+
+  Future<int> claimLeagueBonus(String dictionary, DateTime now) async {
+    final previousKey = '$dictionary|${leagueWeekKey(now.subtract(const Duration(days: 7)))}';
+    final int previous = _current.weeklyXp[previousKey] ?? 0;
+    if (previous < 1 || _current.leagueBonusClaimed.contains(previousKey)) {
+      return 0;
+    }
+    final int bonus = leagueBonusFor(previous);
+    await _update(
+      _current.copyWith(xp: _current.xp + bonus, leagueBonusClaimed: [..._current.leagueBonusClaimed, previousKey]),
+    );
+    return bonus;
+  }
+
   Future<GameReward> processGameResult({
     required GameMode mode,
     required bool isWin,
     required int attempt,
     required DateTime now,
+    required String dictionary,
   }) async {
     final WalletState previous = _current;
     final String key = _dateKey(now);
@@ -140,11 +176,16 @@ final class WalletService({
       dailyChallenges = Map.of(dailyChallenges)..[key] = List.of(done);
     }
 
+    final leagueKey = '$dictionary|${leagueWeekKey(now)}';
+    final Map<String, int> weeklyXp = Map.of(previous.weeklyXp)
+      ..[leagueKey] = (previous.weeklyXp[leagueKey] ?? 0) + xpDelta;
+
     final WalletState wallet = beforeRewards.copyWith(
       tokens: tokens,
       xp: updatedXp,
       unlockedAchievements: unlockedIds..sort(),
       dailyChallenges: dailyChallenges,
+      weeklyXp: weeklyXp,
     );
     await _update(wallet);
     return GameReward(
@@ -179,3 +220,41 @@ bool _isPreviousDay(String? last, String key) {
   final keyDate = DateTime.utc(keyParts[0], keyParts[1], keyParts[2]);
   return keyDate.difference(lastDate).inDays == 1;
 }
+
+/// Stable non-negative hash used to derive a deterministic chest reward.
+int _stableHash(String value) {
+  var hash = 0;
+  for (final int unit in value.codeUnits) {
+    hash = (hash * 31 + unit) & 0x7fffffff;
+  }
+  return hash;
+}
+
+String leagueWeekKey(DateTime now) {
+  return '${now.year}-W${_weekOfYear(now).toString().padLeft(2, '0')}';
+}
+
+int _weekOfYear(DateTime date) {
+  final int dayOfWeek = date.weekday;
+  final int dayOfYear = DateTime.utc(date.year, date.month, date.day).difference(DateTime.utc(date.year)).inDays + 1;
+  final int week = (dayOfYear - dayOfWeek + 10) ~/ 7;
+  if (week < 1) {
+    return _weekOfYear(DateTime.utc(date.year - 1, 12, 28));
+  }
+  if (week > 52 && DateTime.utc(date.year, 12, 31).weekday < 4) {
+    return 1;
+  }
+  return week;
+}
+
+/// League tier: 1 = bronze, 2 = silver, 3 = gold, 4 = diamond.
+int leagueXpTier(int xp) => xp < 100
+    ? 1
+    : xp < 250
+    ? 2
+    : xp < 500
+    ? 3
+    : 4;
+
+/// Weekly league bonus rewarded for a finished week at [xp].
+int leagueBonusFor(int xp) => leagueXpTier(xp) * 20;

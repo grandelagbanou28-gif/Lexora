@@ -252,5 +252,125 @@ class MessageLookup extends MessageLookupByLibrary {
     "xp": MessageLookupByLibrary.simpleMessage(
       "XP",
     ),
+    "avatarApplied": MessageLookupByLibrary.simpleMessage(
+      "Avatar sélectionné",
+    ),
+    "avatarFox": MessageLookupByLibrary.simpleMessage(
+      "Renard",
+    ),
+    "avatarOwl": MessageLookupByLibrary.simpleMessage(
+      "Chouette",
+    ),
+    "avatarTiger": MessageLookupByLibrary.simpleMessage(
+      "Tigre",
+    ),
+    "chestOpen": MessageLookupByLibrary.simpleMessage(
+      "Ouvrir",
+    ),
+    "chestReward": MessageLookupByLibrary.simpleMessage(
+      "Trésor ouvert !",
+    ),
+    "chestTitle": MessageLookupByLibrary.simpleMessage(
+      "Trésor quotidien",
+    ),
+    "chestTomorrow": MessageLookupByLibrary.simpleMessage(
+      "Reviens demain",
+    ),
+    "itemActive": MessageLookupByLibrary.simpleMessage(
+      "Actif",
+    ),
+    "itemBuy": MessageLookupByLibrary.simpleMessage(
+      "Acheter",
+    ),
+    "itemOwned": MessageLookupByLibrary.simpleMessage(
+      "Possédé",
+    ),
+    "league": MessageLookupByLibrary.simpleMessage(
+      "Ligue",
+    ),
+    "leagueBronze": MessageLookupByLibrary.simpleMessage(
+      "Bronze",
+    ),
+    "leagueBronzeNext": MessageLookupByLibrary.simpleMessage(
+      "Palier suivant à 100 XP",
+    ),
+    "leagueClaim": MessageLookupByLibrary.simpleMessage(
+      "Réclamer le bonus",
+    ),
+    "leagueClaimed": MessageLookupByLibrary.simpleMessage(
+      "Réclamé",
+    ),
+    "leagueDiamond": MessageLookupByLibrary.simpleMessage(
+      "Diamant",
+    ),
+    "leagueDiamondNext": MessageLookupByLibrary.simpleMessage(
+      "Palier maximum !",
+    ),
+    "leagueGold": MessageLookupByLibrary.simpleMessage(
+      "Or",
+    ),
+    "leagueGoldNext": MessageLookupByLibrary.simpleMessage(
+      "Palier suivant à 500 XP",
+    ),
+    "leagueNoPrevious": MessageLookupByLibrary.simpleMessage(
+      "Aucun XP la semaine dernière",
+    ),
+    "leaguePerLanguage": MessageLookupByLibrary.simpleMessage(
+      "XP hebdo par langue",
+    ),
+    "leaguePrevious": MessageLookupByLibrary.simpleMessage(
+      "Semaine dernière",
+    ),
+    "leagueReward": MessageLookupByLibrary.simpleMessage(
+      "Bonus",
+    ),
+    "leagueSilver": MessageLookupByLibrary.simpleMessage(
+      "Argent",
+    ),
+    "leagueSilverNext": MessageLookupByLibrary.simpleMessage(
+      "Palier suivant à 250 XP",
+    ),
+    "leagueSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Gagne de l’XP chaque semaine et réclame des bonus",
+    ),
+    "leagueThisWeek": MessageLookupByLibrary.simpleMessage(
+      "Cette semaine",
+    ),
+    "leagueTier": MessageLookupByLibrary.simpleMessage(
+      "Palier",
+    ),
+    "shop": MessageLookupByLibrary.simpleMessage(
+      "Boutique",
+    ),
+    "shopAvatars": MessageLookupByLibrary.simpleMessage(
+      "Avatars",
+    ),
+    "shopBought": MessageLookupByLibrary.simpleMessage(
+      "Article acheté !",
+    ),
+    "shopSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Dépense des jetons pour des thèmes et avatars",
+    ),
+    "shopThemes": MessageLookupByLibrary.simpleMessage(
+      "Thèmes",
+    ),
+    "themeApplied": MessageLookupByLibrary.simpleMessage(
+      "Thème appliqué",
+    ),
+    "themeForest": MessageLookupByLibrary.simpleMessage(
+      "Forêt",
+    ),
+    "themeMidnight": MessageLookupByLibrary.simpleMessage(
+      "Minuit",
+    ),
+    "themeOcean": MessageLookupByLibrary.simpleMessage(
+      "Océan",
+    ),
+    "themeRoyal": MessageLookupByLibrary.simpleMessage(
+      "Royal",
+    ),
+    "themeSunset": MessageLookupByLibrary.simpleMessage(
+      "Coucher de soleil",
+    ),
   };
 }

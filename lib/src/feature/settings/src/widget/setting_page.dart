@@ -112,10 +112,7 @@ class _SettingsPageState() extends State<SettingsPage> {
                   ),
                   SwitchListTile(
                     contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-                    title: Text(
-                      context.l10n.sound,
-                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                    ),
+                    title: Text(context.l10n.sound, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
                     value: settings.general.soundEnabled,
                     onChanged: (value) async {
                       await settingsScope.settingsService.update(
@@ -146,7 +143,12 @@ class _SettingsPageState() extends State<SettingsPage> {
   }
 
   String _localeName(Locale? locale, {required bool withDictionary}) {
-    final Map<String, String> locales = {'en': context.l10n.en, 'fon': context.l10n.fon, 'fr': context.l10n.fr, 'ru': context.l10n.ru};
+    final Map<String, String> locales = {
+      'en': context.l10n.en,
+      'fon': context.l10n.fon,
+      'fr': context.l10n.fr,
+      'ru': context.l10n.ru,
+    };
     return locales[(locale ?? Localization.computeDefaultLocale(withDictionary: withDictionary)).languageCode] ??
         context.l10n.en;
   }

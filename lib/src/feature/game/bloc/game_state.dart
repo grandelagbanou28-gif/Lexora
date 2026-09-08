@@ -2,7 +2,7 @@ part of 'game_bloc.dart';
 
 enum GamePersistenceOperation() {
   saveLevelProgress,
-  completeLevel
+  completeLevel,
 }
 
 @Freezed()

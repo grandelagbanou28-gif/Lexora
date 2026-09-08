@@ -34,15 +34,9 @@ class const AboutPage({super.key}) extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-              Text(
-                context.l10n.appDictionary,
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-              ),
+              Text(context.l10n.appDictionary, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
               const Spacer(flex: 10),
-              _MailToContact(
-                contact: context.l10n.contact,
-                email: const ApplicationConfig().email,
-              ),
+              _MailToContact(contact: context.l10n.contact, email: const ApplicationConfig().email),
               const Spacer(),
               const _CreditNameText(
                 text: 'Lexora · Based on Wordly Plus by Roman Laptev (Carapacik)',
@@ -87,11 +81,7 @@ class const _MailToContact({required final String contact, required final String
                   ),
                 ),
               ],
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: context.theme.colorScheme.onSurface,
-              ),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: context.theme.colorScheme.onSurface),
             ),
           ),
         ),
@@ -112,10 +102,7 @@ class const _CreditNameText({required final String text, required final String u
         child: Text(
           text,
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 14,
-            color: context.theme.colorScheme.onSurfaceVariant,
-          ),
+          style: TextStyle(fontSize: 14, color: context.theme.colorScheme.onSurfaceVariant),
         ),
       ),
     ),

@@ -333,9 +333,7 @@ final class GameBloc({
       return;
     }
     final String letter = current.secretWord[placed];
-    emit(
-      _buildIdleState(board: List.of(current.board)..add(LetterInfo(letter: letter))),
-    );
+    emit(_buildIdleState(board: List.of(current.board)..add(LetterInfo(letter: letter))));
   }
 
   void _eliminateLettersPressed(_GameEliminateLettersPressed event, Emitter<GameState> emit) {

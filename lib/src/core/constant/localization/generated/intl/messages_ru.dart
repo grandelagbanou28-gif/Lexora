@@ -248,5 +248,125 @@ class MessageLookup extends MessageLookupByLibrary {
     "xp": MessageLookupByLibrary.simpleMessage(
       "Опыт",
     ),
+    "avatarApplied": MessageLookupByLibrary.simpleMessage(
+      "Аватар выбран",
+    ),
+    "avatarFox": MessageLookupByLibrary.simpleMessage(
+      "Лиса",
+    ),
+    "avatarOwl": MessageLookupByLibrary.simpleMessage(
+      "Сова",
+    ),
+    "avatarTiger": MessageLookupByLibrary.simpleMessage(
+      "Тигр",
+    ),
+    "chestOpen": MessageLookupByLibrary.simpleMessage(
+      "Открыть",
+    ),
+    "chestReward": MessageLookupByLibrary.simpleMessage(
+      "Сокровище открыто!",
+    ),
+    "chestTitle": MessageLookupByLibrary.simpleMessage(
+      "Ежедневное сокровище",
+    ),
+    "chestTomorrow": MessageLookupByLibrary.simpleMessage(
+      "Вернись завтра",
+    ),
+    "itemActive": MessageLookupByLibrary.simpleMessage(
+      "Активно",
+    ),
+    "itemBuy": MessageLookupByLibrary.simpleMessage(
+      "Купить",
+    ),
+    "itemOwned": MessageLookupByLibrary.simpleMessage(
+      "Куплено",
+    ),
+    "league": MessageLookupByLibrary.simpleMessage(
+      "Лига",
+    ),
+    "leagueBronze": MessageLookupByLibrary.simpleMessage(
+      "Бронза",
+    ),
+    "leagueBronzeNext": MessageLookupByLibrary.simpleMessage(
+      "Следующий дивизион на 100 XP",
+    ),
+    "leagueClaim": MessageLookupByLibrary.simpleMessage(
+      "Получить бонус",
+    ),
+    "leagueClaimed": MessageLookupByLibrary.simpleMessage(
+      "Получено",
+    ),
+    "leagueDiamond": MessageLookupByLibrary.simpleMessage(
+      "Алмаз",
+    ),
+    "leagueDiamondNext": MessageLookupByLibrary.simpleMessage(
+      "Максимальный дивизион!",
+    ),
+    "leagueGold": MessageLookupByLibrary.simpleMessage(
+      "Золото",
+    ),
+    "leagueGoldNext": MessageLookupByLibrary.simpleMessage(
+      "Следующий дивизион на 500 XP",
+    ),
+    "leagueNoPrevious": MessageLookupByLibrary.simpleMessage(
+      "За прошлую неделю опыта нет",
+    ),
+    "leaguePerLanguage": MessageLookupByLibrary.simpleMessage(
+      "Недельный опыт по языкам",
+    ),
+    "leaguePrevious": MessageLookupByLibrary.simpleMessage(
+      "Прошлая неделя",
+    ),
+    "leagueReward": MessageLookupByLibrary.simpleMessage(
+      "Бонус",
+    ),
+    "leagueSilver": MessageLookupByLibrary.simpleMessage(
+      "Серебро",
+    ),
+    "leagueSilverNext": MessageLookupByLibrary.simpleMessage(
+      "Следующий дивизион на 250 XP",
+    ),
+    "leagueSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Зарабатывай опыт каждую неделю и получай бонусы",
+    ),
+    "leagueThisWeek": MessageLookupByLibrary.simpleMessage(
+      "Эта неделя",
+    ),
+    "leagueTier": MessageLookupByLibrary.simpleMessage(
+      "Дивизион",
+    ),
+    "shop": MessageLookupByLibrary.simpleMessage(
+      "Магазин",
+    ),
+    "shopAvatars": MessageLookupByLibrary.simpleMessage(
+      "Аватары",
+    ),
+    "shopBought": MessageLookupByLibrary.simpleMessage(
+      "Товар куплен!",
+    ),
+    "shopSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Трать монеты на темы и аватары",
+    ),
+    "shopThemes": MessageLookupByLibrary.simpleMessage(
+      "Темы",
+    ),
+    "themeApplied": MessageLookupByLibrary.simpleMessage(
+      "Тема применена",
+    ),
+    "themeForest": MessageLookupByLibrary.simpleMessage(
+      "Лес",
+    ),
+    "themeMidnight": MessageLookupByLibrary.simpleMessage(
+      "Полночь",
+    ),
+    "themeOcean": MessageLookupByLibrary.simpleMessage(
+      "Океан",
+    ),
+    "themeRoyal": MessageLookupByLibrary.simpleMessage(
+      "Королевский",
+    ),
+    "themeSunset": MessageLookupByLibrary.simpleMessage(
+      "Закат",
+    ),
   };
 }

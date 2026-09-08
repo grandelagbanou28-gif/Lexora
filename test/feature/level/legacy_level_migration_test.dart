@@ -113,10 +113,12 @@ void main() {
     final List<MigrationMarkerRow> markers = await database.select(database.migrationMarkers).get();
     expect(results.where((row) => row.dictionaryCode == 'en').single.secretWord, 'english');
     expect(results.where((row) => row.dictionaryCode == 'ru').single.secretWord, 'russian');
-    expect(
-      markers.map((row) => row.migrationKey).toSet(),
-      {'legacy_level.en', 'legacy_level.fon', 'legacy_level.fr', 'legacy_level.ru'},
-    );
+    expect(markers.map((row) => row.migrationKey).toSet(), {
+      'legacy_level.en',
+      'legacy_level.fon',
+      'legacy_level.fr',
+      'legacy_level.ru',
+    });
   });
 
   test('a crash before marker rolls back import and a later run succeeds', () async {

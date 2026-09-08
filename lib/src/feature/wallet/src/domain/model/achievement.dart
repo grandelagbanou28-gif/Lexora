@@ -64,12 +64,7 @@ final class const AchievementsCatalog() {
       tokenReward: 50,
       isUnlocked: (w) => w.maxStreak >= 3,
     ),
-    Achievement(
-      id: AchievementId.streak7,
-      icon: Icons.whatshot,
-      tokenReward: 100,
-      isUnlocked: (w) => w.maxStreak >= 7,
-    ),
+    Achievement(id: AchievementId.streak7, icon: Icons.whatshot, tokenReward: 100, isUnlocked: (w) => w.maxStreak >= 7),
     Achievement(
       id: AchievementId.tenLevels,
       icon: Icons.trending_up,

@@ -5,8 +5,11 @@ import 'package:wordly/src/feature/about/widget/about_page.dart';
 import 'package:wordly/src/feature/game/bloc/game_bloc.dart';
 import 'package:wordly/src/feature/game/domain/model/game_mode.dart';
 import 'package:wordly/src/feature/game/widget/game_page.dart';
+import 'package:wordly/src/feature/league/league.dart';
 import 'package:wordly/src/feature/profile/profile.dart';
 import 'package:wordly/src/feature/settings/settings.dart';
+import 'package:wordly/src/feature/shared/coin.dart';
+import 'package:wordly/src/feature/shop/shop.dart';
 import 'package:wordly/src/feature/tutorial/widget/tutorial_page.dart';
 
 class const CustomDrawer({super.key}) extends StatelessWidget {
@@ -68,6 +71,33 @@ class const CustomDrawer({super.key}) extends StatelessWidget {
             await navigator.push(
               MaterialPageRoute<void>(
                 builder: (context) => BlocProvider.value(value: bloc, child: const ProfilePage()),
+              ),
+            );
+          },
+        ),
+        ListTile(
+          leading: const Coin(size: 18),
+          title: Text(context.l10n.shop, style: const TextStyle(fontWeight: FontWeight.w500)),
+          onTap: () async {
+            Scaffold.of(context).closeDrawer();
+            final NavigatorState navigator = Navigator.of(context);
+            final GameBloc bloc = context.read<GameBloc>();
+            await navigator.push(
+              MaterialPageRoute<void>(
+                builder: (context) => BlocProvider.value(value: bloc, child: const ShopPage()),
+              ),
+            );
+          },
+        ),
+        ListTile(
+          title: Text(context.l10n.league, style: const TextStyle(fontWeight: FontWeight.w500)),
+          onTap: () async {
+            Scaffold.of(context).closeDrawer();
+            final NavigatorState navigator = Navigator.of(context);
+            final GameBloc bloc = context.read<GameBloc>();
+            await navigator.push(
+              MaterialPageRoute<void>(
+                builder: (context) => BlocProvider.value(value: bloc, child: const LeaguePage()),
               ),
             );
           },

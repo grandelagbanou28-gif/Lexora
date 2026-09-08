@@ -21,10 +21,7 @@ class const DependenciesScope({
       dependencies: dependencies,
       child: SettingsScope(
         settingsContainer: dependencies.settingsContainer,
-        child: WalletScope(
-          walletService: dependencies.walletContainer.walletService,
-          child: child,
-        ),
+        child: WalletScope(walletService: dependencies.walletContainer.walletService, child: child),
       ),
     );
   }

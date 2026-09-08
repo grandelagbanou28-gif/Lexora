@@ -108,9 +108,7 @@ void main() {
     SharedPreferencesAsyncPlatform.instance = InMemorySharedPreferencesAsync.empty();
     addTearDown(() => SharedPreferencesAsyncPlatform.instance = previousPreferencesPlatform);
     final SettingsContainer settings = await SettingsContainer.create(sharedPreferences: SharedPreferencesAsync());
-    final WalletContainer walletContainer = await WalletContainer.create(
-      sharedPreferences: SharedPreferencesAsync(),
-    );
+    final WalletContainer walletContainer = await WalletContainer.create(sharedPreferences: SharedPreferencesAsync());
     final levelRepository = _LevelRepository()..failuresRemaining = 1;
     final gameRepository = _GameRepository();
     final bloc = GameBloc(
