@@ -17,6 +17,7 @@ import 'package:wordly/src/feature/game/widget/words_grid.dart';
 import 'package:wordly/src/feature/level/level.dart';
 import 'package:wordly/src/feature/level/widget/level_page.dart';
 import 'package:wordly/src/feature/settings/settings.dart';
+import 'package:wordly/src/feature/shared/coin.dart';
 import 'package:wordly/src/feature/shared/drawer.dart';
 import 'package:wordly/src/feature/sound/sound.dart';
 import 'package:wordly/src/feature/statistic/statistic.dart';
@@ -242,31 +243,66 @@ Future<void> _processRewards(BuildContext context, GameState state) async {
   if (!context.mounted) {
     return;
   }
-  final SoundService soundService = context.dependencies.soundService;
-  if (reward.leveledUp) {
-    soundService.levelUp();
-  }
-  if (reward.achievements.isNotEmpty) {
-    soundService.achievement();
-  }
-  final parts = <String>[
+  final rows = <Widget>[
     if (reward.tokenDelta != 0 || reward.xpDelta != 0)
-      '+${reward.tokenDelta} ${context.l10n.tokens}  +${reward.xpDelta} ${context.l10n.xp}',
+      _RewardLine(
+        showCoin: true,
+        text: '+${reward.tokenDelta} ${context.l10n.tokens}  +${reward.xpDelta} ${context.l10n.xp}',
+      ),
     if (reward.leveledUp)
-      '${context.l10n.levelUpTitle} ${context.l10n.playerLevel} ${reward.wallet.playerLevel}',
+      _RewardLine(text: '${context.l10n.levelUpTitle} ${context.l10n.playerLevel} ${reward.wallet.playerLevel}'),
     if (reward.achievements.isNotEmpty)
-      '${context.l10n.achievementsUnlocked} (+${reward.achievements.length})',
+      _RewardLine(text: '${context.l10n.achievementsUnlocked} (+${reward.achievements.length})'),
     if (reward.challenges.isNotEmpty)
-      '${context.l10n.challengeCompleted} (+${reward.challenges.length})',
+      _RewardLine(text: '${context.l10n.challengeCompleted} (+${reward.challenges.length})'),
   ];
-  if (parts.isEmpty) {
+  if (rows.isEmpty) {
     return;
   }
+  _playRewardSound(context, reward);
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
-      content: Text(parts.join('\n'), textAlign: TextAlign.center),
+      content: Column(mainAxisSize: MainAxisSize.min, children: rows),
       duration: const Duration(seconds: 3),
       behavior: SnackBarBehavior.floating,
     ),
   );
+}
+
+void _playRewardSound(BuildContext context, GameReward reward) {
+  final SoundService soundService = context.dependencies.soundService;
+  final bool hasChallenges = reward.challenges.isNotEmpty;
+  final bool allChallenges = reward.challenges.length >= DailyChallengesCatalog.all.length;
+  final bool streakMilestone = reward.achievements.any(
+    (a) => a.id == AchievementId.streak3 || a.id == AchievementId.streak7,
+  );
+  if (hasChallenges && reward.achievements.isNotEmpty && (allChallenges || reward.challenges.length >= 2)) {
+    soundService.jackpot();
+  } else if (allChallenges) {
+    soundService.challengeAll();
+  } else if (hasChallenges) {
+    soundService.challengeComplete();
+  } else if (streakMilestone) {
+    soundService.streakMilestone();
+  } else if (reward.achievements.isNotEmpty) {
+    soundService.achievement();
+  } else if (reward.leveledUp) {
+    soundService.levelUp();
+  } else if (reward.tokenDelta > 0 || reward.xpDelta > 0) {
+    soundService.coins();
+  }
+}
+
+/// A single reward line inside the result Snackbar.
+class const _RewardLine({required final String text, final bool showCoin = false}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (showCoin) ...[const Coin(size: 16), const SizedBox(width: 6)],
+        Flexible(child: Text(text, textAlign: TextAlign.center)),
+      ],
+    );
+  }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wordly/src/core/common/common.dart';
 import 'package:wordly/src/feature/game/bloc/game_bloc.dart';
 import 'package:wordly/src/feature/game/domain/model/keyboard.dart';
+import 'package:wordly/src/feature/shared/coin.dart';
 import 'package:wordly/src/feature/wallet/wallet.dart';
 
 /// A compact bar with the paid hint actions of the game.
@@ -29,8 +30,8 @@ class const HintBar({super.key}) extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.monetization_on_outlined, size: 20, color: Theme.of(context).colorScheme.primary),
-              const SizedBox(width: 4),
+              const Coin(),
+              const SizedBox(width: 6),
               Text('${value.tokens}', style: const TextStyle(fontWeight: FontWeight.w600)),
               const SizedBox(width: 12),
               _HintButton(
@@ -142,7 +143,7 @@ class const _HintButton({
                   ),
                 ),
                 const SizedBox(width: 2),
-                Icon(Icons.monetization_on, size: 14, color: colors.primary.withValues(alpha: enabled ? 1 : 0.38)),
+                Coin(size: 14, opacity: enabled ? 1 : 0.38),
               ],
             ),
           ),

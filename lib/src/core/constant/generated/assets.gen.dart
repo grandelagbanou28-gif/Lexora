@@ -34,11 +34,23 @@ class $AssetsSoundsGen {
   /// File path: assets/sounds/achievement.wav
   String get achievement => 'assets/sounds/achievement.wav';
 
+  /// File path: assets/sounds/challenge_all.wav
+  String get challengeAll => 'assets/sounds/challenge_all.wav';
+
+  /// File path: assets/sounds/challenge_complete.wav
+  String get challengeComplete => 'assets/sounds/challenge_complete.wav';
+
+  /// File path: assets/sounds/coins.wav
+  String get coins => 'assets/sounds/coins.wav';
+
   /// File path: assets/sounds/correct.wav
   String get correct => 'assets/sounds/correct.wav';
 
   /// File path: assets/sounds/enter.wav
   String get enter => 'assets/sounds/enter.wav';
+
+  /// File path: assets/sounds/jackpot.wav
+  String get jackpot => 'assets/sounds/jackpot.wav';
 
   /// File path: assets/sounds/key_press.wav
   String get keyPress => 'assets/sounds/key_press.wav';
@@ -52,6 +64,9 @@ class $AssetsSoundsGen {
   /// File path: assets/sounds/not_in_word.wav
   String get notInWord => 'assets/sounds/not_in_word.wav';
 
+  /// File path: assets/sounds/streak_milestone.wav
+  String get streakMilestone => 'assets/sounds/streak_milestone.wav';
+
   /// File path: assets/sounds/tokens.wav
   String get tokens => 'assets/sounds/tokens.wav';
 
@@ -62,7 +77,23 @@ class $AssetsSoundsGen {
   String get wrongSpot => 'assets/sounds/wrong_spot.wav';
 
   /// List of all assets
-  List<String> get values => [achievement, correct, enter, keyPress, levelUp, lose, notInWord, tokens, win, wrongSpot];
+  List<String> get values => [
+    achievement,
+    challengeAll,
+    challengeComplete,
+    coins,
+    correct,
+    enter,
+    jackpot,
+    keyPress,
+    levelUp,
+    lose,
+    notInWord,
+    streakMilestone,
+    tokens,
+    win,
+    wrongSpot,
+  ];
 }
 
 abstract final class Assets {

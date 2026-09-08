@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wordly/src/core/common/common.dart';
 import 'package:wordly/src/feature/game/domain/model/letter_info.dart';
 import 'package:wordly/src/feature/settings/settings.dart';
+import 'package:wordly/src/feature/shared/coin.dart';
 import 'package:wordly/src/feature/shared/constraint_screen.dart';
 import 'package:wordly/src/feature/wallet/wallet.dart';
 
@@ -76,10 +77,7 @@ class const _LevelCard({required final WalletState state}) extends StatelessWidg
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         child: Column(
           children: [
-            Text(
-              state.playerLevel.toString(),
-              style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 44),
-            ),
+            Text(state.playerLevel.toString(), style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 44)),
             Text(context.l10n.playerLevel, style: const TextStyle(fontWeight: FontWeight.w500)),
             const SizedBox(height: 8),
             ClipRRect(
@@ -118,18 +116,14 @@ class const _BalanceCard({required final WalletState state}) extends StatelessWi
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            _BalanceItem(icon: const Coin(size: 28), value: state.tokens.toString(), title: context.l10n.tokens),
             _BalanceItem(
-              icon: Icons.monetization_on,
-              value: state.tokens.toString(),
-              title: context.l10n.tokens,
-            ),
-            _BalanceItem(
-              icon: Icons.psychology_outlined,
+              icon: const Icon(Icons.psychology_outlined, size: 28),
               value: state.hintsUsed.toString(),
               title: context.l10n.hints,
             ),
             _BalanceItem(
-              icon: Icons.emoji_events_outlined,
+              icon: const Icon(Icons.emoji_events_outlined, size: 28),
               value: state.levelsCompleted.toString(),
               title: context.l10n.levels,
             ),
@@ -140,17 +134,14 @@ class const _BalanceCard({required final WalletState state}) extends StatelessWi
   }
 }
 
-class const _BalanceItem({
-  required final IconData icon,
-  required final String value,
-  required final String title,
-}) extends StatelessWidget {
+class const _BalanceItem({required final Widget icon, required final String value, required final String title})
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon, size: 28),
+        icon,
         const SizedBox(height: 8),
         Text(value, style: const TextStyle(fontWeight: FontWeight.w700)),
         const SizedBox(height: 2),
@@ -169,10 +160,7 @@ class const _DailyChallengesCard({required final WalletState state}) extends Sta
       child: Column(
         children: [
           for (final DailyChallenge challenge in DailyChallengesCatalog.all)
-            _ChallengeTile(
-              challenge: challenge,
-              completed: done.contains(challenge.id.name),
-            ),
+            _ChallengeTile(challenge: challenge, completed: done.contains(challenge.id.name)),
         ],
       ),
     );
@@ -187,17 +175,14 @@ class const _ChallengeTile({required final DailyChallenge challenge, required fi
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 4),
       child: ListTile(
-        leading: Icon(
-          challenge.icon,
-          color: completed ? colors.primary : null,
-        ),
+        leading: Icon(challenge.icon, color: completed ? colors.primary : null),
         title: Text(_challengeTitle(context, challenge.id)),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text('${challenge.reward}'),
             const SizedBox(width: 2),
-            Icon(Icons.monetization_on, size: 18, color: colors.primary),
+            const Coin(size: 18),
             const SizedBox(width: 8),
             if (completed)
               Icon(Icons.check_circle, color: colors.primary)
@@ -257,17 +242,11 @@ class const _AchievementTile({required final Achievement achievement, required f
             children: [
               Row(
                 mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text('${achievement.tokenReward}'),
-                  Icon(Icons.monetization_on, size: 16, color: colors.primary),
-                ],
+                children: [Text('${achievement.tokenReward}'), const SizedBox(width: 2), const Coin(size: 16)],
               ),
               Text(
                 unlocked ? context.l10n.achievementsUnlocked : context.l10n.achievementsLocked,
-                style: TextStyle(
-                  fontSize: 11,
-                  color: unlocked ? colors.primary : colors.outline,
-                ),
+                style: TextStyle(fontSize: 11, color: unlocked ? colors.primary : colors.outline),
               ),
             ],
           ),
@@ -323,7 +302,11 @@ class const _StatText({required final num value, required final String title, fi
         style: const TextStyle(fontWeight: FontWeight.w700),
       ),
       const SizedBox(height: 4),
-      Text(title, style: const TextStyle(fontWeight: FontWeight.w500), textAlign: TextAlign.center),
+      Text(
+        title,
+        style: const TextStyle(fontWeight: FontWeight.w500),
+        textAlign: TextAlign.center,
+      ),
     ],
   );
 }

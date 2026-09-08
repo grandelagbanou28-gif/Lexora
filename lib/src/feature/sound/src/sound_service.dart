@@ -14,7 +14,12 @@ enum SoundEffect() {
   lose,
   levelUp,
   tokens,
-  achievement;
+  achievement,
+  challengeComplete,
+  challengeAll,
+  streakMilestone,
+  coins,
+  jackpot;
 
   String get asset => switch (this) {
     SoundEffect.keyPress => 'sounds/key_press.wav',
@@ -27,12 +32,15 @@ enum SoundEffect() {
     SoundEffect.levelUp => 'sounds/level_up.wav',
     SoundEffect.tokens => 'sounds/tokens.wav',
     SoundEffect.achievement => 'sounds/achievement.wav',
+    SoundEffect.challengeComplete => 'sounds/challenge_complete.wav',
+    SoundEffect.challengeAll => 'sounds/challenge_all.wav',
+    SoundEffect.streakMilestone => 'sounds/streak_milestone.wav',
+    SoundEffect.coins => 'sounds/coins.wav',
+    SoundEffect.jackpot => 'sounds/jackpot.wav',
   };
 }
 
-final class SoundService({
-  required final SettingsService _settingsService,
-}) {
+final class SoundService({required final SettingsService _settingsService}) {
   final AudioPlayer _player = AudioPlayer();
 
   void keyPress() => play(SoundEffect.keyPress);
@@ -45,6 +53,11 @@ final class SoundService({
   void levelUp() => play(SoundEffect.levelUp);
   void tokens() => play(SoundEffect.tokens);
   void achievement() => play(SoundEffect.achievement);
+  void challengeComplete() => play(SoundEffect.challengeComplete);
+  void challengeAll() => play(SoundEffect.challengeAll);
+  void streakMilestone() => play(SoundEffect.streakMilestone);
+  void coins() => play(SoundEffect.coins);
+  void jackpot() => play(SoundEffect.jackpot);
 
   void play(SoundEffect effect) {
     unawaited(_play(effect));
@@ -67,7 +80,12 @@ final class SoundService({
   }
 
   Future<void> _vibrate(SoundEffect effect) => switch (effect) {
-    SoundEffect.win || SoundEffect.levelUp || SoundEffect.achievement => HapticFeedback.mediumImpact(),
+    SoundEffect.win ||
+    SoundEffect.levelUp ||
+    SoundEffect.achievement ||
+    SoundEffect.challengeAll ||
+    SoundEffect.streakMilestone ||
+    SoundEffect.jackpot => HapticFeedback.mediumImpact(),
     SoundEffect.lose => HapticFeedback.heavyImpact(),
     _ => HapticFeedback.selectionClick(),
   };

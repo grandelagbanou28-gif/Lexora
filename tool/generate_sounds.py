@@ -140,6 +140,72 @@ def achievement():
     )
 
 
+def challenge_complete():
+    write(
+        'challenge_complete.wav',
+        _concat(
+            _sine(880.0, 0.09, amp=0.42, decay=16),
+            _sine(1318.5, 0.18, amp=0.32, decay=10),
+        ),
+    )
+
+
+def challenge_all():
+    write(
+        'challenge_all.wav',
+        _concat(
+            _sine(659.25, 0.10, decay=12),
+            _sine(783.99, 0.10, decay=12),
+            _sine(1046.5, 0.10, decay=12),
+            _sine(1318.5, 0.28, decay=8),
+        ),
+    )
+
+
+def streak_milestone():
+    write(
+        'streak_milestone.wav',
+        _concat(
+            _sine(523.25, 0.10, decay=14),
+            _sine(659.25, 0.10, decay=14),
+            _sine(783.99, 0.12, decay=10),
+            _sine(1046.5, 0.12, decay=10),
+            _sine(1568.0, 0.26, decay=8),
+        ),
+    )
+
+
+def coins():
+    write(
+        'coins.wav',
+        _concat(
+            _sine(987.77, 0.06, amp=0.38, decay=22),
+            _sine(1318.5, 0.06, amp=0.34, decay=22),
+            _sine(1760.0, 0.10, amp=0.30, decay=16),
+        ),
+    )
+
+
+def jackpot():
+    write(
+        'jackpot.wav',
+        _concat(
+            _sine(523.25, 0.09, decay=12),
+            _sine(659.25, 0.09, decay=12),
+            _sine(783.99, 0.09, decay=12),
+            _sine(1046.5, 0.09, decay=12),
+            _sine(1318.5, 0.09, decay=12),
+            _mix(
+                _sine(523.25, 0.32, amp=0.30, decay=6),
+                _sine(659.25, 0.32, amp=0.30, decay=6),
+                _sine(783.99, 0.32, amp=0.30, decay=6),
+                _sine(1046.5, 0.32, amp=0.26, decay=6),
+                seconds=0.32,
+            ),
+        ),
+    )
+
+
 def main():
     key_press()
     enter()
@@ -151,6 +217,11 @@ def main():
     level_up()
     tokens()
     achievement()
+    challenge_complete()
+    challenge_all()
+    streak_milestone()
+    coins()
+    jackpot()
 
 
 if __name__ == '__main__':
