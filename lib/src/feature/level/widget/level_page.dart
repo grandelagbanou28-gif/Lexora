@@ -26,13 +26,16 @@ class _LevelPageState() extends State<LevelPage> {
         backgroundColor: context.theme.extension<BackgroundCustomColors>()?.background,
         appBar: AppBar(
           centerTitle: true,
-          title: Text(context.l10n.levels, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 32)),
+          title: Text(context.l10n.levels, style: const TextStyle(fontWeight: FontWeight.w700)),
         ),
         body: ConstraintScreen(
           child: FutureBuilder(
             future: _getLevelsFuture,
             builder: (context, snapshot) {
-              if (!snapshot.hasData || snapshot.requireData.isEmpty) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (snapshot.hasError || !snapshot.hasData || snapshot.requireData.isEmpty) {
                 return const HaveNotPlayed();
               }
               final List<LevelResult> levels = snapshot.requireData;

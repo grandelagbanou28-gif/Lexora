@@ -49,7 +49,7 @@ class _ChangeColorPageState() extends State<ChangeColorPage> {
       backgroundColor: context.theme.extension<BackgroundCustomColors>()?.background,
       appBar: AppBar(
         centerTitle: true,
-        title: Text(context.l10n.colorMode, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 32)),
+        title: Text(context.l10n.colorMode, style: const TextStyle(fontWeight: FontWeight.w700)),
       ),
       body: ConstraintScreen(
         child: ListView(

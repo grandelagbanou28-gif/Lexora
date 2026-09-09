@@ -27,13 +27,16 @@ class _StatisticPageState() extends State<StatisticPage> {
         backgroundColor: context.theme.extension<BackgroundCustomColors>()?.background,
         appBar: AppBar(
           centerTitle: true,
-          title: Text(context.l10n.statistic, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 32)),
+          title: Text(context.l10n.statistic, style: const TextStyle(fontWeight: FontWeight.w700)),
         ),
         body: ConstraintScreen(
           child: FutureBuilder(
             future: _getStatisticsFuture,
             builder: (context, snapshot) {
-              if (!snapshot.hasData || snapshot.data == null) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (snapshot.hasError || !snapshot.hasData || snapshot.data == null) {
                 return const HaveNotPlayed();
               }
               final GameStatistic? statistic = snapshot.requireData;

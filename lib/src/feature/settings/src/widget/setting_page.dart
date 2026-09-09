@@ -25,10 +25,10 @@ class _SettingsPageState() extends State<SettingsPage> {
             backgroundColor: context.theme.extension<BackgroundCustomColors>()?.background,
             appBar: AppBar(
               centerTitle: true,
-              title: Text(context.l10n.settings, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 32)),
+              title: Text(context.l10n.settings, style: const TextStyle(fontWeight: FontWeight.w700)),
             ),
             body: ConstraintScreen(
-              child: Column(
+              child: ListView(
                 children: [
                   ListItemSelector<Locale>(
                     title: context.l10n.appDictionary,

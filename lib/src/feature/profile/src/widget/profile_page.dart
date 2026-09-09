@@ -19,7 +19,7 @@ class const ProfilePage({super.key}) extends StatelessWidget {
         backgroundColor: context.theme.extension<BackgroundCustomColors>()?.background,
         appBar: AppBar(
           centerTitle: true,
-          title: Text(context.l10n.profile, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 32)),
+          title: Text(context.l10n.profile, style: const TextStyle(fontWeight: FontWeight.w700)),
         ),
         body: ValueListenableBuilder<WalletState>(
           valueListenable: wallet.notifier,
@@ -96,7 +96,7 @@ class const _LevelCard({required final WalletState state}) extends StatelessWidg
                     children: [
                       Text(
                         state.playerLevel.toString(),
-                        style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 44),
+                        style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 28),
                       ),
                       Text(context.l10n.playerLevel, style: const TextStyle(fontWeight: FontWeight.w500)),
                     ],

@@ -34,7 +34,7 @@ class const LeaguePage({super.key}) extends StatelessWidget {
         backgroundColor: context.theme.extension<BackgroundCustomColors>()?.background,
         appBar: AppBar(
           centerTitle: true,
-          title: Text(context.l10n.league, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 32)),
+          title: Text(context.l10n.league, style: const TextStyle(fontWeight: FontWeight.w700)),
         ),
         body: ValueListenableBuilder<WalletState>(
           valueListenable: wallet.notifier,

@@ -22,7 +22,7 @@ class const TutorialPage({super.key}) extends StatelessWidget {
         backgroundColor: context.theme.extension<BackgroundCustomColors>()?.background,
         appBar: AppBar(
           centerTitle: true,
-          title: Text(context.l10n.tutorial, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 32)),
+          title: Text(context.l10n.tutorial, style: const TextStyle(fontWeight: FontWeight.w700)),
         ),
         body: ConstraintScreen(
           safeAreaBottom: false,

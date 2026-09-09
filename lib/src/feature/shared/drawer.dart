@@ -18,6 +18,28 @@ class const CustomDrawer({super.key}) extends StatelessWidget {
     return NavigationDrawer(
       backgroundColor: context.theme.extension<BackgroundCustomColors>()?.background,
       children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 24, 20, 16),
+          child: Row(
+            children: [
+              CircleAvatar(
+                radius: 22,
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                child: Text(
+                  'L',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w800,
+                    fontSize: 20,
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Text(context.l10n.appTitle, style: Theme.of(context).textTheme.titleMedium),
+            ],
+          ),
+        ),
+        const Divider(height: 1),
         ListTile(
           title: Text(context.l10n.daily, style: const TextStyle(fontWeight: FontWeight.w500)),
           onTap: () async {

@@ -3,6 +3,7 @@ import 'dart:math' show pi;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wordly/src/core/constant/generated/fonts.gen.dart';
 import 'package:wordly/src/feature/game/bloc/game_bloc.dart';
 import 'package:wordly/src/feature/game/domain/model/letter_info.dart';
 import 'package:wordly/src/feature/game/domain/model/word_error.dart';
@@ -168,6 +169,7 @@ class _GridTileState() extends State<GridTile> with TickerProviderStateMixin {
                       key: ValueKey<String>(widget.info.letter),
                       style: TextStyle(
                         color: widget.info.status.textColor(context, widget.generalSettings),
+                        fontFamily: FontFamily.robotoMono,
                         fontWeight: FontWeight.w800,
                       ),
                     ),

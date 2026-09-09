@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wordly/src/core/common/common.dart';
 import 'package:wordly/src/core/common/src/utils/share.dart';
+import 'package:wordly/src/core/resources/resources.dart';
 import 'package:wordly/src/feature/game/bloc/game_bloc.dart';
 import 'package:wordly/src/feature/game/domain/model/game_mode.dart';
 import 'package:wordly/src/feature/game/domain/model/letter_info.dart';
@@ -101,21 +102,13 @@ class _GamePageState() extends State<GamePage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (isBoss) ...[
-                    Icon(
-                      Icons.local_fire_department,
-                      color: appBackground == null
-                          ? Colors.white
-                          : appBackground.computeLuminance() < 0.5
-                          ? Colors.orangeAccent
-                          : Colors.deepOrange,
-                      size: 28,
-                    ),
+                    const Icon(Icons.local_fire_department, color: AppColors.orange, size: 28),
                     const SizedBox(width: 6),
                   ],
                   Flexible(
                     child: Text(
                       title,
-                      style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 32),
+                      style: const TextStyle(fontWeight: FontWeight.w700),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
@@ -238,7 +231,6 @@ class const GameBody({super.key}) extends StatelessWidget {
                 duration: const Duration(seconds: 2),
                 behavior: SnackBarBehavior.floating,
                 dismissDirection: DismissDirection.up,
-                width: 350,
                 elevation: 4,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
               ),

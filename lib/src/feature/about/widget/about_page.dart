@@ -14,7 +14,7 @@ class const AboutPage({super.key}) extends StatelessWidget {
         backgroundColor: context.theme.extension<BackgroundCustomColors>()?.background,
         appBar: AppBar(
           centerTitle: true,
-          title: Text(context.l10n.about, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 32)),
+          title: Text(context.l10n.about, style: const TextStyle(fontWeight: FontWeight.w700)),
         ),
         body: ConstraintScreen(
           child: Column(
@@ -22,7 +22,7 @@ class const AboutPage({super.key}) extends StatelessWidget {
               const Spacer(),
               Text(
                 context.l10n.appTitle,
-                style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w800, letterSpacing: 1.5),
+                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w800, letterSpacing: 1.5),
               ),
               const SizedBox(height: 8),
               SelectableText(
@@ -76,7 +76,7 @@ class const _MailToContact({required final String contact, required final String
                     style: const TextStyle(
                       decoration: TextDecoration.underline,
                       fontWeight: FontWeight.w700,
-                      fontSize: 24,
+                      fontSize: 16,
                     ),
                   ),
                 ),
