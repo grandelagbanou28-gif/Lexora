@@ -163,7 +163,6 @@ class _GamePageState() extends State<GamePage> {
 class const GameBody({super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final bool useSpacer = MediaQuery.sizeOf(context).height > 800;
     return SettingsBuilder(
       builder: (context, settings) => BlocListener<GameBloc, GameState>(
         listenWhen: (previous, current) =>
@@ -247,16 +246,32 @@ class const GameBody({super.key}) extends StatelessWidget {
           }
         },
         child: SafeArea(
-          child: Column(
-            children: [
-              const SizedBox(height: 12),
-              const Center(child: WordsGrid()),
-              if (!settings.general.hardMode) const HintBar(),
-              if (useSpacer) const Spacer(),
-              const Center(child: KeyboardByLanguage()),
-              if (useSpacer) const Spacer(),
-              const SizedBox(height: 12),
-            ],
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final double availableHeight = constraints.maxHeight;
+              const double cornerPadding = 24;
+              const double hintHeight = 48;
+              double spacing = 8;
+              double tileSize = (availableHeight - cornerPadding - hintHeight - 5 * spacing - 56) / 9;
+              if (tileSize < 46 && spacing == 8) {
+                spacing = 4;
+                tileSize = (availableHeight - cornerPadding - hintHeight - 5 * spacing - 56) / 9;
+              }
+              tileSize = tileSize.clamp(34.0, 60.0);
+              final double keyHeight = tileSize.clamp(38.0, 58.0);
+              return Column(
+                children: [
+                  const SizedBox(height: 12),
+                  Center(
+                    child: WordsGrid(tileSize: tileSize, spacing: spacing),
+                  ),
+                  if (!settings.general.hardMode) const HintBar(),
+                  const SizedBox(height: 12),
+                  Center(child: KeyboardByLanguage(keyHeight: keyHeight)),
+                  const SizedBox(height: 12),
+                ],
+              );
+            },
           ),
         ),
       ),

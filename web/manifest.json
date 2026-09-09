@@ -5,7 +5,10 @@
     "start_url": ".",
     "scope": ".",
     "display": "standalone",
-    "display_override": ["standalone", "fullscreen"],
+    "display_override": [
+        "standalone",
+        "fullscreen"
+    ],
     "background_color": "#FFFFFF",
     "theme_color": "#6C4DF4",
     "description": "Guess the WORD in six tries — EN, FR, RU and Fon dictionaries",

@@ -8,7 +8,7 @@ import 'package:wordly/src/feature/game/domain/model/letter_info.dart';
 import 'package:wordly/src/feature/game/domain/model/word_error.dart';
 import 'package:wordly/src/feature/settings/settings.dart';
 
-class const WordsGrid({super.key}) extends StatefulWidget {
+class const WordsGrid({final double tileSize = 60, final double spacing = 8, super.key}) extends StatefulWidget {
   @override
   State<WordsGrid> createState() => _WordsGridState();
 }
@@ -56,10 +56,10 @@ class _WordsGridState() extends State<WordsGrid> with SingleTickerProviderStateM
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     primary: false,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 5,
-                      mainAxisSpacing: 8,
-                      crossAxisSpacing: 8,
+                      mainAxisSpacing: widget.spacing,
+                      crossAxisSpacing: widget.spacing,
                     ),
                     itemBuilder: (_, index) => Transform.translate(
                       key: ValueKey<String>('invalid-word-shake-$index'),
@@ -67,6 +67,7 @@ class _WordsGridState() extends State<WordsGrid> with SingleTickerProviderStateM
                       child: GridTile(
                         info: state.board.length > index ? state.board[index] : const LetterInfo(letter: ''),
                         position: index,
+                        tileSize: widget.tileSize,
                         generalSettings: settings.general,
                       ),
                     ),
@@ -85,6 +86,7 @@ class const GridTile({
   required final LetterInfo info,
   required final int position,
   required final GeneralSettings generalSettings,
+  final double tileSize = 60,
   super.key,
 }) extends StatefulWidget {
   @override
@@ -151,7 +153,7 @@ class _GridTileState() extends State<GridTile> with TickerProviderStateMixin {
         key: ValueKey<LetterStatus>(widget.info.status),
         aspectRatio: 1,
         child: Container(
-          constraints: const BoxConstraints(maxHeight: 60, maxWidth: 60),
+          constraints: BoxConstraints(maxHeight: widget.tileSize, maxWidth: widget.tileSize),
           decoration: BoxDecoration(
             color: widget.info.status.cellColor(context, widget.generalSettings),
             borderRadius: BorderRadius.circular(12),

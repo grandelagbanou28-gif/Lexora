@@ -7,19 +7,19 @@ import 'package:wordly/src/feature/game/domain/model/keyboard.dart';
 import 'package:wordly/src/feature/game/domain/model/letter_info.dart';
 import 'package:wordly/src/feature/settings/settings.dart';
 
-class const KeyboardByLanguage({super.key}) extends StatelessWidget {
+class const KeyboardByLanguage({final double keyHeight = 58, super.key}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SettingsBuilder(
       builder: (context, settings) {
         final Locale dictionary = settings.dictionary;
         return SizedBox(
-          height: 200,
+          height: keyHeight * 3 + 16,
           child: switch (dictionary.languageCode) {
-            'en' => KeyboardEn(generalSettings: settings.general, dictionary: dictionary),
-            'ru' => KeyboardRu(generalSettings: settings.general, dictionary: dictionary),
-            'fr' => KeyboardFr(generalSettings: settings.general, dictionary: dictionary),
-            'fon' => KeyboardFon(generalSettings: settings.general, dictionary: dictionary),
+            'en' => KeyboardEn(generalSettings: settings.general, dictionary: dictionary, keyHeight: keyHeight),
+            'ru' => KeyboardRu(generalSettings: settings.general, dictionary: dictionary, keyHeight: keyHeight),
+            'fr' => KeyboardFr(generalSettings: settings.general, dictionary: dictionary, keyHeight: keyHeight),
+            'fon' => KeyboardFon(generalSettings: settings.general, dictionary: dictionary, keyHeight: keyHeight),
             _ => const SizedBox.shrink(),
           },
         );
@@ -28,8 +28,12 @@ class const KeyboardByLanguage({super.key}) extends StatelessWidget {
   }
 }
 
-class const KeyboardEn({required final GeneralSettings generalSettings, required final Locale dictionary, super.key})
-    extends StatelessWidget {
+class const KeyboardEn({
+  required final GeneralSettings generalSettings,
+  required final Locale dictionary,
+  required final double keyHeight,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Map<String, LetterStatus> statuses = context.watch<GameBloc>().state.statuses;
@@ -47,6 +51,7 @@ class const KeyboardEn({required final GeneralSettings generalSettings, required
                     : LetterStatus.unknown,
                 generalSettings: generalSettings,
                 dictionary: dictionary,
+                keyHeight: keyHeight,
               ),
           ],
         ),
@@ -62,6 +67,7 @@ class const KeyboardEn({required final GeneralSettings generalSettings, required
                     : LetterStatus.unknown,
                 generalSettings: generalSettings,
                 dictionary: dictionary,
+                keyHeight: keyHeight,
               ),
           ],
         ),
@@ -69,7 +75,7 @@ class const KeyboardEn({required final GeneralSettings generalSettings, required
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            EnterKey(generalSettings: generalSettings, dictionary: dictionary),
+            EnterKey(generalSettings: generalSettings, dictionary: dictionary, keyHeight: keyHeight),
             for (var i = 0; i < KeyboardList.enKeyboard.$3.length; i++)
               KeyboardKey(
                 letter: KeyboardList.enKeyboard.$3[i],
@@ -78,8 +84,9 @@ class const KeyboardEn({required final GeneralSettings generalSettings, required
                     : LetterStatus.unknown,
                 generalSettings: generalSettings,
                 dictionary: dictionary,
+                keyHeight: keyHeight,
               ),
-            DeleteKey(generalSettings: generalSettings, dictionary: dictionary),
+            DeleteKey(generalSettings: generalSettings, dictionary: dictionary, keyHeight: keyHeight),
           ],
         ),
         const SizedBox(height: 8),
@@ -88,8 +95,12 @@ class const KeyboardEn({required final GeneralSettings generalSettings, required
   }
 }
 
-class const KeyboardRu({required final GeneralSettings generalSettings, required final Locale dictionary, super.key})
-    extends StatelessWidget {
+class const KeyboardRu({
+  required final GeneralSettings generalSettings,
+  required final Locale dictionary,
+  required final double keyHeight,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Map<String, LetterStatus> statuses = context.watch<GameBloc>().state.statuses;
@@ -107,6 +118,7 @@ class const KeyboardRu({required final GeneralSettings generalSettings, required
                     : LetterStatus.unknown,
                 generalSettings: generalSettings,
                 dictionary: dictionary,
+                keyHeight: keyHeight,
               ),
           ],
         ),
@@ -122,6 +134,7 @@ class const KeyboardRu({required final GeneralSettings generalSettings, required
                     : LetterStatus.unknown,
                 generalSettings: generalSettings,
                 dictionary: dictionary,
+                keyHeight: keyHeight,
               ),
           ],
         ),
@@ -129,7 +142,7 @@ class const KeyboardRu({required final GeneralSettings generalSettings, required
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            EnterKey(generalSettings: generalSettings, dictionary: dictionary),
+            EnterKey(generalSettings: generalSettings, dictionary: dictionary, keyHeight: keyHeight),
             for (var i = 0; i < KeyboardList.ruKeyboard.$3.length; i++)
               KeyboardKey(
                 letter: KeyboardList.ruKeyboard.$3[i],
@@ -138,8 +151,9 @@ class const KeyboardRu({required final GeneralSettings generalSettings, required
                     : LetterStatus.unknown,
                 generalSettings: generalSettings,
                 dictionary: dictionary,
+                keyHeight: keyHeight,
               ),
-            DeleteKey(generalSettings: generalSettings, dictionary: dictionary),
+            DeleteKey(generalSettings: generalSettings, dictionary: dictionary, keyHeight: keyHeight),
           ],
         ),
         const SizedBox(height: 8),
@@ -148,8 +162,12 @@ class const KeyboardRu({required final GeneralSettings generalSettings, required
   }
 }
 
-class const KeyboardFr({required final GeneralSettings generalSettings, required final Locale dictionary, super.key})
-    extends StatelessWidget {
+class const KeyboardFr({
+  required final GeneralSettings generalSettings,
+  required final Locale dictionary,
+  required final double keyHeight,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Map<String, LetterStatus> statuses = context.watch<GameBloc>().state.statuses;
@@ -167,6 +185,7 @@ class const KeyboardFr({required final GeneralSettings generalSettings, required
                     : LetterStatus.unknown,
                 generalSettings: generalSettings,
                 dictionary: dictionary,
+                keyHeight: keyHeight,
               ),
           ],
         ),
@@ -182,6 +201,7 @@ class const KeyboardFr({required final GeneralSettings generalSettings, required
                     : LetterStatus.unknown,
                 generalSettings: generalSettings,
                 dictionary: dictionary,
+                keyHeight: keyHeight,
               ),
           ],
         ),
@@ -189,7 +209,7 @@ class const KeyboardFr({required final GeneralSettings generalSettings, required
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            EnterKey(generalSettings: generalSettings, dictionary: dictionary),
+            EnterKey(generalSettings: generalSettings, dictionary: dictionary, keyHeight: keyHeight),
             for (var i = 0; i < KeyboardList.frKeyboard.$3.length; i++)
               KeyboardKey(
                 letter: KeyboardList.frKeyboard.$3[i],
@@ -198,8 +218,9 @@ class const KeyboardFr({required final GeneralSettings generalSettings, required
                     : LetterStatus.unknown,
                 generalSettings: generalSettings,
                 dictionary: dictionary,
+                keyHeight: keyHeight,
               ),
-            DeleteKey(generalSettings: generalSettings, dictionary: dictionary),
+            DeleteKey(generalSettings: generalSettings, dictionary: dictionary, keyHeight: keyHeight),
           ],
         ),
         const SizedBox(height: 8),
@@ -208,8 +229,12 @@ class const KeyboardFr({required final GeneralSettings generalSettings, required
   }
 }
 
-class const KeyboardFon({required final GeneralSettings generalSettings, required final Locale dictionary, super.key})
-    extends StatelessWidget {
+class const KeyboardFon({
+  required final GeneralSettings generalSettings,
+  required final Locale dictionary,
+  required final double keyHeight,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Map<String, LetterStatus> statuses = context.watch<GameBloc>().state.statuses;
@@ -227,6 +252,7 @@ class const KeyboardFon({required final GeneralSettings generalSettings, require
                     : LetterStatus.unknown,
                 generalSettings: generalSettings,
                 dictionary: dictionary,
+                keyHeight: keyHeight,
               ),
           ],
         ),
@@ -242,6 +268,7 @@ class const KeyboardFon({required final GeneralSettings generalSettings, require
                     : LetterStatus.unknown,
                 generalSettings: generalSettings,
                 dictionary: dictionary,
+                keyHeight: keyHeight,
               ),
           ],
         ),
@@ -249,7 +276,7 @@ class const KeyboardFon({required final GeneralSettings generalSettings, require
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            EnterKey(generalSettings: generalSettings, dictionary: dictionary),
+            EnterKey(generalSettings: generalSettings, dictionary: dictionary, keyHeight: keyHeight),
             for (var i = 0; i < KeyboardList.fonKeyboard.$3.length; i++)
               KeyboardKey(
                 letter: KeyboardList.fonKeyboard.$3[i],
@@ -258,8 +285,9 @@ class const KeyboardFon({required final GeneralSettings generalSettings, require
                     : LetterStatus.unknown,
                 generalSettings: generalSettings,
                 dictionary: dictionary,
+                keyHeight: keyHeight,
               ),
-            DeleteKey(generalSettings: generalSettings, dictionary: dictionary),
+            DeleteKey(generalSettings: generalSettings, dictionary: dictionary, keyHeight: keyHeight),
           ],
         ),
         const SizedBox(height: 8),
@@ -268,14 +296,18 @@ class const KeyboardFon({required final GeneralSettings generalSettings, require
   }
 }
 
-class const EnterKey({required final GeneralSettings generalSettings, required final Locale dictionary, super.key})
-    extends StatelessWidget {
+class const EnterKey({
+  required final GeneralSettings generalSettings,
+  required final Locale dictionary,
+  required final double keyHeight,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 3),
       child: SizedBox(
-        height: 58,
+        height: keyHeight,
         width: dictionary.width(context) * 1.65,
         child: Material(
           color: LetterStatus.unknown.cellColor(context, generalSettings),
@@ -298,14 +330,18 @@ class const EnterKey({required final GeneralSettings generalSettings, required f
   }
 }
 
-class const DeleteKey({required final GeneralSettings generalSettings, required final Locale dictionary, super.key})
-    extends StatelessWidget {
+class const DeleteKey({
+  required final GeneralSettings generalSettings,
+  required final Locale dictionary,
+  required final double keyHeight,
+  super.key,
+}) extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 3),
       child: SizedBox(
-        height: 58,
+        height: keyHeight,
         width: dictionary.width(context) * 1.65,
         child: Material(
           color: LetterStatus.unknown.cellColor(context, generalSettings),
@@ -337,6 +373,7 @@ class const KeyboardKey({
   required final LetterStatus status,
   required final GeneralSettings generalSettings,
   required final Locale dictionary,
+  final double keyHeight = 58,
   super.key,
 }) extends StatelessWidget {
   @override
@@ -344,7 +381,7 @@ class const KeyboardKey({
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 3),
       child: SizedBox(
-        height: 58,
+        height: keyHeight,
         width: dictionary.width(context),
         child: Material(
           color: status.cellColor(context, generalSettings),
