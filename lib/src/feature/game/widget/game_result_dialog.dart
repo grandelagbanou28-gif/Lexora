@@ -7,6 +7,7 @@ import 'package:wordly/src/core/resources/resources.dart';
 import 'package:wordly/src/feature/game/bloc/game_bloc.dart';
 import 'package:wordly/src/feature/game/domain/model/game_mode.dart';
 import 'package:wordly/src/feature/game/domain/model/letter_info.dart';
+import 'package:wordly/src/feature/game/widget/confetti_burst.dart';
 import 'package:wordly/src/feature/game/widget/countdown_timer.dart';
 import 'package:wordly/src/feature/settings/settings.dart';
 
@@ -19,19 +20,24 @@ Future<void> showGameResultDialog(
   required VoidCallback nextLevelPressed,
   String? shareString,
   VoidCallback? onTimerEnd,
-}) => showDialog(
-  context: context,
-  barrierDismissible: mode == GameMode.daily,
-  builder: (context) => DialogContent(
-    secretWord: secretWord,
-    meaning: meaning,
-    isWin: isWin,
-    mode: mode,
-    shareString: shareString,
-    onTimerEnd: onTimerEnd,
-    nextLevelPressed: nextLevelPressed,
-  ),
-);
+}) async {
+  if (isWin) {
+    showConfettiBurst(context, particles: mode == GameMode.lvl ? 150 : 90);
+  }
+  return await showDialog(
+    context: context,
+    barrierDismissible: mode == GameMode.daily,
+    builder: (context) => DialogContent(
+      secretWord: secretWord,
+      meaning: meaning,
+      isWin: isWin,
+      mode: mode,
+      shareString: shareString,
+      onTimerEnd: onTimerEnd,
+      nextLevelPressed: nextLevelPressed,
+    ),
+  );
+}
 
 class const DialogContent({
   required final String secretWord,
