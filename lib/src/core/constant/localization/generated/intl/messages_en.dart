@@ -366,5 +366,59 @@ class MessageLookup extends MessageLookupByLibrary {
     "themeSunset": MessageLookupByLibrary.simpleMessage(
       "Sunset",
     ),
+    "bossBonus": MessageLookupByLibrary.simpleMessage(
+      "Boss bonus",
+    ),
+    "cancel": MessageLookupByLibrary.simpleMessage(
+      "Cancel",
+    ),
+    "dailyChallengeEcoWin": MessageLookupByLibrary.simpleMessage(
+      "Win with no eliminated letters",
+    ),
+    "dailyChallengeNoHint": MessageLookupByLibrary.simpleMessage(
+      "Win without using any hint",
+    ),
+    "friendMode": MessageLookupByLibrary.simpleMessage(
+      "Friend challenge",
+    ),
+    "hardMode": MessageLookupByLibrary.simpleMessage(
+      "Hard mode",
+    ),
+    "hardModeDesc": MessageLookupByLibrary.simpleMessage(
+      "No hints, bigger XP rewards",
+    ),
+    "peekRow": MessageLookupByLibrary.simpleMessage(
+      "Reveal the whole row",
+    ),
+    "playAgain": MessageLookupByLibrary.simpleMessage(
+      "Play again",
+    ),
+    "practiceMode": MessageLookupByLibrary.simpleMessage(
+      "Practice",
+    ),
+    "repairStreak": MessageLookupByLibrary.simpleMessage(
+      "Repair your streak",
+    ),
+    "repairStreakDone": MessageLookupByLibrary.simpleMessage(
+      "Streak restored!",
+    ),
+    "seasonPass": MessageLookupByLibrary.simpleMessage(
+      "Weekly pass",
+    ),
+    "seasonPassBought": MessageLookupByLibrary.simpleMessage(
+      "Pass activated!",
+    ),
+    "seasonPassClaim": MessageLookupByLibrary.simpleMessage(
+      "Claim today’s reward",
+    ),
+    "seasonPassDaily": MessageLookupByLibrary.simpleMessage(
+      "Day",
+    ),
+    "seasonPassFinished": MessageLookupByLibrary.simpleMessage(
+      "Pass finished",
+    ),
+    "seasonPassSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Daily rewards for 7 days",
+    ),
   };
 }

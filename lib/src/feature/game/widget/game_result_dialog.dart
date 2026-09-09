@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show Clipboard, ClipboardData;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:wordly/src/core/common/common.dart';
 import 'package:wordly/src/core/resources/resources.dart';
+import 'package:wordly/src/feature/game/bloc/game_bloc.dart';
 import 'package:wordly/src/feature/game/domain/model/game_mode.dart';
 import 'package:wordly/src/feature/game/domain/model/letter_info.dart';
 import 'package:wordly/src/feature/game/widget/countdown_timer.dart';
@@ -91,6 +93,7 @@ class const DialogContent({
                   onEnd: onTimerEnd,
                 ),
                 GameMode.lvl => _LevelContent(resultColor: backgroundColor, nextLevelPressed: nextLevelPressed),
+                GameMode.practice || GameMode.friend => _RetryContent(resultColor: backgroundColor),
               },
             ],
           ),
@@ -148,6 +151,25 @@ class const _LevelContent({required final Color resultColor, required final Void
       onPressed: nextLevelPressed,
       child: Text(
         context.l10n.nextLevel,
+        style: TextStyle(color: resultColor, fontSize: 16, fontWeight: FontWeight.w500),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+}
+
+class const _RetryContent({required final Color resultColor}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+      onPressed: () {
+        final GameBloc bloc = context.read<GameBloc>();
+        bloc.add(GameEvent.resetBoard(bloc.state.gameMode));
+        Navigator.of(context).pop();
+      },
+      child: Text(
+        context.l10n.playAgain,
         style: TextStyle(color: resultColor, fontSize: 16, fontWeight: FontWeight.w500),
         textAlign: TextAlign.center,
       ),

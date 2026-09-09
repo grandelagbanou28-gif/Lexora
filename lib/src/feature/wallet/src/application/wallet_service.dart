@@ -37,6 +37,65 @@ final class WalletService({required final WalletRepository _repository}) {
     return _update(_current.copyWith(tokens: _current.tokens - amount, hintsUsed: _current.hintsUsed + 1));
   }
 
+  Future<bool> recordReveal(DateTime now) {
+    final String key = _dateKey(now);
+    return _update(
+      _current.copyWith(revealsPerDay: Map.of(_current.revealsPerDay)..[key] = (_current.revealsPerDay[key] ?? 0) + 1),
+    );
+  }
+
+  Future<bool> recordEliminate(DateTime now) {
+    final String key = _dateKey(now);
+    return _update(
+      _current.copyWith(
+        eliminatesPerDay: Map.of(_current.eliminatesPerDay)..[key] = (_current.eliminatesPerDay[key] ?? 0) + 1,
+      ),
+    );
+  }
+
+  Future<bool> repairStreak(DateTime now) {
+    if (_current.tokens < 60 || _current.currentStreak != 0 || _current.maxStreak < 1) {
+      return Future.value(false);
+    }
+    final DateTime yesterday = now.subtract(const Duration(days: 1));
+    return _update(
+      _current.copyWith(tokens: _current.tokens - 60, currentStreak: 1, lastGameDateKey: _dateKey(yesterday)),
+    );
+  }
+
+  Future<bool> buySeasonPass(int price, {DateTime? now}) {
+    if (_current.seasonPassActive || _current.tokens < price) {
+      return Future.value(false);
+    }
+    final DateTime date = now ?? DateTime.now();
+    return _update(
+      _current.copyWith(
+        tokens: _current.tokens - price,
+        seasonPassActive: true,
+        seasonPassStartKey: _dateKey(date),
+        seasonPassClaimedDays: const [],
+      ),
+    );
+  }
+
+  Future<int> claimSeasonPassReward(DateTime now) async {
+    if (!_current.seasonPassActive) {
+      return 0;
+    }
+    final int dayIndex = _current.seasonPassDayIndexAt(now);
+    if (dayIndex < 0 || dayIndex >= seasonPassRewards.length || _current.seasonPassClaimedDays.contains(dayIndex)) {
+      return 0;
+    }
+    final int reward = seasonPassRewards[dayIndex];
+    await _update(
+      _current.copyWith(
+        tokens: _current.tokens + reward,
+        seasonPassClaimedDays: [..._current.seasonPassClaimedDays, dayIndex],
+      ),
+    );
+    return reward;
+  }
+
   Future<bool> purchaseItem(String itemId, int price) {
     if (_current.tokens < price || _current.ownedItems.contains(itemId)) {
       return Future.value(false);
@@ -56,7 +115,7 @@ final class WalletService({required final WalletRepository _repository}) {
     if (_current.lastChestDateKey == key) {
       return 0;
     }
-    final int reward = 5 + _stableHash(key) % 21;
+    final int reward = dailyChestReward(now);
     await _update(_current.copyWith(tokens: _current.tokens + reward, lastChestDateKey: key));
     return reward;
   }
@@ -80,6 +139,8 @@ final class WalletService({required final WalletRepository _repository}) {
     required int attempt,
     required DateTime now,
     required String dictionary,
+    bool hardMode = false,
+    int bonus = 0,
   }) async {
     final WalletState previous = _current;
     final String key = _dateKey(now);
@@ -126,9 +187,18 @@ final class WalletService({required final WalletRepository _repository}) {
         if (isWin) {
           levelsCompleted++;
         }
+      case GameMode.practice:
+      case GameMode.friend:
+        if (mode == GameMode.friend) {
+          tokenDelta = isWin ? 20 : 4;
+          xpDelta = isWin ? 40 : 10;
+        }
+    }
+    if (hardMode && (mode == GameMode.daily || mode == GameMode.lvl)) {
+      xpDelta = (xpDelta * 1.5).round();
     }
 
-    tokens += tokenDelta;
+    tokens += tokenDelta + bonus;
     final int updatedXp = xp + xpDelta;
     final int previousLevel = previous.playerLevel;
     final bool leveledUp = (1 + updatedXp ~/ WalletState.xpPerLevel) > previousLevel;
@@ -165,6 +235,9 @@ final class WalletService({required final WalletRepository _repository}) {
           DailyChallengeId.word => true,
           DailyChallengeId.fast => isWin && attempt <= 4,
           DailyChallengeId.streak => currentStreak >= 3,
+          DailyChallengeId.noHint =>
+            isWin && (previous.revealsPerDay[key] ?? 0) == 0 && (previous.eliminatesPerDay[key] ?? 0) == 0,
+          DailyChallengeId.ecoWin => isWin && (previous.eliminatesPerDay[key] ?? 0) == 0,
         };
         if (completedNow) {
           done.add(challenge.id.name);
@@ -195,6 +268,7 @@ final class WalletService({required final WalletRepository _repository}) {
       leveledUp: leveledUp,
       achievements: unlocked,
       challenges: completed,
+      bonus: bonus,
     );
   }
 
@@ -258,3 +332,16 @@ int leagueXpTier(int xp) => xp < 100
 
 /// Weekly league bonus rewarded for a finished week at [xp].
 int leagueBonusFor(int xp) => leagueXpTier(xp) * 20;
+
+/// Deterministic daily treasure reward; doubled on weekends.
+int dailyChestReward(DateTime now) {
+  final int base = 5 + _stableHash(_dateKey(now)) % 21;
+  final bool isWeekend = now.weekday == DateTime.saturday || now.weekday == DateTime.sunday;
+  return isWeekend ? base * 2 : base;
+}
+
+/// Cost of the weekly pass.
+const int seasonPassPrice = 100;
+
+/// Daily rewards of the weekly pass (index = day after purchase).
+const List<int> seasonPassRewards = [15, 25, 40, 60, 85, 120, 180];

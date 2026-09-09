@@ -6,6 +6,8 @@ sealed class GameEvent with _$GameEvent {
 
   const factory changeGameMode(GameMode gameMode) = _GameChangeGameMode;
 
+  const factory startFriendGame(String code) = _GameStartFriendGame;
+
   const factory resetBoard(GameMode gameMode) = _GameResetBoard;
 
   const factory letterPressed(String key) = _GameLetterPressed;
@@ -23,4 +25,6 @@ sealed class GameEvent with _$GameEvent {
   const factory revealLetterPressed() = _GameRevealLetterPressed;
 
   const factory eliminateLettersPressed() = _GameEliminateLettersPressed;
+
+  const factory peekRowPressed() = _GamePeekRowPressed;
 }

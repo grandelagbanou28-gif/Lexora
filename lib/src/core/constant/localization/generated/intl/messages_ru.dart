@@ -368,5 +368,59 @@ class MessageLookup extends MessageLookupByLibrary {
     "themeSunset": MessageLookupByLibrary.simpleMessage(
       "Закат",
     ),
+    "bossBonus": MessageLookupByLibrary.simpleMessage(
+      "Бонус босса",
+    ),
+    "cancel": MessageLookupByLibrary.simpleMessage(
+      "Отмена",
+    ),
+    "dailyChallengeEcoWin": MessageLookupByLibrary.simpleMessage(
+      "Победить без удаления букв",
+    ),
+    "dailyChallengeNoHint": MessageLookupByLibrary.simpleMessage(
+      "Победить без подсказок",
+    ),
+    "friendMode": MessageLookupByLibrary.simpleMessage(
+      "Вызов друга",
+    ),
+    "hardMode": MessageLookupByLibrary.simpleMessage(
+      "Сложный режим",
+    ),
+    "hardModeDesc": MessageLookupByLibrary.simpleMessage(
+      "Без подсказок, больше опыта",
+    ),
+    "peekRow": MessageLookupByLibrary.simpleMessage(
+      "Открыть всю строку",
+    ),
+    "playAgain": MessageLookupByLibrary.simpleMessage(
+      "Сыграть снова",
+    ),
+    "practiceMode": MessageLookupByLibrary.simpleMessage(
+      "Тренировка",
+    ),
+    "repairStreak": MessageLookupByLibrary.simpleMessage(
+      "Восстановить серию",
+    ),
+    "repairStreakDone": MessageLookupByLibrary.simpleMessage(
+      "Серия восстановлена!",
+    ),
+    "seasonPass": MessageLookupByLibrary.simpleMessage(
+      "Недельный абонемент",
+    ),
+    "seasonPassBought": MessageLookupByLibrary.simpleMessage(
+      "Абонемент активирован!",
+    ),
+    "seasonPassClaim": MessageLookupByLibrary.simpleMessage(
+      "Забрать награду дня",
+    ),
+    "seasonPassDaily": MessageLookupByLibrary.simpleMessage(
+      "День",
+    ),
+    "seasonPassFinished": MessageLookupByLibrary.simpleMessage(
+      "Абонемент завершён",
+    ),
+    "seasonPassSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Награда каждый день в течение 7 дней",
+    ),
   };
 }

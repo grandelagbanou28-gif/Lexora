@@ -19,12 +19,23 @@ final class const WalletState({
   final String? lastChestDateKey,
   final Map<String, int> weeklyXp = const {},
   final List<String> leagueBonusClaimed = const [],
+  final Map<String, int> revealsPerDay = const {},
+  final Map<String, int> eliminatesPerDay = const {},
+  final bool seasonPassActive = false,
+  final String? seasonPassStartKey,
+  final List<int> seasonPassClaimedDays = const [],
 }) {
   static const int xpPerLevel = 100;
 
   int get playerLevel => 1 + xp ~/ xpPerLevel;
 
   int get levelProgress => xp % xpPerLevel;
+
+  int get seasonPassDayIndex => seasonPassStartKey == null ? -1 : _dateKeyDiff(seasonPassStartKey!, DateTime.now());
+
+  int seasonPassDayIndexAt(DateTime now) => seasonPassStartKey == null ? -1 : _dateKeyDiff(seasonPassStartKey!, now);
+
+  bool get seasonPassFinished => seasonPassActive && seasonPassDayIndex >= 7;
 
   WalletState copyWith({
     int? tokens,
@@ -43,6 +54,11 @@ final class const WalletState({
     String? lastChestDateKey,
     Map<String, int>? weeklyXp,
     List<String>? leagueBonusClaimed,
+    Map<String, int>? revealsPerDay,
+    Map<String, int>? eliminatesPerDay,
+    bool? seasonPassActive,
+    String? seasonPassStartKey,
+    List<int>? seasonPassClaimedDays,
   }) => WalletState(
     tokens: tokens ?? this.tokens,
     xp: xp ?? this.xp,
@@ -60,7 +76,21 @@ final class const WalletState({
     lastChestDateKey: lastChestDateKey ?? this.lastChestDateKey,
     weeklyXp: weeklyXp ?? this.weeklyXp,
     leagueBonusClaimed: leagueBonusClaimed ?? this.leagueBonusClaimed,
+    revealsPerDay: revealsPerDay ?? this.revealsPerDay,
+    eliminatesPerDay: eliminatesPerDay ?? this.eliminatesPerDay,
+    seasonPassActive: seasonPassActive ?? this.seasonPassActive,
+    seasonPassStartKey: seasonPassStartKey ?? this.seasonPassStartKey,
+    seasonPassClaimedDays: seasonPassClaimedDays ?? this.seasonPassClaimedDays,
   );
+}
+
+int _dateKeyDiff(String startKey, DateTime now) {
+  final List<int> parts = startKey.split('-').map(int.parse).toList(growable: false);
+  final start = DateTime.utc(parts[0], parts[1], parts[2]);
+  final nowKey = '${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}';
+  final List<int> todayParts = nowKey.split('-').map(int.parse).toList(growable: false);
+  final today = DateTime.utc(todayParts[0], todayParts[1], todayParts[2]);
+  return today.difference(start).inDays;
 }
 
 final class const WalletCodec() extends JsonMapCodec<WalletState> {
@@ -79,6 +109,16 @@ final class const WalletCodec() extends JsonMapCodec<WalletState> {
         key: (value! as num).toInt(),
     };
     final List<String> leagueBonusClaimed = (input['leagueBonusClaimed'] as List<Object?>?)?.cast<String>() ?? const [];
+    final Map<String, int> revealsPerDay = {
+      for (final MapEntry(:key, :value) in (input['revealsPerDay'] as Map<String, Object?>? ?? const {}).entries)
+        key: (value! as num).toInt(),
+    };
+    final Map<String, int> eliminatesPerDay = {
+      for (final MapEntry(:key, :value) in (input['eliminatesPerDay'] as Map<String, Object?>? ?? const {}).entries)
+        key: (value! as num).toInt(),
+    };
+    final List<int> seasonPassClaimedDays =
+        (input['seasonPassClaimedDays'] as List<Object?>?)?.map((e) => (e! as num).toInt()).toList() ?? const [];
     return WalletState(
       tokens: input['tokens'] as int? ?? 0,
       xp: input['xp'] as int? ?? 0,
@@ -96,6 +136,11 @@ final class const WalletCodec() extends JsonMapCodec<WalletState> {
       lastChestDateKey: input['lastChestDateKey'] as String?,
       weeklyXp: weeklyXp,
       leagueBonusClaimed: leagueBonusClaimed,
+      revealsPerDay: revealsPerDay,
+      eliminatesPerDay: eliminatesPerDay,
+      seasonPassActive: input['seasonPassActive'] as bool? ?? false,
+      seasonPassStartKey: input['seasonPassStartKey'] as String?,
+      seasonPassClaimedDays: seasonPassClaimedDays,
     );
   }
 
@@ -117,5 +162,10 @@ final class const WalletCodec() extends JsonMapCodec<WalletState> {
     'lastChestDateKey': input.lastChestDateKey,
     'weeklyXp': input.weeklyXp,
     'leagueBonusClaimed': input.leagueBonusClaimed,
+    'revealsPerDay': input.revealsPerDay,
+    'eliminatesPerDay': input.eliminatesPerDay,
+    'seasonPassActive': input.seasonPassActive,
+    'seasonPassStartKey': input.seasonPassStartKey,
+    'seasonPassClaimedDays': input.seasonPassClaimedDays,
   };
 }

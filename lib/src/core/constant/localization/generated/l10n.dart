@@ -1287,6 +1287,186 @@ class GeneratedLocalizations {
       args: [],
     );
   }
+
+  /// `Boss bonus`
+  String get bossBonus {
+    return Intl.message(
+      'Boss bonus',
+      name: 'bossBonus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Win with no eliminated letters`
+  String get dailyChallengeEcoWin {
+    return Intl.message(
+      'Win with no eliminated letters',
+      name: 'dailyChallengeEcoWin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Win without using any hint`
+  String get dailyChallengeNoHint {
+    return Intl.message(
+      'Win without using any hint',
+      name: 'dailyChallengeNoHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Friend challenge`
+  String get friendMode {
+    return Intl.message(
+      'Friend challenge',
+      name: 'friendMode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hard mode`
+  String get hardMode {
+    return Intl.message(
+      'Hard mode',
+      name: 'hardMode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No hints, bigger XP rewards`
+  String get hardModeDesc {
+    return Intl.message(
+      'No hints, bigger XP rewards',
+      name: 'hardModeDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reveal the whole row`
+  String get peekRow {
+    return Intl.message(
+      'Reveal the whole row',
+      name: 'peekRow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Play again`
+  String get playAgain {
+    return Intl.message(
+      'Play again',
+      name: 'playAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Practice`
+  String get practiceMode {
+    return Intl.message(
+      'Practice',
+      name: 'practiceMode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Repair your streak`
+  String get repairStreak {
+    return Intl.message(
+      'Repair your streak',
+      name: 'repairStreak',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Streak restored!`
+  String get repairStreakDone {
+    return Intl.message(
+      'Streak restored!',
+      name: 'repairStreakDone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Weekly pass`
+  String get seasonPass {
+    return Intl.message(
+      'Weekly pass',
+      name: 'seasonPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pass activated!`
+  String get seasonPassBought {
+    return Intl.message(
+      'Pass activated!',
+      name: 'seasonPassBought',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Claim today’s reward`
+  String get seasonPassClaim {
+    return Intl.message(
+      'Claim today’s reward',
+      name: 'seasonPassClaim',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Day`
+  String get seasonPassDaily {
+    return Intl.message(
+      'Day',
+      name: 'seasonPassDaily',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pass finished`
+  String get seasonPassFinished {
+    return Intl.message(
+      'Pass finished',
+      name: 'seasonPassFinished',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily rewards for 7 days`
+  String get seasonPassSubtitle {
+    return Intl.message(
+      'Daily rewards for 7 days',
+      name: 'seasonPassSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate

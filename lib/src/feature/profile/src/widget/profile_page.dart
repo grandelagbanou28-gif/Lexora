@@ -35,6 +35,12 @@ class const ProfilePage({super.key}) extends StatelessWidget {
                     _BalanceCard(state: state),
                     const SizedBox(height: 16),
                     _ChestCard(state: state),
+                    if (state.currentStreak == 0 && state.maxStreak >= 1) ...[
+                      const SizedBox(height: 16),
+                      _RepairStreakCard(state: state),
+                    ],
+                    const SizedBox(height: 16),
+                    _SeasonPassCard(state: state),
                     const SizedBox(height: 24),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -183,6 +189,178 @@ class const _ChestCard({required final WalletState state}) extends StatelessWidg
                 icon: const Icon(Icons.card_giftcard),
                 label: Text(context.l10n.chestOpen),
               ),
+      ),
+    );
+  }
+}
+
+class const _RepairStreakCard({required final WalletState state}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final WalletService wallet = WalletScope.of(context);
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 12),
+      child: ListTile(
+        leading: const Icon(Icons.local_fire_department_outlined, size: 36),
+        title: Text(context.l10n.repairStreak, style: const TextStyle(fontWeight: FontWeight.w700)),
+        trailing: FilledButton.tonalIcon(
+          onPressed: state.tokens < 60
+              ? null
+              : () async {
+                  final bool repaired = await wallet.repairStreak(DateTime.now());
+                  if (!context.mounted) {
+                    return;
+                  }
+                  if (repaired) {
+                    context.dependencies.soundService.coins();
+                    ScaffoldMessenger.of(context)
+                      ..hideCurrentSnackBar()
+                      ..showSnackBar(SnackBar(content: Text(context.l10n.repairStreakDone)));
+                  }
+                },
+          icon: const Icon(Icons.local_fire_department, size: 18),
+          label: const Row(mainAxisSize: MainAxisSize.min, children: [Text('60'), SizedBox(width: 2), Coin(size: 16)]),
+        ),
+      ),
+    );
+  }
+}
+
+class const _SeasonPassCard({required final WalletState state}) extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final WalletService wallet = WalletScope.of(context);
+    if (!state.seasonPassActive) {
+      return Card(
+        margin: const EdgeInsets.symmetric(horizontal: 12),
+        child: ListTile(
+          leading: const Icon(Icons.workspace_premium_outlined, size: 36),
+          title: Text(context.l10n.seasonPass, style: const TextStyle(fontWeight: FontWeight.w700)),
+          subtitle: Text(context.l10n.seasonPassSubtitle),
+          trailing: FilledButton.tonalIcon(
+            onPressed: state.tokens < seasonPassPrice
+                ? null
+                : () async {
+                    final bool bought = await wallet.buySeasonPass(seasonPassPrice);
+                    if (!context.mounted) {
+                      return;
+                    }
+                    if (bought) {
+                      context.dependencies.soundService.tokens();
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(SnackBar(content: Text(context.l10n.seasonPassBought)));
+                    }
+                  },
+            icon: const Icon(Icons.workspace_premium, size: 18),
+            label: const Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [Text('$seasonPassPrice'), SizedBox(width: 2), Coin(size: 16)],
+            ),
+          ),
+        ),
+      );
+    }
+    final int phase = state.seasonPassDayIndex;
+    final bool finished = state.seasonPassFinished;
+    final int claimedCount = state.seasonPassClaimedDays.length;
+    final int current = finished ? 7 : phase + 1;
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 12),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.workspace_premium, size: 32),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    finished ? context.l10n.seasonPassFinished : context.l10n.seasonPass,
+                    style: const TextStyle(fontWeight: FontWeight.w700),
+                  ),
+                ),
+                Text('$claimedCount/7', style: const TextStyle(fontWeight: FontWeight.w600)),
+              ],
+            ),
+            const SizedBox(height: 12),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: LinearProgressIndicator(
+                value: current / 7,
+                minHeight: 8,
+                backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [for (var day = 0; day < seasonPassRewards.length; day++) _dayChip(context, day, state)],
+            ),
+            const SizedBox(height: 12),
+            if (!finished && !state.seasonPassClaimedDays.contains(phase))
+              FilledButton.icon(
+                onPressed: () async {
+                  final int reward = await wallet.claimSeasonPassReward(DateTime.now());
+                  if (!context.mounted) {
+                    return;
+                  }
+                  if (reward > 0) {
+                    context.dependencies.soundService.tokens();
+                    ScaffoldMessenger.of(context)
+                      ..hideCurrentSnackBar()
+                      ..showSnackBar(
+                        SnackBar(
+                          content: Row(
+                            children: [Text('${context.l10n.seasonPassClaim} +$reward'), const Coin(size: 18)],
+                          ),
+                        ),
+                      );
+                  }
+                },
+                icon: const Icon(Icons.card_giftcard),
+                label: Text(context.l10n.seasonPassClaim),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _dayChip(BuildContext context, int day, WalletState state) {
+    final bool active = !state.seasonPassFinished && day <= state.seasonPassDayIndex;
+    final bool claimed = state.seasonPassClaimedDays.contains(day);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: claimed
+            ? Theme.of(context).colorScheme.primaryContainer
+            : Theme.of(context).colorScheme.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            '${day + 1}',
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              color: active ? Theme.of(context).colorScheme.primary : null,
+            ),
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Coin(size: 12),
+              const SizedBox(width: 2),
+              Text('${seasonPassRewards[day]}', style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600)),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -347,6 +525,8 @@ String _challengeTitle(BuildContext context, DailyChallengeId id) => switch (id)
   DailyChallengeId.word => context.l10n.dailyChallengeWord,
   DailyChallengeId.fast => context.l10n.dailyChallengeFast,
   DailyChallengeId.streak => context.l10n.dailyChallengeStreak,
+  DailyChallengeId.noHint => context.l10n.dailyChallengeNoHint,
+  DailyChallengeId.ecoWin => context.l10n.dailyChallengeEcoWin,
 };
 
 String _achievementTitle(BuildContext context, AchievementId id) => switch (id) {

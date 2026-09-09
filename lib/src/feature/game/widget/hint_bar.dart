@@ -11,6 +11,7 @@ class const HintBar({super.key}) extends StatelessWidget {
   static const int wordLength = 5;
   static const int revealCost = 20;
   static const int eliminateCost = 30;
+  static const int peekCost = 50;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,7 @@ class const HintBar({super.key}) extends StatelessWidget {
     final bool revealEnabled = !state.isInputBlocked && placed < wordLength;
     final int remaining = _remainingLetters(state).length;
     final bool eliminateEnabled = !state.isInputBlocked && remaining > 0;
+    final bool peekEnabled = !state.isInputBlocked && placed < wordLength;
 
     return ValueListenableBuilder<WalletState>(
       valueListenable: wallet.notifier,
@@ -48,6 +50,14 @@ class const HintBar({super.key}) extends StatelessWidget {
                 icon: Icons.backspace_outlined,
                 enabled: eliminateEnabled,
                 onTap: () => _eliminateLetters(context),
+              ),
+              const SizedBox(width: 8),
+              _HintButton(
+                tooltip: context.l10n.peekRow,
+                costText: '$peekCost',
+                icon: Icons.visibility,
+                enabled: peekEnabled,
+                onTap: () => _peekRow(context),
               ),
             ],
           ),
@@ -78,6 +88,10 @@ class const HintBar({super.key}) extends StatelessWidget {
       return;
     }
     context.dependencies.soundService.tokens();
+    await wallet.recordReveal(DateTime.now());
+    if (!context.mounted) {
+      return;
+    }
     context.read<GameBloc>().add(const GameEvent.revealLetterPressed());
   }
 
@@ -92,7 +106,29 @@ class const HintBar({super.key}) extends StatelessWidget {
       return;
     }
     context.dependencies.soundService.tokens();
+    await wallet.recordEliminate(DateTime.now());
+    if (!context.mounted) {
+      return;
+    }
     context.read<GameBloc>().add(const GameEvent.eliminateLettersPressed());
+  }
+
+  Future<void> _peekRow(BuildContext context) async {
+    final WalletService wallet = WalletScope.of(context);
+    final bool spent = await wallet.useHint(peekCost);
+    if (!context.mounted) {
+      return;
+    }
+    if (!spent) {
+      _showNotEnoughTokens(context);
+      return;
+    }
+    context.dependencies.soundService.tokens();
+    await wallet.recordReveal(DateTime.now());
+    if (!context.mounted) {
+      return;
+    }
+    context.read<GameBloc>().add(const GameEvent.peekRowPressed());
   }
 
   void _showNotEnoughTokens(BuildContext context) {

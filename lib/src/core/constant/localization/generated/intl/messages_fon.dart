@@ -364,5 +364,59 @@ class MessageLookup extends MessageLookupByLibrary {
     "themeSunset": MessageLookupByLibrary.simpleMessage(
       "Hwlɛvínyínyí",
     ),
+    "bossBonus": MessageLookupByLibrary.simpleMessage(
+      "Bonus gántó",
+    ),
+    "cancel": MessageLookupByLibrary.simpleMessage(
+      "Ɖónù",
+    ),
+    "dailyChallengeEcoWin": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́ ma súsú wɛndagbé",
+    ),
+    "dailyChallengeNoHint": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́ ma zǎ alɔ́dodo",
+    ),
+    "friendMode": MessageLookupByLibrary.simpleMessage(
+      "Xwégbé hònnɔ̀",
+    ),
+    "hardMode": MessageLookupByLibrary.simpleMessage(
+      "Mɔdo kpɛɖé",
+    ),
+    "hardModeDesc": MessageLookupByLibrary.simpleMessage(
+      "Ma ɖó alɔ́dodo, XP daxó",
+    ),
+    "peekRow": MessageLookupByLibrary.simpleMessage(
+      "Sɔ́ hwèkpó kpó",
+    ),
+    "playAgain": MessageLookupByLibrary.simpleMessage(
+      "Dà azɔ̌ ɖevo",
+    ),
+    "practiceMode": MessageLookupByLibrary.simpleMessage(
+      "Nǔxòtɔ́",
+    ),
+    "repairStreak": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́ sɔsɔ́ ɖɔ̀n",
+    ),
+    "repairStreakDone": MessageLookupByLibrary.simpleMessage(
+      "Sɔsɔ́ ɖɔ̀n!",
+    ),
+    "seasonPass": MessageLookupByLibrary.simpleMessage(
+      "Paisse sɛ́nsɛ́n",
+    ),
+    "seasonPassBought": MessageLookupByLibrary.simpleMessage(
+      "Paisse ɔ hùn!",
+    ),
+    "seasonPassClaim": MessageLookupByLibrary.simpleMessage(
+      "Xɔ́ fɖé azǎn ɔ",
+    ),
+    "seasonPassDaily": MessageLookupByLibrary.simpleMessage(
+      "Azǎn",
+    ),
+    "seasonPassFinished": MessageLookupByLibrary.simpleMessage(
+      "Paisse ɔ kpé",
+    ),
+    "seasonPassSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Fɖé ɖò azǎn 7 lɛ",
+    ),
   };
 }

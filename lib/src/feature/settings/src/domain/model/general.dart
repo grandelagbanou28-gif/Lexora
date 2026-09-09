@@ -36,6 +36,7 @@ final class const GeneralSettings({
   final bool soundEnabled = true,
   final bool vibrationEnabled = true,
   final String? activeTheme,
+  final bool hardMode = false,
 }) {
   GeneralSettings copyWith({
     ThemeModeVO? themeMode,
@@ -45,6 +46,7 @@ final class const GeneralSettings({
     bool? soundEnabled,
     bool? vibrationEnabled,
     String? activeTheme,
+    bool? hardMode,
   }) => GeneralSettings(
     themeMode: themeMode ?? this.themeMode,
     colorMode: colorMode ?? this.colorMode,
@@ -53,6 +55,7 @@ final class const GeneralSettings({
     soundEnabled: soundEnabled ?? this.soundEnabled,
     vibrationEnabled: vibrationEnabled ?? this.vibrationEnabled,
     activeTheme: activeTheme ?? this.activeTheme,
+    hardMode: hardMode ?? this.hardMode,
   );
 
   Color get correctColor {
@@ -104,6 +107,7 @@ final class const GeneralSettings({
           soundEnabled == other.soundEnabled &&
           vibrationEnabled == other.vibrationEnabled &&
           activeTheme == other.activeTheme &&
+          hardMode == other.hardMode &&
           locale == other.locale &&
           (colorMode != ColorMode.other || _colorsEqual(otherColors, other.otherColors));
 
@@ -115,6 +119,7 @@ final class const GeneralSettings({
     soundEnabled,
     vibrationEnabled,
     activeTheme,
+    hardMode,
     colorMode == ColorMode.other ? _colorsHash(otherColors) : 0,
   );
 

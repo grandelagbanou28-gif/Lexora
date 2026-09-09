@@ -21,7 +21,7 @@ void main() {
     expect(service.current.hintsUsed, 0);
   });
 
-  test('daily win grants tokens, XP, word and fast challenges and first win achievement', () async {
+  test('daily win grants tokens, XP, word, fast, no-hint and eco challenges and first win achievement', () async {
     final WalletService service = await WalletService.create(repository: _FakeWalletRepository(const WalletState()));
     final GameReward reward = await service.processGameResult(
       mode: GameMode.daily,
@@ -35,7 +35,10 @@ void main() {
     expect(reward.xpDelta, 60);
     expect(reward.leveledUp, isFalse);
     expect(reward.achievements.map((a) => a.id), contains(AchievementId.firstWin));
-    expect(reward.challenges.map((c) => c.id), containsAll([DailyChallengeId.word, DailyChallengeId.fast]));
+    expect(
+      reward.challenges.map((c) => c.id),
+      containsAll([DailyChallengeId.word, DailyChallengeId.fast, DailyChallengeId.noHint, DailyChallengeId.ecoWin]),
+    );
     final WalletState state = service.current;
     expect(state.totalGames, 1);
     expect(state.totalWins, 1);
@@ -43,8 +46,181 @@ void main() {
     expect(state.maxStreak, 1);
     expect(state.lastGameDateKey, '2026-09-08');
     expect(state.unlockedAchievements, contains('achFirstWin'));
-    expect(state.dailyChallenges['2026-09-08'], ['dailyChallengeFast', 'dailyChallengeWord']);
-    expect(state.tokens, 25 + 50 + 10 + 20);
+    expect(state.dailyChallenges['2026-09-08'], [
+      'dailyChallengeEcoWin',
+      'dailyChallengeFast',
+      'dailyChallengeNoHint',
+      'dailyChallengeWord',
+    ]);
+    expect(state.tokens, 25 + 50 + 10 + 20 + 35 + 30);
+  });
+
+  test('noHint and ecoWin challenges are not granted when a hint was used', () async {
+    final WalletService service = await WalletService.create(repository: _FakeWalletRepository(const WalletState()));
+    await service.recordReveal(DateTime(2026, 9, 8));
+    final GameReward reward = await service.processGameResult(
+      mode: GameMode.daily,
+      isWin: true,
+      attempt: 3,
+      now: DateTime(2026, 9, 8),
+      dictionary: 'en',
+    );
+
+    expect(reward.challenges.map((c) => c.id), isNot(contains(DailyChallengeId.noHint)));
+    expect(reward.challenges.map((c) => c.id), contains(DailyChallengeId.ecoWin));
+  });
+
+  test('practice mode gives no economy rewards', () async {
+    final WalletService service = await WalletService.create(repository: _FakeWalletRepository(const WalletState()));
+    final GameReward reward = await service.processGameResult(
+      mode: GameMode.practice,
+      isWin: true,
+      attempt: 4,
+      now: DateTime(2026, 9, 8),
+      dictionary: 'en',
+    );
+
+    expect(reward.tokenDelta, 0);
+    expect(reward.xpDelta, 0);
+    expect(reward.challenges, isEmpty);
+    expect(service.current.totalGames, 1);
+    expect(service.current.totalWins, 1);
+  });
+
+  test('friend mode rewards a win but no challenges and no streak', () async {
+    final WalletService service = await WalletService.create(repository: _FakeWalletRepository(const WalletState()));
+    final GameReward reward = await service.processGameResult(
+      mode: GameMode.friend,
+      isWin: true,
+      attempt: 2,
+      now: DateTime(2026, 9, 8),
+      dictionary: 'en',
+    );
+
+    expect(reward.tokenDelta, 20);
+    expect(reward.xpDelta, 40);
+    expect(reward.challenges, isEmpty);
+    expect(service.current.currentStreak, 0);
+    expect(service.current.totalWins, 1);
+  });
+
+  test('hard mode multiplies XP on daily and lvl wins', () async {
+    final WalletService service = await WalletService.create(repository: _FakeWalletRepository(const WalletState()));
+    final GameReward daily = await service.processGameResult(
+      mode: GameMode.daily,
+      isWin: true,
+      attempt: 3,
+      now: DateTime(2026, 9, 8),
+      dictionary: 'en',
+      hardMode: true,
+    );
+    expect(daily.xpDelta, 90);
+
+    final GameReward lvl = await service.processGameResult(
+      mode: GameMode.lvl,
+      isWin: true,
+      attempt: 3,
+      now: DateTime(2026, 9, 9),
+      dictionary: 'en',
+      hardMode: true,
+    );
+    expect(lvl.xpDelta, 60);
+  });
+
+  test('boss level adds the bonus to the reward', () async {
+    final WalletService service = await WalletService.create(
+      repository: _FakeWalletRepository(const WalletState(unlockedAchievements: ['achFirstWin'])),
+    );
+    final GameReward reward = await service.processGameResult(
+      mode: GameMode.lvl,
+      isWin: true,
+      attempt: 3,
+      now: DateTime(2026, 9, 8),
+      dictionary: 'en',
+      bonus: 20,
+    );
+
+    expect(reward.bonus, 20);
+    expect(reward.tokenDelta, 15);
+    expect(service.current.tokens, 15 + 20);
+  });
+
+  test('repairStreak restores a broken streak once', () async {
+    final WalletService service = await WalletService.create(
+      repository: _FakeWalletRepository(const WalletState(tokens: 100, maxStreak: 5)),
+    );
+    expect(await service.repairStreak(DateTime(2026, 9, 9)), isTrue);
+    expect(service.current.tokens, 40);
+    expect(service.current.currentStreak, 1);
+    expect(service.current.lastGameDateKey, '2026-09-08');
+
+    expect(await service.repairStreak(DateTime(2026, 9, 9)), isFalse);
+    expect(service.current.tokens, 40);
+  });
+
+  test('repairStreak refuses when the streak is alive or never started', () async {
+    final WalletService active = await WalletService.create(
+      repository: _FakeWalletRepository(const WalletState(tokens: 100, currentStreak: 2, maxStreak: 2)),
+    );
+    expect(await active.repairStreak(DateTime(2026, 9, 9)), isFalse);
+
+    final WalletService fresh = await WalletService.create(
+      repository: _FakeWalletRepository(const WalletState(tokens: 100)),
+    );
+    expect(await fresh.repairStreak(DateTime(2026, 9, 9)), isFalse);
+
+    final WalletService poor = await WalletService.create(
+      repository: _FakeWalletRepository(const WalletState(tokens: 10, maxStreak: 3)),
+    );
+    expect(await poor.repairStreak(DateTime(2026, 9, 9)), isFalse);
+  });
+
+  test('weekend chest is worth up to twice a weekday chest', () async {
+    final WalletService service = await WalletService.create(repository: _FakeWalletRepository(const WalletState()));
+    final int weekday = await service.claimDailyChest(DateTime(2026, 9, 8)); // monday
+    expect(weekday, inInclusiveRange(5, 25));
+
+    final WalletService weekend = await WalletService.create(repository: _FakeWalletRepository(const WalletState()));
+    final int sat = await weekend.claimDailyChest(DateTime(2026, 9, 12)); // saturday
+    expect(sat, inInclusiveRange(10, 50));
+    expect(sat, dailyChestReward(DateTime(2026, 9, 12)));
+    expect(sat, greaterThan(weekday));
+  });
+
+  test('season pass buys once and claims daily rewards in order', () async {
+    final WalletService service = await WalletService.create(
+      repository: _FakeWalletRepository(const WalletState(tokens: 300)),
+    );
+    final start = DateTime.now();
+    expect(service.current.seasonPassActive, isFalse);
+    expect(await service.buySeasonPass(seasonPassPrice, now: start), isTrue);
+    expect(service.current.seasonPassActive, isTrue);
+    expect(service.current.tokens, 200);
+    expect(await service.buySeasonPass(seasonPassPrice, now: start), isFalse);
+
+    expect(await service.claimSeasonPassReward(start), seasonPassRewards[0]);
+    expect(service.current.seasonPassClaimedDays, [0]);
+    expect(await service.claimSeasonPassReward(start), 0);
+
+    expect(await service.claimSeasonPassReward(start.add(const Duration(days: 1))), seasonPassRewards[1]);
+    expect(await service.claimSeasonPassReward(start.add(const Duration(days: 2))), seasonPassRewards[2]);
+  });
+
+  test('season pass claims all 7 daily rewards and then stops', () async {
+    final WalletService service = await WalletService.create(
+      repository: _FakeWalletRepository(const WalletState(tokens: 300)),
+    );
+    final start = DateTime.now();
+    await service.buySeasonPass(seasonPassPrice, now: start);
+    var total = 0;
+    for (var i = 0; i < seasonPassRewards.length; i++) {
+      total += await service.claimSeasonPassReward(start.add(Duration(days: i)));
+    }
+    expect(total, seasonPassRewards.fold(0, (a, b) => a + b));
+    expect(service.current.seasonPassClaimedDays.length, 7);
+    expect(service.current.seasonPassDayIndexAt(start.add(const Duration(days: 7))), 7);
+    expect(await service.claimSeasonPassReward(start.add(const Duration(days: 7))), 0);
+    expect(service.current.seasonPassClaimedDays.length, 7);
   });
 
   test('daily loss resets streak and completes only the word challenge', () async {

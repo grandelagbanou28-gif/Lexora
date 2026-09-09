@@ -53,6 +53,45 @@ class const CustomDrawer({super.key}) extends StatelessWidget {
           },
         ),
         ListTile(
+          title: Text(context.l10n.practiceMode, style: const TextStyle(fontWeight: FontWeight.w500)),
+          onTap: () async {
+            Scaffold.of(context).closeDrawer();
+            final NavigatorState navigator = Navigator.of(context);
+            final GameBloc bloc = context.read<GameBloc>()..add(const GameEvent.changeGameMode(GameMode.practice));
+            await Future<void>.delayed(const Duration(milliseconds: 250));
+            await navigator.pushAndRemoveUntil(
+              PageRouteBuilder<void>(
+                pageBuilder: (context, _, _) => BlocProvider.value(value: bloc, child: const GamePage()),
+                transitionDuration: Duration.zero,
+                reverseTransitionDuration: Duration.zero,
+              ),
+              (route) => false,
+            );
+          },
+        ),
+        ListTile(
+          title: Text(context.l10n.friendMode, style: const TextStyle(fontWeight: FontWeight.w500)),
+          onTap: () async {
+            Scaffold.of(context).closeDrawer();
+            final NavigatorState navigator = Navigator.of(context);
+            final GameBloc bloc = context.read<GameBloc>();
+            final String? code = await _promptFriendCode(context);
+            if (code == null) {
+              return;
+            }
+            bloc.add(GameEvent.startFriendGame(code));
+            await Future<void>.delayed(const Duration(milliseconds: 250));
+            await navigator.pushAndRemoveUntil(
+              PageRouteBuilder<void>(
+                pageBuilder: (context, _, _) => BlocProvider.value(value: bloc, child: const GamePage()),
+                transitionDuration: Duration.zero,
+                reverseTransitionDuration: Duration.zero,
+              ),
+              (route) => false,
+            );
+          },
+        ),
+        ListTile(
           title: Text(context.l10n.tutorial, style: const TextStyle(fontWeight: FontWeight.w500)),
           onTap: () async {
             Scaffold.of(context).closeDrawer();
@@ -128,4 +167,27 @@ class const CustomDrawer({super.key}) extends StatelessWidget {
       ],
     );
   }
+
+  Future<String?> _promptFriendCode(BuildContext context) => showDialog<String>(
+    context: context,
+    builder: (context) {
+      final controller = TextEditingController();
+      return AlertDialog(
+        title: Text(context.l10n.friendMode),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          textCapitalization: TextCapitalization.characters,
+          decoration: const InputDecoration(hintText: 'AB12CD', border: OutlineInputBorder()),
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(context.l10n.cancel)),
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(controller.text.trim()),
+            child: Text(context.l10n.start),
+          ),
+        ],
+      );
+    },
+  );
 }

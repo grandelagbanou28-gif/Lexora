@@ -53,12 +53,13 @@ extension GameEventPatterns on GameEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GameChangeDictionary value)?  changeDictionary,TResult Function( _GameChangeGameMode value)?  changeGameMode,TResult Function( _GameResetBoard value)?  resetBoard,TResult Function( _GameLetterPressed value)?  letterPressed,TResult Function( _GameDeletePressed value)?  deletePressed,TResult Function( _GameDeleteLongPressed value)?  deleteLongPressed,TResult Function( _GameEnterPressed value)?  enterPressed,TResult Function( _GameRetryLevelPersistence value)?  retryLevelPersistence,TResult Function( _GameListenKeyEvent value)?  listenKeyEvent,TResult Function( _GameRevealLetterPressed value)?  revealLetterPressed,TResult Function( _GameEliminateLettersPressed value)?  eliminateLettersPressed,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _GameChangeDictionary value)?  changeDictionary,TResult Function( _GameChangeGameMode value)?  changeGameMode,TResult Function( _GameStartFriendGame value)?  startFriendGame,TResult Function( _GameResetBoard value)?  resetBoard,TResult Function( _GameLetterPressed value)?  letterPressed,TResult Function( _GameDeletePressed value)?  deletePressed,TResult Function( _GameDeleteLongPressed value)?  deleteLongPressed,TResult Function( _GameEnterPressed value)?  enterPressed,TResult Function( _GameRetryLevelPersistence value)?  retryLevelPersistence,TResult Function( _GameListenKeyEvent value)?  listenKeyEvent,TResult Function( _GameRevealLetterPressed value)?  revealLetterPressed,TResult Function( _GameEliminateLettersPressed value)?  eliminateLettersPressed,TResult Function( _GamePeekRowPressed value)?  peekRowPressed,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _GameChangeDictionary() when changeDictionary != null:
 return changeDictionary(_that);case _GameChangeGameMode() when changeGameMode != null:
-return changeGameMode(_that);case _GameResetBoard() when resetBoard != null:
+return changeGameMode(_that);case _GameStartFriendGame() when startFriendGame != null:
+return startFriendGame(_that);case _GameResetBoard() when resetBoard != null:
 return resetBoard(_that);case _GameLetterPressed() when letterPressed != null:
 return letterPressed(_that);case _GameDeletePressed() when deletePressed != null:
 return deletePressed(_that);case _GameDeleteLongPressed() when deleteLongPressed != null:
@@ -67,7 +68,8 @@ return enterPressed(_that);case _GameRetryLevelPersistence() when retryLevelPers
 return retryLevelPersistence(_that);case _GameListenKeyEvent() when listenKeyEvent != null:
 return listenKeyEvent(_that);case _GameRevealLetterPressed() when revealLetterPressed != null:
 return revealLetterPressed(_that);case _GameEliminateLettersPressed() when eliminateLettersPressed != null:
-return eliminateLettersPressed(_that);case _:
+return eliminateLettersPressed(_that);case _GamePeekRowPressed() when peekRowPressed != null:
+return peekRowPressed(_that);case _:
   return orElse();
 
 }
@@ -85,12 +87,13 @@ return eliminateLettersPressed(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GameChangeDictionary value)  changeDictionary,required TResult Function( _GameChangeGameMode value)  changeGameMode,required TResult Function( _GameResetBoard value)  resetBoard,required TResult Function( _GameLetterPressed value)  letterPressed,required TResult Function( _GameDeletePressed value)  deletePressed,required TResult Function( _GameDeleteLongPressed value)  deleteLongPressed,required TResult Function( _GameEnterPressed value)  enterPressed,required TResult Function( _GameRetryLevelPersistence value)  retryLevelPersistence,required TResult Function( _GameListenKeyEvent value)  listenKeyEvent,required TResult Function( _GameRevealLetterPressed value)  revealLetterPressed,required TResult Function( _GameEliminateLettersPressed value)  eliminateLettersPressed,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _GameChangeDictionary value)  changeDictionary,required TResult Function( _GameChangeGameMode value)  changeGameMode,required TResult Function( _GameStartFriendGame value)  startFriendGame,required TResult Function( _GameResetBoard value)  resetBoard,required TResult Function( _GameLetterPressed value)  letterPressed,required TResult Function( _GameDeletePressed value)  deletePressed,required TResult Function( _GameDeleteLongPressed value)  deleteLongPressed,required TResult Function( _GameEnterPressed value)  enterPressed,required TResult Function( _GameRetryLevelPersistence value)  retryLevelPersistence,required TResult Function( _GameListenKeyEvent value)  listenKeyEvent,required TResult Function( _GameRevealLetterPressed value)  revealLetterPressed,required TResult Function( _GameEliminateLettersPressed value)  eliminateLettersPressed,required TResult Function( _GamePeekRowPressed value)  peekRowPressed,}){
 final _that = this;
 switch (_that) {
 case _GameChangeDictionary():
 return changeDictionary(_that);case _GameChangeGameMode():
-return changeGameMode(_that);case _GameResetBoard():
+return changeGameMode(_that);case _GameStartFriendGame():
+return startFriendGame(_that);case _GameResetBoard():
 return resetBoard(_that);case _GameLetterPressed():
 return letterPressed(_that);case _GameDeletePressed():
 return deletePressed(_that);case _GameDeleteLongPressed():
@@ -99,7 +102,8 @@ return enterPressed(_that);case _GameRetryLevelPersistence():
 return retryLevelPersistence(_that);case _GameListenKeyEvent():
 return listenKeyEvent(_that);case _GameRevealLetterPressed():
 return revealLetterPressed(_that);case _GameEliminateLettersPressed():
-return eliminateLettersPressed(_that);}
+return eliminateLettersPressed(_that);case _GamePeekRowPressed():
+return peekRowPressed(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -113,12 +117,13 @@ return eliminateLettersPressed(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GameChangeDictionary value)?  changeDictionary,TResult? Function( _GameChangeGameMode value)?  changeGameMode,TResult? Function( _GameResetBoard value)?  resetBoard,TResult? Function( _GameLetterPressed value)?  letterPressed,TResult? Function( _GameDeletePressed value)?  deletePressed,TResult? Function( _GameDeleteLongPressed value)?  deleteLongPressed,TResult? Function( _GameEnterPressed value)?  enterPressed,TResult? Function( _GameRetryLevelPersistence value)?  retryLevelPersistence,TResult? Function( _GameListenKeyEvent value)?  listenKeyEvent,TResult? Function( _GameRevealLetterPressed value)?  revealLetterPressed,TResult? Function( _GameEliminateLettersPressed value)?  eliminateLettersPressed,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _GameChangeDictionary value)?  changeDictionary,TResult? Function( _GameChangeGameMode value)?  changeGameMode,TResult? Function( _GameStartFriendGame value)?  startFriendGame,TResult? Function( _GameResetBoard value)?  resetBoard,TResult? Function( _GameLetterPressed value)?  letterPressed,TResult? Function( _GameDeletePressed value)?  deletePressed,TResult? Function( _GameDeleteLongPressed value)?  deleteLongPressed,TResult? Function( _GameEnterPressed value)?  enterPressed,TResult? Function( _GameRetryLevelPersistence value)?  retryLevelPersistence,TResult? Function( _GameListenKeyEvent value)?  listenKeyEvent,TResult? Function( _GameRevealLetterPressed value)?  revealLetterPressed,TResult? Function( _GameEliminateLettersPressed value)?  eliminateLettersPressed,TResult? Function( _GamePeekRowPressed value)?  peekRowPressed,}){
 final _that = this;
 switch (_that) {
 case _GameChangeDictionary() when changeDictionary != null:
 return changeDictionary(_that);case _GameChangeGameMode() when changeGameMode != null:
-return changeGameMode(_that);case _GameResetBoard() when resetBoard != null:
+return changeGameMode(_that);case _GameStartFriendGame() when startFriendGame != null:
+return startFriendGame(_that);case _GameResetBoard() when resetBoard != null:
 return resetBoard(_that);case _GameLetterPressed() when letterPressed != null:
 return letterPressed(_that);case _GameDeletePressed() when deletePressed != null:
 return deletePressed(_that);case _GameDeleteLongPressed() when deleteLongPressed != null:
@@ -127,7 +132,8 @@ return enterPressed(_that);case _GameRetryLevelPersistence() when retryLevelPers
 return retryLevelPersistence(_that);case _GameListenKeyEvent() when listenKeyEvent != null:
 return listenKeyEvent(_that);case _GameRevealLetterPressed() when revealLetterPressed != null:
 return revealLetterPressed(_that);case _GameEliminateLettersPressed() when eliminateLettersPressed != null:
-return eliminateLettersPressed(_that);case _:
+return eliminateLettersPressed(_that);case _GamePeekRowPressed() when peekRowPressed != null:
+return peekRowPressed(_that);case _:
   return null;
 
 }
@@ -195,6 +201,40 @@ int get hashCode {
 @override
 String toString() {
     return 'GameEvent.changeGameMode(gameMode: $gameMode)';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _GameStartFriendGame implements GameEvent {
+  const _GameStartFriendGame(this.code);
+  
+
+ final  String code;
+
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameStartFriendGame&&(identical(other.code, code) || other.code == code));
+}
+
+
+@override
+int get hashCode {
+    return Object.hash(runtimeType,code);
+}
+
+@override
+String toString() {
+    return 'GameEvent.startFriendGame(code: $code)';
 }
 
 
@@ -489,6 +529,38 @@ int get hashCode => runtimeType.hashCode;
 @override
 String toString() {
     return 'GameEvent.eliminateLettersPressed()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _GamePeekRowPressed implements GameEvent {
+  const _GamePeekRowPressed();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GamePeekRowPressed);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+    return 'GameEvent.peekRowPressed()';
 }
 
 

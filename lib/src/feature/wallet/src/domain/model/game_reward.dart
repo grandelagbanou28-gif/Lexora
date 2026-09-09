@@ -11,4 +11,5 @@ final class const GameReward({
   required final bool leveledUp,
   required final List<Achievement> achievements,
   required final List<DailyChallenge> challenges,
+  final int bonus = 0,
 });

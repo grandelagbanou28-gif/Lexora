@@ -75,6 +75,7 @@ class _GamePageState() extends State<GamePage> {
   Widget build(BuildContext context) {
     final SettingsContainer settingsScope = SettingsScope.of(context, listen: true);
     final Settings settings = settingsScope.settingsService.current;
+    final Color? appBackground = context.theme.extension<BackgroundCustomColors>()?.background;
     return KeyboardListener(
       focusNode: _focusNode,
       autofocus: true,
@@ -84,14 +85,43 @@ class _GamePageState() extends State<GamePage> {
         }
       },
       child: Scaffold(
-        backgroundColor: context.theme.extension<BackgroundCustomColors>()?.background,
+        backgroundColor: appBackground,
         appBar: AppBar(
           centerTitle: true,
           title: BlocBuilder<GameBloc, GameState>(
-            builder: (context, state) => Text(
-              state.gameMode == GameMode.daily ? context.l10n.daily : context.l10n.levelNumber(state.lvlNumber ?? 1),
-              style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 32),
-            ),
+            builder: (context, state) {
+              final String title = switch (state.gameMode) {
+                GameMode.daily => context.l10n.daily,
+                GameMode.lvl => context.l10n.levelNumber(state.lvlNumber ?? 1),
+                GameMode.practice => context.l10n.practiceMode,
+                GameMode.friend => context.l10n.friendMode,
+              };
+              final bool isBoss = state.gameMode == GameMode.lvl && (state.lvlNumber ?? 1) % 10 == 0;
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (isBoss) ...[
+                    Icon(
+                      Icons.local_fire_department,
+                      color: appBackground == null
+                          ? Colors.white
+                          : appBackground.computeLuminance() < 0.5
+                          ? Colors.orangeAccent
+                          : Colors.deepOrange,
+                      size: 28,
+                    ),
+                    const SizedBox(width: 6),
+                  ],
+                  Flexible(
+                    child: Text(
+                      title,
+                      style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 32),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
           actions: [
             BlocBuilder<GameBloc, GameState>(
@@ -106,7 +136,7 @@ class _GamePageState() extends State<GamePage> {
                       );
                     },
                   );
-                } else {
+                } else if (state.gameMode == GameMode.lvl) {
                   return IconButton(
                     tooltip: context.l10n.viewLevels,
                     icon: const Icon(Icons.apps),
@@ -116,6 +146,8 @@ class _GamePageState() extends State<GamePage> {
                       ).push(MaterialPageRoute<void>(builder: (context) => LevelPage(dictionary: settings.dictionary)));
                     },
                   );
+                } else {
+                  return const SizedBox.shrink();
                 }
               },
             ),
@@ -219,7 +251,7 @@ class const GameBody({super.key}) extends StatelessWidget {
             children: [
               const SizedBox(height: 12),
               const Center(child: WordsGrid()),
-              const HintBar(),
+              if (!settings.general.hardMode) const HintBar(),
               if (useSpacer) const Spacer(),
               const Center(child: KeyboardByLanguage()),
               if (useSpacer) const Spacer(),
@@ -234,12 +266,16 @@ class const GameBody({super.key}) extends StatelessWidget {
 
 Future<void> _processRewards(BuildContext context, GameState state) async {
   final WalletService wallet = WalletScope.of(context);
+  final Settings settings = SettingsScope.of(context).settingsService.current;
+  final bool isBoss = state.gameMode == GameMode.lvl && (state.lvlNumber ?? 1) % 10 == 0;
   final GameReward reward = await wallet.processGameResult(
     mode: state.gameMode,
     isWin: state.isWin,
     attempt: state.board.length ~/ 5,
     now: DateTime.now(),
     dictionary: state.dictionary.languageCode,
+    hardMode: settings.general.hardMode,
+    bonus: isBoss ? 20 : 0,
   );
   if (!context.mounted) {
     return;
@@ -250,6 +286,7 @@ Future<void> _processRewards(BuildContext context, GameState state) async {
         showCoin: true,
         text: '+${reward.tokenDelta} ${context.l10n.tokens}  +${reward.xpDelta} ${context.l10n.xp}',
       ),
+    if (reward.bonus > 0) _RewardLine(showCoin: true, text: '${context.l10n.bossBonus}: +${reward.bonus}'),
     if (reward.leveledUp)
       _RewardLine(text: '${context.l10n.levelUpTitle} ${context.l10n.playerLevel} ${reward.wallet.playerLevel}'),
     if (reward.achievements.isNotEmpty)

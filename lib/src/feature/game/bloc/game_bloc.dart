@@ -36,6 +36,7 @@ final class GameBloc({
       (event, emit) async => switch (event) {
         final _GameChangeDictionary e => _changeDictionary(e, emit),
         final _GameChangeGameMode e => _changeGameMode(e, emit),
+        final _GameStartFriendGame e => _startFriendGame(e, emit),
         final _GameResetBoard e => _resetBoard(e, emit),
         final _GameLetterPressed e => _letterPressed(e, emit),
         final _GameEnterPressed e => _enterPressed(e, emit),
@@ -45,6 +46,7 @@ final class GameBloc({
         final _GameListenKeyEvent e => _listenKeyEvent(e, emit),
         final _GameRevealLetterPressed e => _revealLetterPressed(e, emit),
         final _GameEliminateLettersPressed e => _eliminateLettersPressed(e, emit),
+        final _GamePeekRowPressed e => _peekRowPressed(e, emit),
       },
       transformer: (events, mapper) => events.asyncExpand(mapper),
     );
@@ -57,6 +59,9 @@ final class GameBloc({
   Future<GameResult?> _loadSavedResult(GameMode mode, Locale dictionary) {
     if (mode == GameMode.daily) {
       return _gameRepository.getDaily(dictionary, DateTime.now().toUtc());
+    }
+    if (mode == GameMode.practice || mode == GameMode.friend) {
+      return Future<GameResult?>.value();
     }
     return _levelRepository.getCurrentProgress(dictionary);
   }
@@ -247,15 +252,13 @@ final class GameBloc({
       return;
     }
     final GameResult? savedResult = await _loadSavedResult(state.gameMode, newDictionary);
-    final GameState newState = _stateBySavedResult(
-      savedResult,
-      newDictionary,
-      state.gameMode,
-      _gameRepository.generateSecretWord(
-        newDictionary,
-        levelNumber: state.gameMode == GameMode.daily ? 0 : savedResult?.lvlNumber ?? 1,
-      ),
-    );
+    final String secretWord = state.gameMode == GameMode.friend
+        ? _secretWordForCode(state.secretWord, newDictionary)
+        : _gameRepository.generateSecretWord(
+            newDictionary,
+            levelNumber: state.gameMode == GameMode.daily ? 0 : savedResult?.lvlNumber ?? 1,
+          );
+    final GameState newState = _stateBySavedResult(savedResult, newDictionary, state.gameMode, secretWord);
     emit(newState);
   }
 
@@ -264,23 +267,52 @@ final class GameBloc({
       return;
     }
     final GameMode newGameMode = event.gameMode;
+    if (newGameMode == GameMode.friend) {
+      return;
+    }
     final GameResult? savedResult = await _loadSavedResult(newGameMode, state.dictionary);
     final GameState newState = _stateBySavedResult(
-      savedResult,
+      newGameMode == GameMode.practice ? null : savedResult,
       state.dictionary,
       newGameMode,
-      _gameRepository.generateSecretWord(
-        state.dictionary,
-        levelNumber: newGameMode == GameMode.daily ? 0 : savedResult?.lvlNumber ?? 1,
-      ),
+      newGameMode == GameMode.practice
+          ? _gameRepository.generateSecretWord(state.dictionary)
+          : _gameRepository.generateSecretWord(
+              state.dictionary,
+              levelNumber: newGameMode == GameMode.daily ? 0 : savedResult?.lvlNumber ?? 1,
+            ),
     );
     emit(newState);
   }
 
+  Future<void> _startFriendGame(_GameStartFriendGame event, Emitter<GameState> emit) async {
+    emit(
+      _stateBySavedResult(null, state.dictionary, GameMode.friend, _secretWordForCode(event.code, state.dictionary)),
+    );
+  }
+
+  String _secretWordForCode(String code, Locale dictionary) {
+    final String normalized = code.trim().toUpperCase();
+    if (normalized.isEmpty) {
+      return _gameRepository.generateSecretWord(dictionary);
+    }
+    final List<String> words = _gameRepository.currentDictionary(dictionary).keys.toList(growable: false)..sort();
+    if (words.isEmpty) {
+      return _gameRepository.generateSecretWord(dictionary);
+    }
+    var hash = 0;
+    for (final int unit in normalized.codeUnits) {
+      hash = (hash * 31 + unit) & 0x7fffffff;
+    }
+    return words[hash % words.length];
+  }
+
   Future<void> _resetBoard(_GameResetBoard event, Emitter<GameState> emit) async {
     late final GameResult savedResult;
-    if (event.gameMode == GameMode.daily) {
+    if (event.gameMode == GameMode.daily || event.gameMode == GameMode.practice) {
       savedResult = GameResult(secretWord: _gameRepository.generateSecretWord(state.dictionary), board: []);
+    } else if (event.gameMode == GameMode.friend) {
+      savedResult = GameResult(secretWord: state.secretWord, board: []);
     } else {
       final GameResult? currentProgress = await _levelRepository.getCurrentProgress(state.dictionary);
       if (currentProgress != null) {
@@ -354,6 +386,23 @@ final class GameBloc({
     emit(_buildIdleState(eliminatedKeys: eliminated));
   }
 
+  void _peekRowPressed(_GamePeekRowPressed event, Emitter<GameState> emit) {
+    final GameState current = state;
+    if (current.isInputBlocked) {
+      return;
+    }
+    final int rowStart = current.board.isEmpty ? 0 : current.currentWordIndex * _wordLength;
+    final int placed = current.board.length - rowStart;
+    if (placed >= _wordLength) {
+      return;
+    }
+    final List<LetterInfo> board = List.of(current.board);
+    for (var i = placed; i < _wordLength; i++) {
+      board.add(LetterInfo(letter: current.secretWord[i]));
+    }
+    emit(_buildIdleState(board: board));
+  }
+
   List<String> _keyboardLetters(Locale dictionary) {
     final (List<String>, List<String>, List<String>) keyboard = switch (dictionary.languageCode) {
       'ru' => KeyboardList.ruKeyboard,
@@ -417,6 +466,9 @@ final class GameBloc({
           _saveDailyResult(board: newBoard, isWin: true);
         case GameMode.lvl:
           await _completeLevel(isWin: true, board: newBoard, statuses: newStatuses, emit: emit);
+        case GameMode.practice:
+        case GameMode.friend:
+          emit(_buildWinState(board: newBoard, statuses: newStatuses));
       }
 
       return;
@@ -463,6 +515,9 @@ final class GameBloc({
           _saveDailyResult(board: newBoard, isWin: false);
         case GameMode.lvl:
           await _completeLevel(isWin: false, board: newBoard, statuses: newStatuses, emit: emit);
+        case GameMode.practice:
+        case GameMode.friend:
+          emit(_buildLossState(board: newBoard, statuses: newStatuses));
       }
     } else {
       emit(_buildIdleState(board: newBoard, statuses: newStatuses));
@@ -471,6 +526,9 @@ final class GameBloc({
           _saveDailyResult(board: newBoard);
         case GameMode.lvl:
           await _saveLevelProgress(board: newBoard, emit: emit);
+        case GameMode.practice:
+        case GameMode.friend:
+          break;
       }
     }
   }

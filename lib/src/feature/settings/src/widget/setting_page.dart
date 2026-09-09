@@ -133,6 +133,20 @@ class _SettingsPageState() extends State<SettingsPage> {
                       );
                     },
                   ),
+                  SwitchListTile(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                    title: Text(
+                      context.l10n.hardMode,
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    ),
+                    subtitle: Text(context.l10n.hardModeDesc, style: const TextStyle(fontSize: 12)),
+                    value: settings.general.hardMode,
+                    onChanged: (value) async {
+                      await settingsScope.settingsService.update(
+                        (current) => current.copyWith(general: current.general.copyWith(hardMode: value)),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

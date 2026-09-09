@@ -372,5 +372,59 @@ class MessageLookup extends MessageLookupByLibrary {
     "themeSunset": MessageLookupByLibrary.simpleMessage(
       "Coucher de soleil",
     ),
+    "bossBonus": MessageLookupByLibrary.simpleMessage(
+      "Bonus boss",
+    ),
+    "cancel": MessageLookupByLibrary.simpleMessage(
+      "Annuler",
+    ),
+    "dailyChallengeEcoWin": MessageLookupByLibrary.simpleMessage(
+      "Gagner sans éliminer de lettres",
+    ),
+    "dailyChallengeNoHint": MessageLookupByLibrary.simpleMessage(
+      "Gagner sans utiliser d’indice",
+    ),
+    "friendMode": MessageLookupByLibrary.simpleMessage(
+      "Défi ami",
+    ),
+    "hardMode": MessageLookupByLibrary.simpleMessage(
+      "Mode difficile",
+    ),
+    "hardModeDesc": MessageLookupByLibrary.simpleMessage(
+      "Sans indices, plus d’XP",
+    ),
+    "peekRow": MessageLookupByLibrary.simpleMessage(
+      "Révéler toute la rangée",
+    ),
+    "playAgain": MessageLookupByLibrary.simpleMessage(
+      "Rejouer",
+    ),
+    "practiceMode": MessageLookupByLibrary.simpleMessage(
+      "Entraînement",
+    ),
+    "repairStreak": MessageLookupByLibrary.simpleMessage(
+      "Réparer ta série",
+    ),
+    "repairStreakDone": MessageLookupByLibrary.simpleMessage(
+      "Série restaurée !",
+    ),
+    "seasonPass": MessageLookupByLibrary.simpleMessage(
+      "Passe hebdomadaire",
+    ),
+    "seasonPassBought": MessageLookupByLibrary.simpleMessage(
+      "Passe activée !",
+    ),
+    "seasonPassClaim": MessageLookupByLibrary.simpleMessage(
+      "Réclamer la récompense du jour",
+    ),
+    "seasonPassDaily": MessageLookupByLibrary.simpleMessage(
+      "Jour",
+    ),
+    "seasonPassFinished": MessageLookupByLibrary.simpleMessage(
+      "Passe terminée",
+    ),
+    "seasonPassSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Une récompense chaque jour pendant 7 jours",
+    ),
   };
 }
